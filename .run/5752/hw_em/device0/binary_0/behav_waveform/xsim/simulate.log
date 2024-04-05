@@ -1,0 +1,356 @@
+#-----------------------------------------------------------
+# xsim v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Thu Apr  4 23:47:31 2024
+# Process ID: 5863
+# Current directory: /home/dang004/hls_catch22/.run/5752/hw_em/device0/binary_0/behav_waveform/xsim
+# Command line: xsim -log simulate.log -mode tcl -source {xsim.dir/pfm_top_wrapper_behav/xsim_script.tcl}
+# Log file: /home/dang004/hls_catch22/.run/5752/hw_em/device0/binary_0/behav_waveform/xsim/simulate.log
+# Journal file: /home/dang004/hls_catch22/.run/5752/hw_em/device0/binary_0/behav_waveform/xsim/xsim.jou
+# Running On: wolverine.cs.ucr.edu, OS: Linux, CPU Frequency: 2600.277 MHz, CPU Physical cores: 16, Host memory: 134923 MB
+#-----------------------------------------------------------
+source xsim.dir/pfm_top_wrapper_behav/xsim_script.tcl
+# xsim {pfm_top_wrapper_behav} -wdb {xilinx_u250_gen3x16_xdma_4_1_202210_1-0-krnl.link.wdb} -autoloadwcfg -tclbatch {pfm_top_wrapper.tcl} -key {Behavioral:sim_1:Functional:pfm_top_wrapper} -protoinst {protoinst_files/bd_f615.protoinst} -protoinst {protoinst_files/bd_2b97.protoinst} -protoinst {protoinst_files/bd_d216.protoinst} -protoinst {protoinst_files/pfm_dynamic.protoinst} -protoinst {protoinst_files/bd_448f.protoinst} -protoinst {protoinst_files/bd_387c.protoinst} -protoinst {protoinst_files/pfm_top.protoinst} -protoinst {./dr_behav.protoinst}
+
+Warning: (W505) object already exists: .pfm_top_wrapper.pfm_top_i.pfm_dynamic_inst.System_DPA.dpa_hub.inst.s_aximm_wr_util. Latter declaration will be renamed to .pfm_top_wrapper.pfm_top_i.pfm_dynamic_inst.System_DPA.dpa_hub.inst.s_aximm_wr_util_0
+In file: sc_object_manager.cpp:161
+
+Warning: (W505) object already exists: .pfm_top_wrapper.pfm_top_i.pfm_dynamic_inst.System_DPA.dpa_mon0.inst.rd_mon.rd_skt_0. Latter declaration will be renamed to .pfm_top_wrapper.pfm_top_i.pfm_dynamic_inst.System_DPA.dpa_mon0.inst.rd_mon.rd_skt_0_0
+In file: sc_object_manager.cpp:161
+WARNING::[ XTLM::751 ] Deprecated.! Please instantiate Memory Manager with this pointer (sc_module pointer).
+
+Warning: (W505) object already exists: .pfm_top_wrapper.pfm_top_i.pfm_dynamic_inst.System_DPA.dpa_mon0.inst.wr_mon.wr_skt_0. Latter declaration will be renamed to .pfm_top_wrapper.pfm_top_i.pfm_dynamic_inst.System_DPA.dpa_mon0.inst.wr_mon.wr_skt_0_0
+In file: sc_object_manager.cpp:161
+WARNING::[ XTLM::751 ] Deprecated.! Please instantiate Memory Manager with this pointer (sc_module pointer).
+
+Warning: (W505) object already exists: .pfm_top_wrapper.pfm_top_i.pfm_dynamic_inst.System_DPA.dpa_mon0.inst.mon_saxi_rd_socket_0. Latter declaration will be renamed to .pfm_top_wrapper.pfm_top_i.pfm_dynamic_inst.System_DPA.dpa_mon0.inst.mon_saxi_rd_socket_0_0
+In file: sc_object_manager.cpp:161
+
+Warning: (W505) object already exists: .pfm_top_wrapper.pfm_top_i.pfm_dynamic_inst.System_DPA.dpa_mon0.inst.mon_saxi_wr_socket_0. Latter declaration will be renamed to .pfm_top_wrapper.pfm_top_i.pfm_dynamic_inst.System_DPA.dpa_mon0.inst.mon_saxi_wr_socket_0_0
+In file: sc_object_manager.cpp:161
+
+Info: (I804) /IEEE_Std_1666/deprecated: sc_sensitive_neg is deprecated use sc_sensitive << with neg() instead
+WARNING::[ XTLM::751 ] Deprecated.! Please instantiate Memory Manager with this pointer (sc_module pointer).
+WARNING::[ XTLM::751 ] Deprecated.! Please instantiate Memory Manager with this pointer (sc_module pointer).
+WARNING::[ XTLM::751 ] Deprecated.! Please instantiate Memory Manager with this pointer (sc_module pointer).
+WARNING::[ XTLM::751 ] Deprecated.! Please instantiate Memory Manager with this pointer (sc_module pointer).
+
+Warning: (W570) attempt to use an empty process handle ignored: dont_initialize()
+In file: sc_process_handle.h:290
+WARNING::[ XTLM::751 ] Deprecated.! Please instantiate Memory Manager with this pointer (sc_module pointer).
+
+Info: (I804) /IEEE_Std_1666/deprecated: sc_sensitive_pos is deprecated use sc_sensitive << with pos() instead
+
+Info: (I804) /IEEE_Std_1666/deprecated: sc_object::get_parent() is deprecated, use get_parent_object() instead
+INFO: [Wavedata 42-565] Reading protoinst file protoinst_files/bd_f615.protoinst
+WARNING: [Wavedata 42-558] Couldn't load one or more protocol instances from protoinst file protoinst_files/bd_f615.protoinst for the following reason(s):
+There are no instances of module "bd_f615" in the design.
+
+INFO: [Wavedata 42-565] Reading protoinst file protoinst_files/bd_2b97.protoinst
+WARNING: [Wavedata 42-558] Couldn't load one or more protocol instances from protoinst file protoinst_files/bd_2b97.protoinst for the following reason(s):
+There are no instances of module "bd_2b97" in the design.
+
+INFO: [Wavedata 42-565] Reading protoinst file protoinst_files/bd_d216.protoinst
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/memory_subsystem/inst//interconnect/M00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/memory_subsystem/inst//interconnect/S01_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/memory_subsystem/inst//interconnect/S04_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/memory_subsystem/inst//interconnect/interconnect_m00_axi_mem00/M00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/memory_subsystem/inst//interconnect/interconnect_m00_axi_mem00/S00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/memory_subsystem/inst//interconnect/interconnect_m00_axi_mem00/S01_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/memory_subsystem/inst//interconnect/rs_m00_axi/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/memory_subsystem/inst//interconnect/rs_m00_axi/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/memory_subsystem/inst//memory/S_AXI_CTRL
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/memory_subsystem/inst//memory/interconnect_ddrmem_ctrl/S_AXI
+INFO: [Wavedata 42-565] Reading protoinst file protoinst_files/pfm_dynamic.protoinst
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/S00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/S_AXIMM
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/M00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/M01_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/M02_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/S00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/m00_couplers/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/m00_couplers/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/m00_couplers/auto_cc/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/m00_couplers/auto_cc/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/m00_couplers/m00_regslice/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/m00_couplers/m00_regslice/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/m01_couplers/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/m01_couplers/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/m01_couplers/auto_cc/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/m01_couplers/auto_cc/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/m01_couplers/m01_regslice/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/m01_couplers/m01_regslice/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/m02_couplers/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/m02_couplers/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/m02_couplers/auto_cc/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/m02_couplers/auto_cc/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/m02_couplers/m02_regslice/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/m02_couplers/m02_regslice/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/s00_couplers/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/s00_couplers/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/s00_couplers/s00_regslice/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/s00_couplers/s00_regslice/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/xbar/M00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/xbar/M01_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/xbar/M02_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_ctrl_interconnect/xbar/S00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_hub/S_AXIFIFO
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_hub/S_AXIHUB
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_hub/S_AXIMM
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_hub/TRACE_IN_0
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_hub/TRACE_IN_1
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_mon0/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_mon0/TRACE_OUT_0
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//System_DPA/dpa_mon0/TRACE_OUT_1
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//krnl_1/m_axi_gmem
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//krnl_1/s_axi_control
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//memory_subsystem/M00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//memory_subsystem/M01_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//memory_subsystem/S00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//memory_subsystem/S01_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//memory_subsystem/S02_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//memory_subsystem/S03_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//memory_subsystem/S04_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//memory_subsystem/S_AXI_CTRL
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//profile_vip_0/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//profile_vip_0/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr0/M01_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr0/PLP_S_AXI_CTRL_USER_00
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr0/interconnect_axilite_user_0/M00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr0/interconnect_axilite_user_0/M01_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr0/interconnect_axilite_user_0/S00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr0/interconnect_axilite_user_0/m00_couplers/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr0/interconnect_axilite_user_0/m00_couplers/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr0/interconnect_axilite_user_0/m01_couplers/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr0/interconnect_axilite_user_0/m01_couplers/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr0/interconnect_axilite_user_0/m01_couplers/m01_regslice/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr0/interconnect_axilite_user_0/m01_couplers/m01_regslice/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr0/interconnect_axilite_user_0/s00_couplers/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr0/interconnect_axilite_user_0/s00_couplers/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr0/interconnect_axilite_user_0/xbar/M00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr0/interconnect_axilite_user_0/xbar/M01_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr0/interconnect_axilite_user_0/xbar/S00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr0/to_delete_kernel_ctrl_0/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr1/M01_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr1/PLP_S_AXI_CTRL_USER_01
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr1/interconnect_axilite_user_1/M00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr1/interconnect_axilite_user_1/M01_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr1/interconnect_axilite_user_1/S00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr1/interconnect_axilite_user_1/m00_couplers/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr1/interconnect_axilite_user_1/m00_couplers/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr1/interconnect_axilite_user_1/m01_couplers/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr1/interconnect_axilite_user_1/m01_couplers/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr1/interconnect_axilite_user_1/m01_couplers/auto_cc/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr1/interconnect_axilite_user_1/m01_couplers/auto_cc/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr1/interconnect_axilite_user_1/m01_couplers/m01_regslice/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr1/interconnect_axilite_user_1/m01_couplers/m01_regslice/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr1/interconnect_axilite_user_1/s00_couplers/M_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr1/interconnect_axilite_user_1/s00_couplers/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr1/interconnect_axilite_user_1/xbar/M00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr1/interconnect_axilite_user_1/xbar/M01_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr1/interconnect_axilite_user_1/xbar/S00_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr1/to_delete_kernel_ctrl_1/S_AXI
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr2/PLP_S_AXI_CTRL_USER_02
+INFO: [Wavedata 42-564]   Found protocol instance at /pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//slr2/interconnect_axilite_user_2/M00_AXI
+INFO: [Common 17-14] Message 'Wavedata 42-564' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Wavedata 42-565] Reading protoinst file protoinst_files/bd_448f.protoinst
+WARNING: [Wavedata 42-558] Couldn't load one or more protocol instances from protoinst file protoinst_files/bd_448f.protoinst for the following reason(s):
+There are no instances of module "bd_448f" in the design.
+
+INFO: [Wavedata 42-565] Reading protoinst file protoinst_files/bd_387c.protoinst
+WARNING: [Wavedata 42-558] Couldn't load one or more protocol instances from protoinst file protoinst_files/bd_387c.protoinst for the following reason(s):
+There are no instances of module "bd_387c" in the design.
+
+INFO: [Wavedata 42-565] Reading protoinst file protoinst_files/pfm_top.protoinst
+INFO: [Wavedata 42-565] Reading protoinst file ./dr_behav.protoinst
+WARNING: [Wavedata 42-559] Protocol instance "/pfm_top_wrapper/pfm_top_i//pfm_dynamic_inst/PLP_M_AXI_DATA_C2H_00" was created but is non-functional for the following reason(s):
+Port "AWID" must be a logic vector
+Port "AWADDR" must be a logic vector
+Port "AWLEN" must be a logic vector
+Port "WDATA" must be a logic vector
+Port "WSTRB" must be a logic vector
+Port "BID" must be a logic vector
+Port "ARID" must be a logic vector
+Port "ARADDR" must be a logic vector
+Port "ARLEN" must be a logic vector
+Port "RID" must be a logic vector
+Port "RDATA" must be a logic vector
+
+WARNING: [Wavedata 42-559] Protocol instance "/pfm_top_wrapper/pfm_top_i//static_region/C0_DDR4_S_AXI_CTRL_0" was created but is non-functional for the following reason(s):
+Required port "ACLK" is missing
+
+WARNING: [Wavedata 42-559] Protocol instance "/pfm_top_wrapper/pfm_top_i//static_region/S_AXIMM" was created but is non-functional for the following reason(s):
+Port "AWADDR" must be a logic vector
+Port "AWLEN" must be a logic vector
+Port "WDATA" must be a logic vector
+Port "WSTRB" must be a logic vector
+Port "ARADDR" must be a logic vector
+Port "ARLEN" must be a logic vector
+Port "RDATA" must be a logic vector
+
+WARNING: [Wavedata 42-559] Protocol instance "/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//memory_subsystem/M01_AXI" was created but is non-functional for the following reason(s):
+Port "AWID" must be a logic vector
+Port "AWADDR" must be a logic vector
+Port "AWLEN" must be a logic vector
+Port "WDATA" must be a logic vector
+Port "WSTRB" must be a logic vector
+Port "BID" must be a logic vector
+Port "ARID" must be a logic vector
+Port "ARADDR" must be a logic vector
+Port "ARLEN" must be a logic vector
+Port "RID" must be a logic vector
+Port "RDATA" must be a logic vector
+
+WARNING: [Wavedata 42-559] Protocol instance "/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//memory_subsystem/S00_AXI" was created but is non-functional for the following reason(s):
+Port "AWID" must be a logic vector
+Port "AWADDR" must be a logic vector
+Port "AWLEN" must be a logic vector
+Port "WDATA" must be a logic vector
+Port "WSTRB" must be a logic vector
+Port "BID" must be a logic vector
+Port "ARID" must be a logic vector
+Port "ARADDR" must be a logic vector
+Port "ARLEN" must be a logic vector
+Port "RID" must be a logic vector
+Port "RDATA" must be a logic vector
+
+WARNING: [Wavedata 42-559] Protocol instance "/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//memory_subsystem/S02_AXI" was created but is non-functional for the following reason(s):
+Port "AWID" must be a logic vector
+Port "AWADDR" must be a logic vector
+Port "AWLEN" must be a logic vector
+Port "WDATA" must be a logic vector
+Port "WSTRB" must be a logic vector
+Port "BID" must be a logic vector
+Port "ARID" must be a logic vector
+Port "ARADDR" must be a logic vector
+Port "ARLEN" must be a logic vector
+Port "RID" must be a logic vector
+Port "RDATA" must be a logic vector
+
+WARNING: [Wavedata 42-559] Protocol instance "/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst//memory_subsystem/S03_AXI" was created but is non-functional for the following reason(s):
+Port "AWID" must be a logic vector
+Port "AWADDR" must be a logic vector
+Port "AWLEN" must be a logic vector
+Port "WDATA" must be a logic vector
+Port "WSTRB" must be a logic vector
+Port "BID" must be a logic vector
+Port "ARID" must be a logic vector
+Port "ARADDR" must be a logic vector
+Port "ARLEN" must be a logic vector
+Port "RID" must be a logic vector
+Port "RDATA" must be a logic vector
+
+Time resolution is 1 ps
+source pfm_top_wrapper.tcl
+## set curr_wave [current_wave_config]
+## if { [string length $curr_wave] == 0 } {
+##   if { [llength [get_objects]] > 0} {
+##     add_wave /
+##     set_property needs_save false [current_wave_config]
+##   } else {
+##      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+##   }
+## }
+## if { [file exists vitis_params.tcl] } {
+##   source vitis_params.tcl
+## }
+## if { [info exists ::env(USER_PRE_SIM_SCRIPT)] } {
+##   if { [catch {source $::env(USER_PRE_SIM_SCRIPT)} msg] } {
+##     puts $msg
+##   }
+## }
+## if { [info exists ::env(VITIS_WAVEFORM)] } {
+##   if { [file exists $::env(VITIS_WAVEFORM)] == 1} {
+##     open_wave_config $::env(VITIS_WAVEFORM)
+##   }
+## }
+## if { [file exists pre_sim_tool_scripts.tcl] } {
+##   source pre_sim_tool_scripts.tcl
+## }
+### if { [file exists preprocess_profile.tcl] } {
+###   if { [catch {source -notrace preprocess_profile.tcl} msg] } {
+###     puts $msg 
+###   }
+### }
+### if { [info exists ::env(XILINX_SC_HW_EMU)] } {
+###   source $::env(XILINX_VITIS)/system_compiler/examples/sc_hw_emu_pre_xsim.tcl
+### }
+## puts "We are running simulator for infinite time. Added some default signals in the waveform. You can pause simulation and add signals and then resume the simulaion again."
+We are running simulator for infinite time. Added some default signals in the waveform. You can pause simulation and add signals and then resume the simulaion again.
+## puts ""
+
+## puts "Stopping at breakpoint in simulator also stops the host code execution"
+Stopping at breakpoint in simulator also stops the host code execution
+## puts ""
+
+## if { [info exists ::env(VITIS_LAUNCH_WAVEFORM_GUI) ] } {
+##   run 1ns
+## } else {
+##   run all
+## }
+-> v30 setup
+slot_size=0x1000
+num_slots=16
+num_slot_masks=1
+num_cus=3
+num_cu_masks=1
+cu_offset=16
+cu_base_address=0x0
+cq_int_enabled=0
+mb_host_int_enabled=0
+dataflow_enabled=0
+kds_30=0
+dmsg=0
+echo=0
+polling=1
+cu interrupt mask : cannot convert
+<- setup
+-->configure_mb
+configure cmd found in slot(0)
+features=0x0041
+cu(0) addr(0x1d010000) handshake(0x1) encodedaddr(0x1d010001)
+-> v30 setup
+slot_size=0x200
+num_slots=128
+num_slot_masks=4
+num_cus=1
+num_cu_masks=1
+cu_offset=16
+cu_base_address=0x1d010000
+cq_int_enabled=0
+mb_host_int_enabled=1
+dataflow_enabled=1
+kds_30=0
+dmsg=0
+echo=0
+polling=1
+cu interrupt mask : cannot convert
+<- setup
+slot(0) [running -> free]
+<--configure_mb
+$stop called at time : 158458352 ps
+run: Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 2435.938 ; gain = 0.000 ; free physical = 23929 ; free virtual = 129609
+## if { [file exists post_sim_tool_scripts.tcl] } {
+##   source post_sim_tool_scripts.tcl
+## }
+### if { [file exists profile.tcl] } {
+###   if { [catch {source -notrace profile.tcl } msg] } {
+###     puts $msg
+###   }
+### }
+Waiting for protocol analyzers to complete...
+Done!
+### if { [info exists ::env(XILINX_SC_HW_EMU)] } {
+###   source $::env(XILINX_VITIS)/system_compiler/examples/sc_hw_emu_post_xsim.tcl
+### }
+## if { [info exists ::env(VITIS_LAUNCH_WAVEFORM_BATCH) ] } {
+##   if { [info exists ::env(USER_POST_SIM_SCRIPT) ] } {
+##     if { [catch {source $::env(USER_POST_SIM_SCRIPT)} msg] } {
+##       puts $msg
+##     }
+##   }
+##   quit
+## }
+INFO: xsimkernel Simulation Memory Usage: 244768 KB (Peak: 310300 KB), Simulation CPU Usage: 11890 ms
+INFO: [Common 17-206] Exiting xsim at Thu Apr  4 23:47:52 2024...

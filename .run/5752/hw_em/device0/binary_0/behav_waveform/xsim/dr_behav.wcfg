@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <wvobject type="group" fp_name="HLS_Process_Summary_group">
+      <obj_property name="label">HLS Process Summary</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="group" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/">
+         <obj_property name="label">/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="group" fp_name="grp_search_fu_504">
+            <obj_property name="label">grp_search_fu_504</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="isExpanded"></obj_property>
+            <wvobject type="group" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_fu_504">
+               <obj_property name="label">grp_search_fu_504</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="UseFullPath">true</obj_property>
+               <obj_property name="ElementShortName">grp_search_fu_504</obj_property>
+               <obj_property name="ObjectShortName">grp_search_fu_504</obj_property>
+               <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+               <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+               <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+               <obj_property name="UseCustomSignalColor">true</obj_property>
+               <obj_property name="CustomSignalColor">turquoise</obj_property>
+               <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+               <obj_property name="Render_Data">/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_fu_504.dataflowTxWaveData.Cycles</obj_property>
+               <obj_property name="Value_Data">/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_fu_504.dataflowTxWaveData.OutStanding</obj_property>
+               <obj_property name="Detail_Data">/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_fu_504.dataflowTxTooltipData</obj_property>
+            </wvobject>
+            <wvobject type="group" fp_name="grp_search_Pipeline_VITIS_LOOP_72_1_fu_114">
+               <obj_property name="label">grp_search_Pipeline_VITIS_LOOP_72_1_fu_114</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="isExpanded"></obj_property>
+               <wvobject type="group" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114">
+                  <obj_property name="label">grp_search_Pipeline_VITIS_LOOP_72_1_fu_114</obj_property>
+                  <obj_property name="DisplayName">label</obj_property>
+                  <obj_property name="UseFullPath">true</obj_property>
+                  <obj_property name="ElementShortName">grp_search_Pipeline_VITIS_LOOP_72_1_fu_114</obj_property>
+                  <obj_property name="ObjectShortName">grp_search_Pipeline_VITIS_LOOP_72_1_fu_114</obj_property>
+                  <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+                  <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+                  <obj_property name="EnumTransactionColorTable">0=blank ffff=blank 0bad=#FF0000</obj_property>
+                  <obj_property name="UseCustomSignalColor">true</obj_property>
+                  <obj_property name="CustomSignalColor">turquoise</obj_property>
+                  <obj_property name="EnumTransactionValueTable">65535=blank</obj_property>
+                  <obj_property name="Render_Data">/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114.dataflowTxWaveData.Cycles</obj_property>
+                  <obj_property name="Value_Data">/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114.dataflowTxWaveData.OutStanding</obj_property>
+                  <obj_property name="Detail_Data">/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114.dataflowTxTooltipData</obj_property>
+               </wvobject>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="device_group">
+      <obj_property name="label">Device &quot;xilinx_u250_gen3x16_xdma_4_1_202210_1-0&quot;</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="group" fp_name="bin_group">
+         <obj_property name="label">Binary Container &quot;krnl.link&quot;</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject type="group" fp_name="kernel_group">
+            <obj_property name="label">Kernel &quot;krnl&quot; 1:1:1</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="isExpanded"></obj_property>
+            <wvobject type="group" fp_name="cu_group">
+               <obj_property name="label">Compute Unit: krnl_1</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <obj_property name="isExpanded"></obj_property>
+               <obj_property name="Description_Data">Activity for compute unit krnl_1</obj_property>
+               <obj_property name="EnumTransactionColorTable">1=blank</obj_property>
+               <obj_property name="EnumTransactionValueTable">1=blank;0=Running</obj_property>
+               <obj_property name="CustomSignalColor">#4DB34D</obj_property>
+               <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+               <obj_property name="UseCustomSignalColor">true</obj_property>
+               <obj_property name="Render_Data">/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/ap_idle</obj_property>
+               <wvobject type="vbus" fp_name="stall_vbus">
+                  <obj_property name="label">CU Stalls (%)</obj_property>
+                  <obj_property name="DisplayName">label</obj_property>
+                  <obj_property name="Description_Data">CU Functions that are stalling (%)</obj_property>
+                  <obj_property name="Radix">BITCOUNTRADIX</obj_property>
+                  <obj_property name="SHOWPERCENTCOUNT">true</obj_property>
+                  <obj_property name="ShowWaveText">true</obj_property>
+                  <obj_property name="EnumTransactionColorTable">3f=blank</obj_property>
+                  <obj_property name="EnumTransactionValueTable">3f=blank</obj_property>
+                  <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+                  <obj_property name="CustomSignalColor">#FF7F27</obj_property>
+                  <obj_property name="UseCustomSignalColor">true</obj_property>
+                  <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst//ap_ext_blocking_n">
+                     <obj_property name="label">Top level: External Memory</obj_property>
+                     <obj_property name="Description_Data">Stalls from accessing external memory</obj_property>
+                     <obj_property name="DisplayName">label</obj_property>
+                     <obj_property name="EnumTransactionColorTable">1=blank</obj_property>
+                     <obj_property name="EnumTransactionValueTable">1=blank;0=stall</obj_property>
+                     <obj_property name="ShowWaveText">false</obj_property>
+                     <obj_property name="CustomSignalColor">#FF7F27</obj_property>
+                     <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+                     <obj_property name="UseCustomSignalColor">true</obj_property>
+                  </wvobject>
+                  <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst//ap_str_blocking_n">
+                     <obj_property name="label">Top level: External Stream</obj_property>
+                     <obj_property name="Description_Data">Stalls from accessing pipes between compute units</obj_property>
+                     <obj_property name="DisplayName">label</obj_property>
+                     <obj_property name="EnumTransactionColorTable">1=blank</obj_property>
+                     <obj_property name="EnumTransactionValueTable">1=blank;0=stall</obj_property>
+                     <obj_property name="ShowWaveText">false</obj_property>
+                     <obj_property name="CustomSignalColor">#FF7F27</obj_property>
+                     <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+                     <obj_property name="UseCustomSignalColor">true</obj_property>
+                  </wvobject>
+                  <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/ap_ext_blocking_n">
+                     <obj_property name="label">grp_search_fu_504: External Memory</obj_property>
+                     <obj_property name="Description_Data">Stalls from accessing external memory</obj_property>
+                     <obj_property name="DisplayName">label</obj_property>
+                     <obj_property name="EnumTransactionColorTable">1=blank</obj_property>
+                     <obj_property name="EnumTransactionValueTable">1=blank;0=stall</obj_property>
+                     <obj_property name="ShowWaveText">false</obj_property>
+                     <obj_property name="CustomSignalColor">#FF7F27</obj_property>
+                     <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+                     <obj_property name="UseCustomSignalColor">true</obj_property>
+                  </wvobject>
+                  <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/ap_str_blocking_n">
+                     <obj_property name="label">grp_search_fu_504: External Stream</obj_property>
+                     <obj_property name="Description_Data">Stalls from accessing pipes between compute units</obj_property>
+                     <obj_property name="DisplayName">label</obj_property>
+                     <obj_property name="EnumTransactionColorTable">1=blank</obj_property>
+                     <obj_property name="EnumTransactionValueTable">1=blank;0=stall</obj_property>
+                     <obj_property name="ShowWaveText">false</obj_property>
+                     <obj_property name="CustomSignalColor">#FF7F27</obj_property>
+                     <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+                     <obj_property name="UseCustomSignalColor">true</obj_property>
+                  </wvobject>
+                  <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/ap_ext_blocking_n">
+                     <obj_property name="label">grp_search_Pipeline_VITIS_LOOP_72_1_fu_114: External Memory</obj_property>
+                     <obj_property name="Description_Data">Stalls from accessing external memory</obj_property>
+                     <obj_property name="DisplayName">label</obj_property>
+                     <obj_property name="EnumTransactionColorTable">1=blank</obj_property>
+                     <obj_property name="EnumTransactionValueTable">1=blank;0=stall</obj_property>
+                     <obj_property name="ShowWaveText">false</obj_property>
+                     <obj_property name="CustomSignalColor">#FF7F27</obj_property>
+                     <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+                     <obj_property name="UseCustomSignalColor">true</obj_property>
+                  </wvobject>
+                  <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/ap_str_blocking_n">
+                     <obj_property name="label">grp_search_Pipeline_VITIS_LOOP_72_1_fu_114: External Stream</obj_property>
+                     <obj_property name="Description_Data">Stalls from accessing pipes between compute units</obj_property>
+                     <obj_property name="DisplayName">label</obj_property>
+                     <obj_property name="EnumTransactionColorTable">1=blank</obj_property>
+                     <obj_property name="EnumTransactionValueTable">1=blank;0=stall</obj_property>
+                     <obj_property name="ShowWaveText">false</obj_property>
+                     <obj_property name="CustomSignalColor">#FF7F27</obj_property>
+                     <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+                     <obj_property name="UseCustomSignalColor">true</obj_property>
+                  </wvobject>
+               </wvobject>
+               <wvobject type="group" fp_name="trans_group">
+                  <obj_property name="label">Data Transfers</obj_property>
+                  <obj_property name="DisplayName">label</obj_property>
+                  <obj_property name="isExpanded"></obj_property>
+                  <wvobject type="protoinst" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/m_axi_gmem">
+                  </wvobject>
+               </wvobject>
+               <wvobject type="group" fp_name="functions">
+                  <obj_property name="label">User Functions</obj_property>
+                  <obj_property name="DisplayName">label</obj_property>
+                  <obj_property name="isExpanded"></obj_property>
+                  <wvobject type="group" fp_name="func_group">
+                     <obj_property name="label">Function: grp_search_fu_504</obj_property>
+                     <obj_property name="DisplayName">label</obj_property>
+                     <obj_property name="isExpanded"></obj_property>
+                     <obj_property name="Description_Data">Activity for function grp_search_fu_504</obj_property>
+                     <obj_property name="EnumTransactionColorTable">1=blank</obj_property>
+                     <obj_property name="EnumTransactionValueTable">1=blank;0=Running</obj_property>
+                     <obj_property name="CustomSignalColor">#4DB34D</obj_property>
+                     <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+                     <obj_property name="UseCustomSignalColor">true</obj_property>
+                     <obj_property name="Render_Data">/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/ap_idle</obj_property>
+                     <if_functional fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_fu_504">
+                        <wvobject type="protoinst" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_fu_504">
+                           <obj_property name="ElementShortName">Non-Dataflow Activity</obj_property>
+                           <obj_property name="ObjectShortName">Non-Dataflow Activity</obj_property>
+                           <obj_property name="label">Non-Dataflow Activity</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                           <obj_property name="Description_Data">Non-Dataflow Activity for function grp_search_fu_504</obj_property>
+                        </wvobject>
+                     </if_functional>
+                     <wvobject type="vbus" fp_name="stall_vbus">
+                        <obj_property name="label">Function Stalls</obj_property>
+                        <obj_property name="DisplayName">label</obj_property>
+                        <obj_property name="EnumTransactionColorTable">3=blank</obj_property>
+                        <obj_property name="EnumTransactionValueTable">3=blank;0=stall;1=stall;2=stall</obj_property>
+                        <obj_property name="ShowWaveText">false</obj_property>
+                        <obj_property name="CustomSignalColor">#FF7F27</obj_property>
+                        <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+                        <obj_property name="UseCustomSignalColor">true</obj_property>
+                        <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/ap_ext_blocking_n">
+                           <obj_property name="label">External Memory</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                           <obj_property name="EnumTransactionColorTable">1=blank</obj_property>
+                           <obj_property name="EnumTransactionValueTable">1=blank;0=stall</obj_property>
+                           <obj_property name="Description_Data">Stalls from accessing external memory</obj_property>
+                           <obj_property name="ShowWaveText">false</obj_property>
+                           <obj_property name="CustomSignalColor">#FF7F27</obj_property>
+                           <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+                           <obj_property name="UseCustomSignalColor">true</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/ap_str_blocking_n">
+                           <obj_property name="label">External Stream</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                           <obj_property name="EnumTransactionColorTable">1=blank</obj_property>
+                           <obj_property name="EnumTransactionValueTable">1=blank;0=stall</obj_property>
+                           <obj_property name="Description_Data">Stalls from accessing pipes between compute units</obj_property>
+                           <obj_property name="ShowWaveText">false</obj_property>
+                           <obj_property name="CustomSignalColor">#FF7F27</obj_property>
+                           <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+                           <obj_property name="UseCustomSignalColor">true</obj_property>
+                        </wvobject>
+                     </wvobject>
+                     <wvobject type="group" fp_name="io_group">
+                        <obj_property name="label">Function I/O</obj_property>
+                        <obj_property name="DisplayName">label</obj_property>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/minX">
+                           <obj_property name="label">minX</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/maxX">
+                           <obj_property name="label">maxX</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/minY">
+                           <obj_property name="label">minY</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject type="group" fp_name="mem_group">
+                           <obj_property name="label">gmem</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                           <obj_property name="isExpanded"></obj_property>
+                           <wvobject type="group" fp_name="addr_group">
+                              <obj_property name="label">Read Address</obj_property>
+                              <obj_property name="DisplayName">label</obj_property>
+                              <obj_property name="isExpanded"></obj_property>
+                              <obj_property name="Description_Data">Read Transactions on function AXI-MM port m_axi_gmem</obj_property>
+                              <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/m_axi_gmem_ARADDR">
+                                 <obj_property name="label">ARADDR</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/m_axi_gmem_ARLEN">
+                                 <obj_property name="label">ARLEN</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/m_axi_gmem_ARVALID">
+                                 <obj_property name="label">ARVALID</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/m_axi_gmem_ARREADY">
+                                 <obj_property name="label">ARREADY</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                           </wvobject>
+                           <wvobject type="group" fp_name="data_group">
+                              <obj_property name="label">Read Data</obj_property>
+                              <obj_property name="DisplayName">label</obj_property>
+                              <obj_property name="isExpanded"></obj_property>
+                              <obj_property name="Description_Data">Read Transactions on function AXI-MM port m_axi_gmem</obj_property>
+                              <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/m_axi_gmem_RDATA">
+                                 <obj_property name="label">RDATA</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/m_axi_gmem_RVALID">
+                                 <obj_property name="label">RVALID</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/m_axi_gmem_RREADY">
+                                 <obj_property name="label">RREADY</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/m_axi_gmem_RLAST">
+                                 <obj_property name="label">RLAST</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                           </wvobject>
+                           <wvobject type="group" fp_name="addr_group">
+                              <obj_property name="label">Write Address</obj_property>
+                              <obj_property name="DisplayName">label</obj_property>
+                              <obj_property name="isExpanded"></obj_property>
+                              <obj_property name="Description_Data">Write Transactions on function AXI-MM port m_axi_gmem</obj_property>
+                              <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/m_axi_gmem_AWADDR">
+                                 <obj_property name="label">AWADDR</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/m_axi_gmem_AWLEN">
+                                 <obj_property name="label">AWLEN</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/m_axi_gmem_AWVALID">
+                                 <obj_property name="label">AWVALID</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/m_axi_gmem_AWREADY">
+                                 <obj_property name="label">AWREADY</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                           </wvobject>
+                           <wvobject type="group" fp_name="data_group">
+                              <obj_property name="label">Write Data</obj_property>
+                              <obj_property name="DisplayName">label</obj_property>
+                              <obj_property name="isExpanded"></obj_property>
+                              <obj_property name="Description_Data">Write Transactions on function AXI-MM port m_axi_gmem</obj_property>
+                              <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/m_axi_gmem_WDATA">
+                                 <obj_property name="label">WDATA</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/m_axi_gmem_WVALID">
+                                 <obj_property name="label">WVALID</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/m_axi_gmem_WREADY">
+                                 <obj_property name="label">WREADY</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/m_axi_gmem_WLAST">
+                                 <obj_property name="label">WLAST</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                           </wvobject>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/output_r">
+                           <obj_property name="label">output_r</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/nodes_leaf_q0">
+                           <obj_property name="label">nodes_leaf_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/nodes_minX_q0">
+                           <obj_property name="label">nodes_minX_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/nodes_maxX_q0">
+                           <obj_property name="label">nodes_maxX_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/nodes_minY_q0">
+                           <obj_property name="label">nodes_minY_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/nodes_maxY_q0">
+                           <obj_property name="label">nodes_maxY_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/nodes_LminX_q0">
+                           <obj_property name="label">nodes_LminX_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/nodes_LmaxX_q0">
+                           <obj_property name="label">nodes_LmaxX_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/nodes_LminY_q0">
+                           <obj_property name="label">nodes_LminY_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/nodes_LmaxY_q0">
+                           <obj_property name="label">nodes_LmaxY_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/nodes_RminX_q0">
+                           <obj_property name="label">nodes_RminX_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/nodes_RmaxX_q0">
+                           <obj_property name="label">nodes_RmaxX_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/nodes_RminY_q0">
+                           <obj_property name="label">nodes_RminY_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/nodes_RmaxY_q0">
+                           <obj_property name="label">nodes_RmaxY_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/nodes_Lindex_q0">
+                           <obj_property name="label">nodes_Lindex_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/nodes_Rindex_q0">
+                           <obj_property name="label">nodes_Rindex_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                     </wvobject>
+                  </wvobject>
+                  <wvobject type="group" fp_name="func_group">
+                     <obj_property name="label">Function: grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114</obj_property>
+                     <obj_property name="DisplayName">label</obj_property>
+                     <obj_property name="isExpanded"></obj_property>
+                     <obj_property name="Description_Data">Activity for function grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114</obj_property>
+                     <obj_property name="EnumTransactionColorTable">1=blank</obj_property>
+                     <obj_property name="EnumTransactionValueTable">1=blank;0=Running</obj_property>
+                     <obj_property name="CustomSignalColor">#4DB34D</obj_property>
+                     <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+                     <obj_property name="UseCustomSignalColor">true</obj_property>
+                     <obj_property name="Render_Data">/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/ap_idle</obj_property>
+                     <if_functional fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114">
+                        <wvobject type="protoinst" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114">
+                           <obj_property name="ElementShortName">Non-Dataflow Activity</obj_property>
+                           <obj_property name="ObjectShortName">Non-Dataflow Activity</obj_property>
+                           <obj_property name="label">Non-Dataflow Activity</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                           <obj_property name="Description_Data">Non-Dataflow Activity for function grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114</obj_property>
+                        </wvobject>
+                     </if_functional>
+                     <wvobject type="vbus" fp_name="stall_vbus">
+                        <obj_property name="label">Function Stalls</obj_property>
+                        <obj_property name="DisplayName">label</obj_property>
+                        <obj_property name="EnumTransactionColorTable">3=blank</obj_property>
+                        <obj_property name="EnumTransactionValueTable">3=blank;0=stall;1=stall;2=stall</obj_property>
+                        <obj_property name="ShowWaveText">false</obj_property>
+                        <obj_property name="CustomSignalColor">#FF7F27</obj_property>
+                        <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+                        <obj_property name="UseCustomSignalColor">true</obj_property>
+                        <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/ap_ext_blocking_n">
+                           <obj_property name="label">External Memory</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                           <obj_property name="EnumTransactionColorTable">1=blank</obj_property>
+                           <obj_property name="EnumTransactionValueTable">1=blank;0=stall</obj_property>
+                           <obj_property name="Description_Data">Stalls from accessing external memory</obj_property>
+                           <obj_property name="ShowWaveText">false</obj_property>
+                           <obj_property name="CustomSignalColor">#FF7F27</obj_property>
+                           <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+                           <obj_property name="UseCustomSignalColor">true</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/ap_str_blocking_n">
+                           <obj_property name="label">External Stream</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                           <obj_property name="EnumTransactionColorTable">1=blank</obj_property>
+                           <obj_property name="EnumTransactionValueTable">1=blank;0=stall</obj_property>
+                           <obj_property name="Description_Data">Stalls from accessing pipes between compute units</obj_property>
+                           <obj_property name="ShowWaveText">false</obj_property>
+                           <obj_property name="CustomSignalColor">#FF7F27</obj_property>
+                           <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
+                           <obj_property name="UseCustomSignalColor">true</obj_property>
+                        </wvobject>
+                     </wvobject>
+                     <wvobject type="group" fp_name="io_group">
+                        <obj_property name="label">Function I/O</obj_property>
+                        <obj_property name="DisplayName">label</obj_property>
+                        <wvobject type="group" fp_name="mem_group">
+                           <obj_property name="label">gmem</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                           <obj_property name="isExpanded"></obj_property>
+                           <wvobject type="group" fp_name="addr_group">
+                              <obj_property name="label">Read Address</obj_property>
+                              <obj_property name="DisplayName">label</obj_property>
+                              <obj_property name="isExpanded"></obj_property>
+                              <obj_property name="Description_Data">Read Transactions on function AXI-MM port m_axi_gmem</obj_property>
+                              <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/m_axi_gmem_ARADDR">
+                                 <obj_property name="label">ARADDR</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/m_axi_gmem_ARLEN">
+                                 <obj_property name="label">ARLEN</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/m_axi_gmem_ARVALID">
+                                 <obj_property name="label">ARVALID</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/m_axi_gmem_ARREADY">
+                                 <obj_property name="label">ARREADY</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                           </wvobject>
+                           <wvobject type="group" fp_name="data_group">
+                              <obj_property name="label">Read Data</obj_property>
+                              <obj_property name="DisplayName">label</obj_property>
+                              <obj_property name="isExpanded"></obj_property>
+                              <obj_property name="Description_Data">Read Transactions on function AXI-MM port m_axi_gmem</obj_property>
+                              <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/m_axi_gmem_RDATA">
+                                 <obj_property name="label">RDATA</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/m_axi_gmem_RVALID">
+                                 <obj_property name="label">RVALID</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/m_axi_gmem_RREADY">
+                                 <obj_property name="label">RREADY</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/m_axi_gmem_RLAST">
+                                 <obj_property name="label">RLAST</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                           </wvobject>
+                           <wvobject type="group" fp_name="addr_group">
+                              <obj_property name="label">Write Address</obj_property>
+                              <obj_property name="DisplayName">label</obj_property>
+                              <obj_property name="isExpanded"></obj_property>
+                              <obj_property name="Description_Data">Write Transactions on function AXI-MM port m_axi_gmem</obj_property>
+                              <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/m_axi_gmem_AWADDR">
+                                 <obj_property name="label">AWADDR</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/m_axi_gmem_AWLEN">
+                                 <obj_property name="label">AWLEN</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/m_axi_gmem_AWVALID">
+                                 <obj_property name="label">AWVALID</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/m_axi_gmem_AWREADY">
+                                 <obj_property name="label">AWREADY</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                           </wvobject>
+                           <wvobject type="group" fp_name="data_group">
+                              <obj_property name="label">Write Data</obj_property>
+                              <obj_property name="DisplayName">label</obj_property>
+                              <obj_property name="isExpanded"></obj_property>
+                              <obj_property name="Description_Data">Write Transactions on function AXI-MM port m_axi_gmem</obj_property>
+                              <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/m_axi_gmem_WDATA">
+                                 <obj_property name="label">WDATA</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/m_axi_gmem_WVALID">
+                                 <obj_property name="label">WVALID</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/m_axi_gmem_WREADY">
+                                 <obj_property name="label">WREADY</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                              <wvobject db_ref_id="1" type="logic" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/m_axi_gmem_WLAST">
+                                 <obj_property name="label">WLAST</obj_property>
+                                 <obj_property name="DisplayName">label</obj_property>
+                              </wvobject>
+                           </wvobject>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/maxX">
+                           <obj_property name="label">maxX</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/minX">
+                           <obj_property name="label">minX</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/minY">
+                           <obj_property name="label">minY</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/output_r">
+                           <obj_property name="label">output_r</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/a_d0">
+                           <obj_property name="label">a_d0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/a_q0">
+                           <obj_property name="label">a_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/nodes_leaf_q0">
+                           <obj_property name="label">nodes_leaf_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/nodes_minX_q0">
+                           <obj_property name="label">nodes_minX_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/nodes_maxX_q0">
+                           <obj_property name="label">nodes_maxX_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/nodes_minY_q0">
+                           <obj_property name="label">nodes_minY_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/nodes_maxY_q0">
+                           <obj_property name="label">nodes_maxY_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/nodes_LminX_q0">
+                           <obj_property name="label">nodes_LminX_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/nodes_LmaxX_q0">
+                           <obj_property name="label">nodes_LmaxX_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/nodes_LminY_q0">
+                           <obj_property name="label">nodes_LminY_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/nodes_LmaxY_q0">
+                           <obj_property name="label">nodes_LmaxY_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/nodes_RminX_q0">
+                           <obj_property name="label">nodes_RminX_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/nodes_RmaxX_q0">
+                           <obj_property name="label">nodes_RmaxX_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/nodes_RminY_q0">
+                           <obj_property name="label">nodes_RminY_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/nodes_RmaxY_q0">
+                           <obj_property name="label">nodes_RmaxY_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/nodes_Lindex_q0">
+                           <obj_property name="label">nodes_Lindex_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                        <wvobject db_ref_id="1" type="array" fp_name="/pfm_top_wrapper/pfm_top_i/pfm_dynamic_inst/krnl_1/inst/grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114/nodes_Rindex_q0">
+                           <obj_property name="label">nodes_Rindex_q0</obj_property>
+                           <obj_property name="DisplayName">label</obj_property>
+                        </wvobject>
+                     </wvobject>
+                  </wvobject>
+               </wvobject>
+            </wvobject>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="HLS_FIFO_group">
+      <obj_property name="label">HLS FIFO</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+</wave_config>

@@ -1,0 +1,15 @@
+Kernel trace events
+Device, Binary, Kernel, Compute Unit, Function, Data Type, Index, Start Time (ms), End Time (ms), Value
+xilinx_u250_gen3x16_xdma_4_1_202210_1-0,krnl.link,krnl,krnl_1,top,top,0,0.141133,0.141450,0
+xilinx_u250_gen3x16_xdma_4_1_202210_1-0,krnl.link,krnl,krnl_1,grp_search_fu_504,outstanding,0,0.000000,0.141150,0
+xilinx_u250_gen3x16_xdma_4_1_202210_1-0,krnl.link,krnl,krnl_1,grp_search_fu_504,outstanding,0,0.141150,0.141450,1
+xilinx_u250_gen3x16_xdma_4_1_202210_1-0,krnl.link,krnl,krnl_1,grp_search_fu_504,outstanding,0,0.141450,0.141450,0
+xilinx_u250_gen3x16_xdma_4_1_202210_1-0,krnl.link,krnl,krnl_1,grp_search_fu_504,row,0,0.000000,0.141150,65535
+xilinx_u250_gen3x16_xdma_4_1_202210_1-0,krnl.link,krnl,krnl_1,grp_search_fu_504,row,0,0.141150,0.141450,0
+xilinx_u250_gen3x16_xdma_4_1_202210_1-0,krnl.link,krnl,krnl_1,grp_search_fu_504,row,0,0.141450,0.141450,65535
+xilinx_u250_gen3x16_xdma_4_1_202210_1-0,krnl.link,krnl,krnl_1,grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114,outstanding,0,0.000000,0.141157,0
+xilinx_u250_gen3x16_xdma_4_1_202210_1-0,krnl.link,krnl,krnl_1,grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114,outstanding,0,0.141157,0.141450,1
+xilinx_u250_gen3x16_xdma_4_1_202210_1-0,krnl.link,krnl,krnl_1,grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114,outstanding,0,0.141450,0.141450,0
+xilinx_u250_gen3x16_xdma_4_1_202210_1-0,krnl.link,krnl,krnl_1,grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114,row,0,0.000000,0.141157,65535
+xilinx_u250_gen3x16_xdma_4_1_202210_1-0,krnl.link,krnl,krnl_1,grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114,row,0,0.141157,0.141450,0
+xilinx_u250_gen3x16_xdma_4_1_202210_1-0,krnl.link,krnl,krnl_1,grp_search_fu_504/grp_search_Pipeline_VITIS_LOOP_72_1_fu_114,row,0,0.141450,0.141450,65535
