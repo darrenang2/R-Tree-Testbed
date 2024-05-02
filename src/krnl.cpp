@@ -3,28 +3,7 @@
 #include <iostream>
 #include <algorithm>
 
-// Search
-int search(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t *output);
-
-// Split
-void split(int nodeIndex, data_t node1, data_t node2);
-void sortByArea();
-
-// Insert
-void insert(data_t node);
-void insertLeaf(data_t node, int nodeIndex);
-
-// Delete
-// data_t deleteNode(data_t node);
-
-// Stack
-bool push(int x);
-int pop();
-int peek();
-bool isEmpty();
-
-#define MAX 100             // Max number of nodes
-#define INT_MAX 2147483647; // Max integer value
+/*==================================================== NODE STRUCTURE ===============================================================*/
 
 struct Node
 {
@@ -69,34 +48,68 @@ struct Node
     }
 };
 
-/***** Initialize Data *****/
+/*==================================================== INITIALIZE DATA ===============================================================*/
+
+#define MAX 100             // Max number of nodes
+#define INT_MAX 2147483647; // Max integer value
+
 const int numNodes = MAX;
 Node nodes[numNodes];
 
-Node newNode = Node(false, 1, 3, 1, 3);
+/*==================================================== STACK FUNCTIONS ===============================================================*/
 
-extern "C" void krnl(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t *output, data_t newNode)
+int top = -1;
+int a[MAX];
+
+bool push(int x)
 {
-#pragma HLS INTERFACE mode = m_axi port = output
-
-    // L:(x1 -> x2) (y1 -> y2), R:(x1 -> x2) (y1 -> y2), Child L, Child R
-    nodes[0] = Node(0, 9, 0, 10, 11, 19, 11, 19, 1, 2);
-    nodes[1] = Node(0, 4, 0, 4, 5, 9, 5, 9, 3, 4);
-    nodes[2] = Node(10, 14, 10, 14, 15, 19, 15, 19, 5, 6);
-    // Leaf = true, (x1 -> x2), (y1 -> y2)
-    nodes[3] = Node(true, 0, 4, 0, 4);
-    nodes[4] = Node(true, 5, 9, 5, 9);
-    nodes[5] = Node(true, 10, 14, 10, 14);
-    nodes[6] = Node(true, 15, 19, 15, 19);
-
-    // search(minX, maxY, minY, maxY, output);
-    
-    insert(newNode);
-    for (int i = 0; i < numNodes; i++)
+    if (top >= (MAX - 1))
     {
-        std::cout << "Node " << i << ": " << nodes[i].minX << "->" << nodes[i].maxX << " " << nodes[i].minY << "->" << nodes[i].maxY << std::endl;
+        std::cout << "Stack Overflow";
+        return false;
+    }
+    else
+    {
+        a[++top] = x;
+        std::cout << x << " pushed into stack\n";
+        return true;
     }
 }
+
+int pop()
+{
+    if (top < 0)
+    {
+        std::cout << "Stack Underflow";
+        return 0;
+    }
+    else
+    {
+        int x = a[top--];
+        return x;
+    }
+}
+
+int peek()
+{
+    if (top < 0)
+    {
+        std::cout << "Stack is Empty";
+        return 0;
+    }
+    else
+    {
+        int x = a[top];
+        return x;
+    }
+}
+
+bool isEmpty()
+{
+    return (top < 0);
+}
+
+/*==================================================== SEARCH FUNCTIONS ===============================================================*/
 
 int search(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t *output)
 {
@@ -233,8 +246,9 @@ void insertLeaf(Node node, int nodeIndex)
 
 }
 
-void insert(Node node)
+void insert(data_t minX, data_t maxX, data_t minY, data_t maxY)
 {
+    Node node = Node(false, minX, maxX, minY, maxY);
     sortByArea();
     push(0); // Start with the root node index
     int nodeIndex = pop();
@@ -259,55 +273,29 @@ void insert(Node node)
 // {
 // }
 
-/*==================================================== STACK FUNCTIONS ===============================================================*/
 
-int top = -1;
-int a[MAX];
+/*==================================================== KERNEL ===============================================================*/
 
-bool push(int x)
+extern "C" void krnl(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t *output, data_t newNode)
 {
-    if (top >= (MAX - 1))
+#pragma HLS INTERFACE mode = m_axi port = output
+
+    // L:(x1 -> x2) (y1 -> y2), R:(x1 -> x2) (y1 -> y2), Child L, Child R
+    nodes[0] = Node(0, 9, 0, 10, 11, 19, 11, 19, 1, 2);
+    nodes[1] = Node(0, 4, 0, 4, 5, 9, 5, 9, 3, 4);
+    nodes[2] = Node(10, 14, 10, 14, 15, 19, 15, 19, 5, 6);
+    // Leaf = true, (x1 -> x2), (y1 -> y2)
+    nodes[3] = Node(true, 0, 4, 0, 4);
+    nodes[4] = Node(true, 5, 9, 5, 9);
+    nodes[5] = Node(true, 10, 14, 10, 14);
+    nodes[6] = Node(true, 15, 19, 15, 19);
+
+    // search(minX, maxY, minY, maxY, output);
+    
+    insert(1, 3, 1, 3);
+    for (int i = 0; i < numNodes; i++)
     {
-        std::cout << "Stack Overflow";
-        return false;
-    }
-    else
-    {
-        a[++top] = x;
-        std::cout << x << " pushed into stack\n";
-        return true;
+        std::cout << "Node " << i << ": " << nodes[i].minX << "->" << nodes[i].maxX << " " << nodes[i].minY << "->" << nodes[i].maxY << std::endl;
     }
 }
 
-int pop()
-{
-    if (top < 0)
-    {
-        std::cout << "Stack Underflow";
-        return 0;
-    }
-    else
-    {
-        int x = a[top--];
-        return x;
-    }
-}
-
-int peek()
-{
-    if (top < 0)
-    {
-        std::cout << "Stack is Empty";
-        return 0;
-    }
-    else
-    {
-        int x = a[top];
-        return x;
-    }
-}
-
-bool isEmpty()
-{
-    return (top < 0);
-}
