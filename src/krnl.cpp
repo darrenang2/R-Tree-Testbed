@@ -9,21 +9,21 @@ struct Node
 {
     bool leaf = 0;
     // If leaf node
-    int minX;
-    int maxX;
-    int minY;
-    int maxY;
+    int minX = 0;
+    int maxX = 0;
+    int minY = 0;
+    int maxY = 0;
 
     // Intermiate Nodes
-    int LminX;
-    int LmaxX;
-    int LminY;
-    int LmaxY;
+    int LminX = 0;
+    int LmaxX = 0;
+    int LminY = 0;
+    int LmaxY = 0;
 
-    int RminX;
-    int RmaxX;
-    int RminY;
-    int RmaxY;
+    int RminX = 0;
+    int RmaxX = 0;
+    int RminY = 0;
+    int RmaxY = 0;
 
     int Lindex = -1;
     int Rindex = -1;
@@ -41,18 +41,40 @@ struct Node
     {
         return (maxX - minX) * (maxY - minY);
     }
-
-    bool overlap(Node node1, Node node2)
-    {
-        return (node1.minX <= node2.maxX && node1.maxX >= node2.minX && node1.minY <= node2.maxY && node1.maxY >= node2.minY);
-    }
-
-    Node leafToParent(Node node)
-    {
-        node = Node(0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1);
-        return node;
-    }
 };
+
+struct boundingBox
+{
+    int minX = 0;
+    int maxX = 0;
+    int minY = 0;
+    int maxY = 0;
+};
+
+boundingBox calculateBoundingBox(Node node)
+{
+    boundingBox box;
+    box.minX = std::min(node.LminX, node.RminX);
+    box.maxX = std::max(node.LmaxX, node.RmaxX);
+    box.minY = std::min(node.LminY, node.RminY);
+    box.maxY = std::max(node.LmaxY, node.RmaxY);
+    return box;
+}
+
+bool overlap(Node node1, Node node2)
+{
+    return (node1.minX <= node2.maxX && node1.maxX >= node2.minX && node1.minY <= node2.maxY && node1.maxY >= node2.minY);
+}
+
+bool overlap(boundingBox box, Node node)
+{
+    return (box.minX <= node.maxX && box.maxX >= node.minX && box.minY <= node.maxY && box.maxY >= node.minY);
+}
+
+bool overlap(boundingBox box1, boundingBox box2)
+{
+    return (box1.minX <= box2.maxX && box1.maxX >= box2.minX && box1.minY <= box2.maxY && box1.maxY >= box2.minY);
+}
 
 /*==================================================== INITIALIZE DATA ===============================================================*/
 
@@ -241,6 +263,53 @@ void split(int nodeIndex, Node currentNode, Node newNode)
 
 /*==================================================== INSERTION FUNCTIONS ===============================================================*/
 
+// int sortedArray[MAX];
+
+void sortByAreaEnlargement(Node newNode)
+{
+    int i = 0;
+    int area_maxX, area_maxY, area_minX, area_minY;
+    int area_enlargement;
+    push(0); // Start with the root node index
+    while (!isEmpty())
+    {
+        int nodeIndex = pop();
+        Node currentNode = nodes[nodeIndex];
+
+        boundingBox box = calculateBoundingBox(currentNode);
+        if (box.maxX >= newNode.maxX && box.minX <= newNode.minX && box.maxY >= newNode.maxY && box.minY <= newNode.minY)
+        {
+            // new node is within the bounding box
+            push(currentNode.Lindex);
+            push(currentNode.Rindex);
+        }
+        else if (currentNode.leaf)
+        {
+            // new node is leaf
+            area_maxX = std::max(currentNode.maxX, newNode.maxX);
+            area_maxY = std::max(currentNode.maxY, newNode.maxY);
+            area_minX = std::min(currentNode.minX, newNode.minX);
+            area_minY = std::min(currentNode.minY, newNode.minY);
+
+            area_enlargement = (area_maxX - area_minX) * (area_maxY - area_minY) - currentNode.area();
+            std::cout << "Area Enlargement: " << area_enlargement << " Leaf Node: " << nodeIndex << std::endl;
+            sortedArray[i++] = nodeIndex;
+        }
+        else
+        {
+            // new node is not within the bounding box
+            area_maxX = std::max(box.maxX, newNode.maxX);
+            area_maxY = std::max(box.maxY, newNode.maxY);
+            area_minX = std::min(box.minX, newNode.minX);
+            area_minY = std::min(box.minY, newNode.minY);
+
+            area_enlargement = (area_maxX - area_minX) * (area_maxY - area_minY) - currentNode.area();
+            std::cout << "Area Enlargement: " << area_enlargement << " Node: " << nodeIndex << std::endl;
+            sortedArray[i++] = nodeIndex;
+        }
+    }
+}
+
 void insert(bool leaf, data_t minX, data_t maxX, data_t minY, data_t maxY)
 {
     Node newNode = Node(false, minX, maxX, minY, maxY);
@@ -265,7 +334,7 @@ void insert(bool leaf, data_t minX, data_t maxX, data_t minY, data_t maxY)
         if (currentNode.leaf)
         {
             std::cout << "Adding left leaf" << std::endl;
-            currentNodeParent = currentNode.leafToParent(currentNode);
+            // currentNodeParent = Node();
             newNode.leaf = true;
 
             currentNodeParent.Lindex = currNumNodes;
@@ -332,20 +401,28 @@ extern "C" void krnl(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t 
 
     // search(minX, maxY, minY, maxY, output);
 
-    insert(false, 1, 3, 1, 3);
-    insert(false, 3, 4, 3, 4);
-    insert(false, 6, 9, 6, 9);
+    // insert(false, 1, 3, 1, 3);
+    // insert(false, 3, 4, 3, 4);
+    // insert(false, 6, 9, 6, 9);
 
+    // for (int i = 0; i < currNumNodes; i++)
+    // {
+    //     if (!nodes[i].leaf)
+    //     {
+    //         std::cout << "Node " << i << ": " << nodes[i].LminX << "->" << nodes[i].LmaxX << " " << nodes[i].LminY << "->" << nodes[i].LmaxY << " " << nodes[i].RminX
+    //                   << "->" << nodes[i].RmaxX << " " << nodes[i].RminY << "->" << nodes[i].RmaxY << " L index:" << nodes[i].Lindex << " R index:" << nodes[i].Rindex << std::endl;
+    //     }
+    //     else
+    //     {
+    //         std::cout << "Node " << i << ": " << nodes[i].minX << "->" << nodes[i].maxX << " " << nodes[i].minY << "->" << nodes[i].maxY << std::endl;
+    //     }
+    // }
+
+    nodes[7] = Node(false, 0, 7, 0, 7);
+    sortByAreaEnlargement(nodes[7]);
+    std::cout << "Sorted Array: ";
     for (int i = 0; i < currNumNodes; i++)
     {
-        if (!nodes[i].leaf)
-        {
-            std::cout << "Node " << i << ": " << nodes[i].LminX << "->" << nodes[i].LmaxX << " " << nodes[i].LminY << "->" << nodes[i].LmaxY << " " << nodes[i].RminX 
-            << "->" << nodes[i].RmaxX << " " << nodes[i].RminY << "->" << nodes[i].RmaxY << " L index:" << nodes[i].Lindex << " R index:" << nodes[i].Rindex << std::endl;
-        }
-        else
-        {
-            std::cout << "Node " << i << ": " << nodes[i].minX << "->" << nodes[i].maxX << " " << nodes[i].minY << "->" << nodes[i].maxY << std::endl;
-        }
+        std::cout << sortedArray[i] << " ";
     }
 }
