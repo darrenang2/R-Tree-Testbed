@@ -43,6 +43,8 @@ struct Node
     }
 };
 
+/*==================================================== BOUNDING BOX FUNCTIONS ===============================================================*/
+
 struct boundingBox
 {
     int minX = 0;
@@ -74,6 +76,74 @@ bool overlap(boundingBox box, Node node)
 bool overlap(boundingBox box1, boundingBox box2)
 {
     return (box1.minX <= box2.maxX && box1.maxX >= box2.minX && box1.minY <= box2.maxY && box1.maxY >= box2.minY);
+}
+
+/*==================================================== OVERLAP ENLARGEMENT FUNCTIONS ===============================================================*/
+
+struct overlapEnlargementPair
+{
+    int index;
+    int overlapEnlargement;
+};
+
+bool compare(overlapEnlargementPair a, overlapEnlargementPair b)
+{
+    return a.overlapEnlargement < b.overlapEnlargement;
+}
+
+void swap(overlapEnlargementPair *xp, overlapEnlargementPair *yp)
+{
+    overlapEnlargementPair temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}
+
+void sort(overlapEnlargementPair arr[], int n)
+{
+    for (int j = 0; j < n; j++)
+    {
+        for (int i = 1; i < n; i++)
+        {
+            if (compare(arr[i], arr[i - 1]))
+            {
+                swap(&arr[i], &arr[i - 1]);
+            }
+        }
+    }
+}
+
+/*==================================================== AREA ENLARGEMENT FUNCTIONS ===============================================================*/
+
+struct areaEnlargementPair
+{
+    int index;
+    int areaEnlargement;
+};
+
+bool compare(areaEnlargementPair a, areaEnlargementPair b)
+{
+    return a.areaEnlargement < b.areaEnlargement;
+}
+
+void swap(areaEnlargementPair *xp, areaEnlargementPair *yp)
+{
+    areaEnlargementPair temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}
+
+void sort(areaEnlargementPair arr[], int n)
+{
+    for (int j = 0; j < n; j++)
+    {
+        for (int i = 1; i < n; i++)
+        {
+            if (compare(arr[i], arr[i - 1]))
+            {
+                swap(&arr[i], &arr[i - 1]);
+            }
+        }
+    }
 }
 
 /*==================================================== INITIALIZE DATA ===============================================================*/
@@ -185,7 +255,7 @@ int search(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t *output)
 
 /*==================================================== INSERTION FUNCTIONS ===============================================================*/
 
-int sortedArray[MAX];
+areaEnlargementPair AreaEnlargementArray[MAX];
 
 void sortByAreaEnlargement(Node newNode)
 {
@@ -208,7 +278,8 @@ void sortByAreaEnlargement(Node newNode)
 
             area_enlargement = (area_maxX - area_minX) * (area_maxY - area_minY) - currentNode.area();
             std::cout << "Area Enlargement: " << area_enlargement << " Leaf Node: " << nodeIndex << std::endl;
-            sortedArray[i++] = nodeIndex;
+            areaEnlargementPair pair = {nodeIndex, area_enlargement};
+            AreaEnlargementArray[i++] = pair;
         }
         else
         {
@@ -229,11 +300,15 @@ void sortByAreaEnlargement(Node newNode)
 
                 area_enlargement = (area_maxX - area_minX) * (area_maxY - area_minY) - currentNode.area();
                 std::cout << "Area Enlargement: " << area_enlargement << " Node: " << nodeIndex << std::endl;
-                sortedArray[i++] = nodeIndex;
+                areaEnlargementPair pair = {nodeIndex, area_enlargement};
+                AreaEnlargementArray[i++] = pair;
             }
         }
     }
+    sort(AreaEnlargementArray, i);
 }
+
+overlapEnlargementPair OverlapEnlargementArray[MAX];
 
 void sortByOverlapEnlargement(Node newNode)
 {
@@ -255,7 +330,8 @@ void sortByOverlapEnlargement(Node newNode)
 
             int overlap = (maxX - minX) * (maxY - minY);
             std::cout << "Overlap: " << overlap << " Leaf Node: " << nodeIndex << std::endl;
-            sortedArray[i++] = nodeIndex;
+            overlapEnlargementPair pair = {nodeIndex, overlap};
+            OverlapEnlargementArray[i++] = pair;
         }
         else
         {
@@ -279,15 +355,39 @@ void sortByOverlapEnlargement(Node newNode)
             if (leftOverlap < rightOverlap)
             {
                 push(currentNode.Lindex);
-                sortedArray[i++] = currentNode.Lindex;
+                overlapEnlargementPair pair = {nodeIndex, leftOverlap};
+                OverlapEnlargementArray[i++] = pair;
             }
             else
             {
                 push(currentNode.Rindex);
-                sortedArray[i++] = currentNode.Rindex;
+                overlapEnlargementPair pair = {nodeIndex, rightOverlap};
+                OverlapEnlargementArray[i++] = pair;
             }
         }
     }
+    sort(OverlapEnlargementArray, i);
+}
+
+int chooseSubTree(Node node)
+{
+    /*
+        call sortByAreaEnlargement first
+        call sortByOverlapEnlargement
+        check all nodes in areaEnlargmentArray: if leaf node, choose node with least overlap enlargement
+        if no leaf nodes, choose node with least area enlargement
+    */
+
+    sortByAreaEnlargement(node);
+    for (int i = 0; i < currNumNodes / 2; i++)
+    {
+        if (nodes[AreaEnlargementArray[i].index].leaf)
+        {
+            sortByOverlapEnlargement(nodes[AreaEnlargementArray[i].index]);
+        }
+    }
+
+    return OverlapEnlargementArray[0].index;
 }
 
 void insert(bool leaf, data_t minX, data_t maxX, data_t minY, data_t maxY)
@@ -353,7 +453,6 @@ void insert(bool leaf, data_t minX, data_t maxX, data_t minY, data_t maxY)
         // if leaves > max
         // overFlowTreatment();
 
-        // sortByArea();
     } while (!isEmpty() && count < MAX);
 }
 
@@ -399,10 +498,21 @@ extern "C" void krnl(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t 
     // }
 
     nodes[7] = Node(false, 0, 7, 0, 7);
+
+    sortByAreaEnlargement(nodes[7]);
     sortByOverlapEnlargement(nodes[7]);
-    std::cout << "Sorted Array: ";
-    for (int i = 0; i < currNumNodes; i++)
+
+    // chooseSubTree(nodes[7]);
+
+    std::cout << "Sorted Area Enlargement Array" << std::endl;
+    for (int i = 0; i < currNumNodes / 2; i++)
     {
-        std::cout << sortedArray[i] << " ";
+        std::cout << "Index: " << AreaEnlargementArray[i].index << " Area Enlargement: " << AreaEnlargementArray[i].areaEnlargement << std::endl;
+    }
+
+    std::cout << "Sorted Overlap Enlargement Array" << std::endl;
+    for (int i = 0; i < currNumNodes / 2; i++)
+    {
+        std::cout << "Index: " << OverlapEnlargementArray[i].index << " Overlap Enlargement: " << OverlapEnlargementArray[i].overlapEnlargement << std::endl;
     }
 }
