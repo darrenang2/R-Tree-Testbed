@@ -1,6 +1,7 @@
 #include "host.h"
 #include <stdio.h>
 #include "constants.h"
+#include "node.h"
 #include <vector>
 #include <cmath>
 #include <cstdlib>
