@@ -1,7 +1,7 @@
 #ifndef NODE_H
 #define NODE_H
 
-#define MAX_CHILDREN 5
+#define MAX_CHILDREN 6
 #define MAX_NODES 100
 
 typedef struct {
@@ -32,7 +32,7 @@ typedef struct {
     int child[MAX_CHILDREN];
 } Node;
 
-Node nodes[MAX_NODES];
+static Node nodes[MAX_NODES];
 
 static Node createLeaf(bool l, boundingBox box) {
     Node node;
@@ -50,6 +50,7 @@ static Node createNode(bool l, boundingBox box, int child1, int child2, int chil
     node.child[2] = child3;
     node.child[3] = child4;
     node.child[4] = child5;
+    node.child[5] = -1;
     return node;
 }
 
@@ -65,6 +66,34 @@ static Node createNodeFromArray(bool l, boundingBox box, int arr[]) {
 
 static Node getChild(Node parentNode, int index) {
     return nodes[parentNode.child[index]];
+}
+
+static int getCenterX(Node node)
+{
+    return (node.box.minX + node.box.maxX) / 2;
+}
+
+static int getCenterY(Node node)
+{
+    return (node.box.minY + node.box.maxY) / 2;
+}
+
+// function to compute the distance between the centers of two nodes
+static int computeDistCenters(Node node1, Node node2)
+{
+    int x1 = getCenterX(node1);
+    int x2 = getCenterX(node2);
+    int y1 = getCenterY(node1);
+    int y2 = getCenterY(node2);
+    return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
+}
+
+void setBB(Node *node, int x1, int x2, int y1, int y2)
+{
+    node->box.minX = x1;
+    node->box.maxX = x2;
+    node->box.minY = y1;
+    node->box.maxY = y2;
 }
 
 #endif // NODE_H

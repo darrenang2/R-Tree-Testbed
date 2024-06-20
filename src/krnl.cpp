@@ -261,6 +261,11 @@ void insert(data_t minX, data_t maxX, data_t minY, data_t maxY)
 
             nodes[nodeIndex] = currentNode;
         }
+        else if (currentNode.child[5] == -1)
+        {
+            std::cout << "Calling OverflowTreatment" << std::endl;
+            // overFlowTreatment();
+        }
         else
         {
             stack.push(++count);
@@ -271,6 +276,59 @@ void insert(data_t minX, data_t maxX, data_t minY, data_t maxY)
         // overFlowTreatment();
 
     } while (!stack.isEmpty() && count < MAX);
+}
+
+void reinsert(Node node)
+{
+    /*
+    For all M+l entries of a node N, compute the distance
+    between the centers of their rectangles and the center
+    of the bounding rectangle of N
+
+    Sort the entries m decreasmg order of their distances
+    computed in RI1
+    */
+    for (int i = 1; i < MAX_CHILDREN; i++)
+    {
+        int key = node.child[i];
+        int j = i - 1;
+        while (j >= 0 && computeDistCenters(nodes[node.child[j]], node) > computeDistCenters(nodes[key], node) && node.child[j] != -1)
+        {
+            node.child[j + 1] = node.child[j];
+            j = j - 1;
+        }
+        node.child[j + 1] = key;
+        for (int i = 0; i < MAX_CHILDREN; i++)
+        {
+            std::cout << "Child " << i << ": " << node.child[i] << std::endl;
+        }
+    }
+
+    /*
+    Remove the first p entries from N and adjust the
+    bounding rectangle of N
+
+    In the sort, defined in RI2, starting with the maximum
+    distance (= far reinsert) or minimum distance (= close
+    reinsert), invoke Insert to reinsert the entries
+    */
+    insert(nodes[node.child[5]].box.minX, nodes[node.child[5]].box.maxX, nodes[node.child[5]].box.minY, nodes[node.child[5]].box.maxY);
+
+    node.child[5] = -1;
+
+    int minX, maxX, minY, maxY;
+    for (int i = 0; i < MAX_CHILDREN; i++)
+    {
+        if (node.child[i] != -1)
+        {
+            minX = std::min(minX, nodes[node.child[i]].box.minX);
+            maxX = std::max(maxX, nodes[node.child[i]].box.maxX);
+            minY = std::min(minY, nodes[node.child[i]].box.minY);
+            maxY = std::max(maxY, nodes[node.child[i]].box.maxY);
+        }
+    }
+
+    setBB(&node, minX, maxX, minY, maxY);
 }
 
 /*==================================================== DELETION FUNCTIONS ===============================================================*/
@@ -304,36 +362,38 @@ extern "C" void krnl(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t 
     // insert(3, 4, 3, 4);
     // insert(6, 9, 6, 9);
 
+    // sortByAreaEnlargement(nodes[7]);
+    // sortByOverlapEnlargement(nodes[7]);
+
+    // int ind = chooseSubTree(nodes[7]);
+
+    // std::cout << "Sorted Area Enlargement Array" << std::endl;
+    // for (int i = 0; i < currNumNodes / 2; i++)
+    // {
+    //     std::cout << "Index: " << AreaEnlargementArray[i].index << " Area Enlargement: " << AreaEnlargementArray[i].areaEnlargement << std::endl;
+    // }
+
+    // std::cout << "Sorted Overlap Enlargement Array" << std::endl;
+    // for (int i = 0; i < currNumNodes / 2; i++)
+    // {
+    //     std::cout << "Index: " << OverlapEnlargementArray[i].index << " Overlap Enlargement: " << OverlapEnlargementArray[i].overlapEnlargement << std::endl;
+    // }
+
+    // std::cout << "chooseSubTree Index: " << ind << std::endl;
+
+    reinsert(nodes[0]);
+
     // for (int i = 0; i < currNumNodes; i++)
     // {
     //     if (!nodes[i].leaf)
     //     {
-    //         std::cout << "Node " << i << ": " << nodes[i].box.minX << "->" << nodes[i].box.maxX << " " << nodes[i].box.minY << "->" << nodes[i].box.maxY <<
-    //          " child 0:" << nodes[i].child[0] << " child 1:" << nodes[i].child[1] << " child 2:" << nodes[i].child[2] << " child 3:" << nodes[i].child[3]
-    //          << " child 4:" << nodes[i].child[4] << std::endl;
+    //         std::cout << "Node " << i << ": " << nodes[i].box.minX << "->" << nodes[i].box.maxX << " " << nodes[i].box.minY << "->" << nodes[i].box.maxY
+    //                   << " child 0:" << nodes[i].child[0] << " child 1:" << nodes[i].child[1] << " child 2:" << nodes[i].child[2] << " child 3:" << nodes[i].child[3]
+    //                   << " child 4:" << nodes[i].child[4] << std::endl;
     //     }
     //     else
     //     {
     //         std::cout << "Leaf " << i << ": " << nodes[i].box.minX << "->" << nodes[i].box.maxX << " " << nodes[i].box.minY << "->" << nodes[i].box.maxY << std::endl;
     //     }
     // }
-
-    // sortByAreaEnlargement(nodes[7]);
-    // sortByOverlapEnlargement(nodes[7]);
-
-    int ind = chooseSubTree(nodes[7]);
-
-    std::cout << "Sorted Area Enlargement Array" << std::endl;
-    for (int i = 0; i < currNumNodes / 2; i++)
-    {
-        std::cout << "Index: " << AreaEnlargementArray[i].index << " Area Enlargement: " << AreaEnlargementArray[i].areaEnlargement << std::endl;
-    }
-
-    std::cout << "Sorted Overlap Enlargement Array" << std::endl;
-    for (int i = 0; i < currNumNodes / 2; i++)
-    {
-        std::cout << "Index: " << OverlapEnlargementArray[i].index << " Overlap Enlargement: " << OverlapEnlargementArray[i].overlapEnlargement << std::endl;
-    }
-
-    std::cout << "chooseSubTree Index: " << ind << std::endl;
 }
