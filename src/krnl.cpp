@@ -292,7 +292,7 @@ void reinsert(Node node)
     {
         int key = node.child[i];
         int j = i - 1;
-        while (j >= 0 && computeDistCenters(nodes[node.child[j]], node) > computeDistCenters(nodes[key], node) && node.child[j] != -1)
+        while (j >= 0 && computeDistCenters(nodes[node.child[j]], node) > computeDistCenters(nodes[key], node) && node.child[i] != -1)
         {
             node.child[j + 1] = node.child[j];
             j = j - 1;
@@ -381,7 +381,7 @@ extern "C" void krnl(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t 
 
     // std::cout << "chooseSubTree Index: " << ind << std::endl;
 
-    reinsert(nodes[0]);
+    reinsert(nodes[1]);
 
     // for (int i = 0; i < currNumNodes; i++)
     // {
