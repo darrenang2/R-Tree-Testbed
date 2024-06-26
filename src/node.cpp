@@ -1,4 +1,5 @@
 #include "node.h"
+#include "nodeArray.h"
 
 boundingBox setBB(int x1, int x2, int y1, int y2)
 {
@@ -40,14 +41,14 @@ Node createLeaf(bool l, boundingBox box)
     return node;
 }
 
-Node createNode()
+Node* createNode()
 {
-    Node node;
-    node.leaf = false;
-    node.box = setBB(0, 0, 0, 0);
+    Node* node;
+    node->leaf = false;
+    node->box = setBB(0, 0, 0, 0);
     for (int i = 0; i < MAX_CHILDREN; i++)
     {
-        node.child[i] = -1;
+        node->child[i] = -1;
     }
     return node;
 }
@@ -78,9 +79,9 @@ Node createNodeFromArray(bool l, boundingBox box, int arr[])
     return node;
 }
 
-Node getChild(Node parentNode, int index)
+Node getChild(Node* node, int index)
 {
-    return nodes[parentNode.child[index]];
+    return hbm_array[node->child[index]];
 }
 
 int getCenterX(Node node)
@@ -111,7 +112,7 @@ void setBB(Node *node, int x1, int x2, int y1, int y2)
     node->box.maxY = y2;
 }
 
-void sortItemsByUpperEdge(int axis, Node node)
+void sortItemsByUpperEdge(int axis, Node* node)
 {
     // sorting with y-axis
     if (axis == 0)
@@ -120,11 +121,11 @@ void sortItemsByUpperEdge(int axis, Node node)
         {
             for (int i = 1; i < MAX_CHILDREN; i++)
             {
-                if (nodes[node.child[i]].box.maxY < nodes[node.child[i - 1]].box.maxY)
+                if (getChild(node, i).box.maxY < getChild(node, i - 1).box.maxY)
                 {
-                    int temp = node.child[i];
-                    node.child[i] = node.child[i - 1];
-                    node.child[i - 1] = temp;
+                    int temp = node->child[i];
+                    node->child[i] = node->child[i - 1];
+                    node->child[i - 1] = temp;
                 }
             }
         }
@@ -136,18 +137,18 @@ void sortItemsByUpperEdge(int axis, Node node)
         {
             for (int i = 1; i < MAX_CHILDREN; i++)
             {
-                if (nodes[node.child[i]].box.maxX < nodes[node.child[i - 1]].box.maxX)
+                if (getChild(node, i).box.maxX < getChild(node, i - 1).box.maxX)
                 {
-                    int temp = node.child[i];
-                    node.child[i] = node.child[i - 1];
-                    node.child[i - 1] = temp;
+                    int temp = node->child[i];
+                    node->child[i] = node->child[i - 1];
+                    node->child[i - 1] = temp;
                 }
             }
         }
     }
 }
 
-void sortItemsByLowerEdge(int axis, Node node)
+void sortItemsByLowerEdge(int axis, Node* node)
 {
     // sorting with y-axis
     if (axis == 0)
@@ -156,11 +157,11 @@ void sortItemsByLowerEdge(int axis, Node node)
         {
             for (int i = 1; i < MAX_CHILDREN; i++)
             {
-                if (nodes[node.child[i]].box.minY < nodes[node.child[i - 1]].box.minY)
+                if (getChild(node, i).box.minY < getChild(node, i - 1).box.minY)
                 {
-                    int temp = node.child[i];
-                    node.child[i] = node.child[i - 1];
-                    node.child[i - 1] = temp;
+                    int temp = node->child[i];
+                    node->child[i] = node->child[i - 1];
+                    node->child[i - 1] = temp;
                 }
             }
         }
@@ -172,11 +173,11 @@ void sortItemsByLowerEdge(int axis, Node node)
         {
             for (int i = 1; i < MAX_CHILDREN; i++)
             {
-                if (nodes[node.child[i]].box.minX < nodes[node.child[i - 1]].box.minX)
+                if (getChild(node, i).box.minX < getChild(node, i - 1).box.minX)
                 {
-                    int temp = node.child[i];
-                    node.child[i] = node.child[i - 1];
-                    node.child[i - 1] = temp;
+                    int temp = node->child[i];
+                    node->child[i] = node->child[i - 1];
+                    node->child[i - 1] = temp;
                 }
             }
         }
@@ -193,10 +194,10 @@ void updateBoundingBox(Node *node)
     {
         if (node->child[i] != -1)
         {
-            minX = std::min(minX, nodes[node->child[i]].box.minX);
-            maxX = std::max(maxX, nodes[node->child[i]].box.maxX);
-            minY = std::min(minY, nodes[node->child[i]].box.minY);
-            maxY = std::max(maxY, nodes[node->child[i]].box.maxY);
+            minX = std::min(minX, getChild(node, i).box.minX);
+            maxX = std::max(maxX, getChild(node, i).box.maxX);
+            minY = std::min(minY, getChild(node, i).box.minY);
+            maxY = std::max(maxY, getChild(node, i).box.maxY);
         }
     }
     node->box.minX = minX;
@@ -205,31 +206,31 @@ void updateBoundingBox(Node *node)
     node->box.maxY = maxY;
 }
 
-bool equals(Node node1, Node node2)
+bool equals(Node* node1, Node* node2)
 {
-    if (node1.leaf != node2.leaf)
+    if (node1->leaf != node2->leaf)
     {
         return false;
     }
-    if (node1.box.minX != node2.box.minX)
+    if (node1->box.minX != node2->box.minX)
     {
         return false;
     }
-    if (node1.box.maxX != node2.box.maxX)
+    if (node1->box.maxX != node2->box.maxX)
     {
         return false;
     }
-    if (node1.box.minY != node2.box.minY)
+    if (node1->box.minY != node2->box.minY)
     {
         return false;
     }
-    if (node1.box.maxY != node2.box.maxY)
+    if (node1->box.maxY != node2->box.maxY)
     {
         return false;
     }
     for (int i = 0; i < MAX_CHILDREN; i++)
     {
-        if (node1.child[i] != node2.child[i])
+        if (node1->child[i] != node2->child[i])
         {
             return false;
         }

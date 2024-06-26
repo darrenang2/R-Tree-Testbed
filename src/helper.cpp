@@ -4,6 +4,7 @@
 #include "node.h"
 #include "overlapEnlargementPair.h"
 #include "areaEnlargementPair.h"
+#include "nodeArray.h"
 #include <float.h>
 #include <iostream>
 #include <algorithm>
@@ -36,15 +37,17 @@ int search(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t *output)
 
     while (!stack.isEmpty())
     {
-        int nodeIndex = stack.pop();         // Get the top node from the stack
-        Node currentNode = nodes[nodeIndex]; // Get the current node
+        // int nodeIndex = stack.pop();         // Get the top node from the stack
+        // Node currentNode = nodes[nodeIndex]; // Get the current node
+
+        Node *currentNode = get_node(MAX_LEVELS, 0);
 
         // Check if current node overlaps with search range
-        if (currentNode.leaf)
+        if (currentNode->leaf)
         {
-            if (currentNode.box.minX <= maxX && currentNode.box.maxX >= minX && currentNode.box.minY <= maxY && currentNode.box.maxY >= minY)
+            if (currentNode->box.minX <= maxX && currentNode->box.maxX >= minX && currentNode->box.minY <= maxY && currentNode->box.maxY >= minY)
             {
-                output[rt++] = nodeIndex; // Node index matches search criteria
+                output[rt++] = get_index(currentNode); // Node index matches search criteria
             }
         }
         else
@@ -54,7 +57,7 @@ int search(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t *output)
                 Node childNode = getChild(currentNode, i);
                 if (childNode.box.minX <= maxX && childNode.box.maxX >= minX && childNode.box.minY <= maxY && childNode.box.maxY >= minY)
                 {
-                    stack.push(currentNode.child[i]); // Push child node to stack
+                    stack.push(currentNode->child[i]); // Push child node to stack
                 }
             }
         }
@@ -81,44 +84,46 @@ void sortByAreaEnlargement(Node newNode)
     stack.push(0); // Start with the root node index
     while (!stack.isEmpty())
     {
-        int nodeIndex = stack.pop();
-        Node currentNode = nodes[nodeIndex];
+        // int nodeIndex = stack.pop();
+        // Node currentNode = nodes[nodeIndex];
 
-        if (currentNode.leaf)
+        Node *currentNode = get_node(MAX_LEVELS, 0);
+
+        if (currentNode->leaf)
         {
             // the node being compared to new node is leaf
-            area_maxX = std::max(currentNode.box.maxX, newNode.box.maxX);
-            area_maxY = std::max(currentNode.box.maxY, newNode.box.maxY);
-            area_minX = std::min(currentNode.box.minX, newNode.box.minX);
-            area_minY = std::min(currentNode.box.minY, newNode.box.minY);
+            area_maxX = std::max(currentNode->box.maxX, newNode.box.maxX);
+            area_maxY = std::max(currentNode->box.maxY, newNode.box.maxY);
+            area_minX = std::min(currentNode->box.minX, newNode.box.minX);
+            area_minY = std::min(currentNode->box.minY, newNode.box.minY);
 
-            area_enlargement = (area_maxX - area_minX) * (area_maxY - area_minY) - area(currentNode.box);
-            std::cout << "Area Enlargement: " << area_enlargement << " Leaf Node: " << nodeIndex << std::endl;
-            areaEnlargementPair pair = {nodeIndex, area_enlargement};
+            area_enlargement = (area_maxX - area_minX) * (area_maxY - area_minY) - area(currentNode->box);
+            std::cout << "Area Enlargement: " << area_enlargement << " Leaf Node: " << get_index(currentNode) << std::endl;
+            areaEnlargementPair pair = {get_index(currentNode), area_enlargement};
             AreaEnlargementArray[i++] = pair;
         }
         else
         {
-            if (currentNode.box.maxX >= newNode.box.maxX && currentNode.box.minX <= newNode.box.minX && currentNode.box.maxY >= newNode.box.maxY && currentNode.box.minY <= newNode.box.minY)
+            if (currentNode->box.maxX >= newNode.box.maxX && currentNode->box.minX <= newNode.box.minX && currentNode->box.maxY >= newNode.box.maxY && currentNode->box.minY <= newNode.box.minY)
             {
                 // new node is within the bounding box
                 for (int i = 0; i < MAX_CHILDREN; i++)
                 {
-                    if (currentNode.child[i] != -1)
-                        stack.push(currentNode.child[i]);
+                    if (currentNode->child[i] != -1)
+                        stack.push(currentNode->child[i]);
                 }
             }
             else
             {
                 // new node is not within the bounding box
-                area_maxX = std::max(currentNode.box.maxX, newNode.box.maxX);
-                area_maxY = std::max(currentNode.box.maxY, newNode.box.maxY);
-                area_minX = std::min(currentNode.box.minX, newNode.box.minX);
-                area_minY = std::min(currentNode.box.minY, newNode.box.minY);
+                area_maxX = std::max(currentNode->box.maxX, newNode.box.maxX);
+                area_maxY = std::max(currentNode->box.maxY, newNode.box.maxY);
+                area_minX = std::min(currentNode->box.minX, newNode.box.minX);
+                area_minY = std::min(currentNode->box.minY, newNode.box.minY);
 
-                area_enlargement = (area_maxX - area_minX) * (area_maxY - area_minY) - area(currentNode.box);
-                std::cout << "Area Enlargement: " << area_enlargement << " Node: " << nodeIndex << std::endl;
-                areaEnlargementPair pair = {nodeIndex, area_enlargement};
+                area_enlargement = (area_maxX - area_minX) * (area_maxY - area_minY) - area(currentNode->box);
+                std::cout << "Area Enlargement: " << area_enlargement << " Node: " << get_index(currentNode) << std::endl;
+                areaEnlargementPair pair = {get_index(currentNode), area_enlargement};
                 AreaEnlargementArray[i++] = pair;
             }
         }
@@ -145,13 +150,13 @@ void sortByOverlapEnlargement(Node newNode)
     while (!stack.isEmpty())
     {
         int nodeIndex = stack.pop();
-        Node currentNode = nodes[nodeIndex];
+        Node *currentNode = get_node(MAX_LEVELS, nodeIndex);
 
         // the node being compared to new node is leaf
-        maxX = std::min(currentNode.box.maxX, newNode.box.maxX);
-        maxY = std::min(currentNode.box.maxY, newNode.box.maxY);
-        minX = std::max(currentNode.box.minX, newNode.box.minX);
-        minY = std::max(currentNode.box.minY, newNode.box.minY);
+        maxX = std::min(currentNode->box.maxX, newNode.box.maxX);
+        maxY = std::min(currentNode->box.maxY, newNode.box.maxY);
+        minX = std::max(currentNode->box.minX, newNode.box.minX);
+        minY = std::max(currentNode->box.minY, newNode.box.minY);
 
         int overlap = (maxX - minX) * (maxY - minY);
         std::cout << "Overlap: " << overlap << " Node: " << nodeIndex << std::endl;
@@ -188,10 +193,10 @@ int chooseSubTree(Node node)
  * @param node The node to be split.
  * @return The newly created node after the split.
  */
-Node split(Node node)
+Node *split(Node *node)
 {
-    Node newNode = createNode();
-    newNode.leaf = node.leaf;
+    Node *newNode = createNode();
+    newNode->leaf = node->leaf;
 
     boundingBox R1, R2;
 
@@ -217,18 +222,18 @@ Node split(Node node)
 
                 for (int i = 0; i <= k; i++)
                 {
-                    R1.minX = std::min(R1.minX, nodes[node.child[i]].box.minX);
-                    R1.maxX = std::max(R1.maxX, nodes[node.child[i]].box.maxX);
-                    R1.minY = std::min(R1.minY, nodes[node.child[i]].box.minY);
-                    R1.maxY = std::max(R1.maxY, nodes[node.child[i]].box.maxY);
+                    R1.minX = std::min(R1.minX, getChild(node, i).box.minX);
+                    R1.maxX = std::max(R1.maxX, getChild(node, i).box.maxX);
+                    R1.minY = std::min(R1.minY, getChild(node, i).box.minY);
+                    R1.maxY = std::max(R1.maxY, getChild(node, i).box.maxY);
                 }
 
                 for (int i = MAX_CHILDREN - 1 - k; i < MAX_CHILDREN; i++)
                 {
-                    R2.minX = std::min(R2.minX, nodes[node.child[i]].box.minX);
-                    R2.maxX = std::max(R2.maxX, nodes[node.child[i]].box.maxX);
-                    R2.minY = std::min(R2.minY, nodes[node.child[i]].box.minY);
-                    R2.maxY = std::max(R2.maxY, nodes[node.child[i]].box.maxY);
+                    R2.minX = std::min(R2.minX, getChild(node, i).box.minX);
+                    R2.maxX = std::max(R2.maxX, getChild(node, i).box.maxX);
+                    R2.minY = std::min(R2.minY, getChild(node, i).box.minY);
+                    R2.maxY = std::max(R2.maxY, getChild(node, i).box.maxY);
                 }
 
                 int margin = edgeDelta(R1) + edgeDelta(R2);
@@ -261,44 +266,43 @@ Node split(Node node)
     for (int i = 0; i < split_index; i++)
     {
         while (split_index + i < MAX_CHILDREN)
-            newNode.child[i] = node.child[split_index + i];
+            newNode->child[i] = node->child[split_index + i];
     }
 
     for (int i = split_index; i < MAX_CHILDREN; i++)
     {
-        node.child[i] = -1;
+        node->child[i] = -1;
     }
 
-    updateBoundingBox(&node);
-    updateBoundingBox(&newNode);
+    updateBoundingBox(node);
+    updateBoundingBox(newNode);
 
     return newNode;
 }
 
-Node overflowTreatment(Node node, bool firstInsert)
+Node overflowTreatment(Node *node, bool firstInsert)
 {
-    if (!equals(node, nodes[0]) && firstInsert)
+    if (!equals(node, get_node(MAX_LEVELS, 0)) && firstInsert)
     {
         reinsert(node);
         return Node();
     }
 
-    Node newNode = split(node);
+    Node *newNode = split(node);
 
     // If OverflowTreatment caused a split of the root, create a new root
-    if (equals(node, nodes[0]))
+    if (equals(node, get_node(MAX_LEVELS, 0)))
     {
-        Node newRoot = createNode();
-        newRoot.child[0] = 0;
-        newRoot.child[1] = currNumNodes;
-        nodes[currNumNodes++] = node;
-        nodes[currNumNodes++] = newNode;
-        updateBoundingBox(&newRoot);
-        nodes[0] = newRoot;
-        return newRoot;
+        Node *newRoot = createNode();
+        newRoot->child[0] = 0;
+        newRoot->child[1] = currNumNodes;
+        add_node(MAX_LEVELS, *newRoot);
+        add_node(MAX_LEVELS - 2, *newNode);
+        updateBoundingBox(newRoot);
+        return *newRoot;
     }
 
-    return newNode;
+    return *newNode;
 }
 
 /**
@@ -313,7 +317,7 @@ Node overflowTreatment(Node node, bool firstInsert)
  *
  * @param node The node to be reinserted.
  */
-void reinsert(Node node)
+void reinsert(Node *node)
 {
     /*
     For all M+l entries of a node N, compute the distance
@@ -325,17 +329,17 @@ void reinsert(Node node)
     */
     for (int i = 1; i < MAX_CHILDREN; i++)
     {
-        int key = node.child[i];
+        int key = node->child[i];
         int j = i - 1;
-        while (j >= 0 && computeDistCenters(nodes[node.child[j]], node) > computeDistCenters(nodes[key], node) && node.child[i] != -1)
+        while (j >= 0 && computeDistCenters(getChild(node, j), *node) > computeDistCenters(hbm_array[key], *node) && node->child[i] != -1)
         {
-            node.child[j + 1] = node.child[j];
+            node->child[j + 1] = node->child[j];
             j = j - 1;
         }
-        node.child[j + 1] = key;
+        node->child[j + 1] = key;
         for (int i = 0; i < MAX_CHILDREN; i++)
         {
-            std::cout << "Child " << i << ": " << node.child[i] << std::endl;
+            std::cout << "Child " << i << ": " << node->child[i] << std::endl;
         }
     }
 
@@ -347,23 +351,23 @@ void reinsert(Node node)
     distance (= far reinsert) or minimum distance (= close
     reinsert), invoke Insert to reinsert the entries
     */
-    insert(nodes[node.child[5]], false);
+    insert(getChild(node, 5), false);
 
-    node.child[5] = -1;
+    node->child[5] = -1;
 
     int minX, maxX, minY, maxY;
     for (int i = 0; i < MAX_CHILDREN; i++)
     {
-        if (node.child[i] != -1)
+        if (node->child[i] != -1)
         {
-            minX = std::min(minX, nodes[node.child[i]].box.minX);
-            maxX = std::max(maxX, nodes[node.child[i]].box.maxX);
-            minY = std::min(minY, nodes[node.child[i]].box.minY);
-            maxY = std::max(maxY, nodes[node.child[i]].box.maxY);
+            minX = std::min(minX, getChild(node, i).box.minX);
+            maxX = std::max(maxX, getChild(node, i).box.maxX);
+            minY = std::min(minY, getChild(node, i).box.minY);
+            maxY = std::max(maxY, getChild(node, i).box.maxY);
         }
     }
 
-    setBB(&node, minX, maxX, minY, maxY);
+    setBB(node, minX, maxX, minY, maxY);
 }
 
 /**
@@ -384,8 +388,10 @@ void insert(Node newNode, bool firstInsert = true)
 
     do
     {
-        int nodeIndex = stack.pop();
-        Node currentNode = nodes[nodeIndex];
+        // int nodeIndex = stack.pop();
+        // Node currentNode = nodes[nodeIndex];
+
+        Node *currentNode = get_node(MAX_LEVELS, 0);
 
         // if is leaf (Lindex = -1)
         // insert node into Lindex
@@ -395,107 +401,77 @@ void insert(Node newNode, bool firstInsert = true)
         // insert into stack (choose subtree)
         // update left index / right index of parent node
 
-        if (currentNode.leaf)
+        if (currentNode->leaf)
         {
             std::cout << "Adding child 0" << std::endl;
             // currentNodeParent = Node();
-            currentNode.leaf = false;
+            currentNode->leaf = false;
 
-            currentNode.child[0] = currNumNodes;
-            nodes[currNumNodes] = newNode; // currNumNodes = array index of newest node, gets updated everytime a node is added
+            currentNode->child[0] = get_index(&newNode);
+            add_node(get_level(currentNode) - 1, newNode); // currNumNodes = array index of newest node, gets updated everytime a node is added
             currNumNodes++;
 
-            currentNode.box.minX = std::min(currentNode.box.minX, newNode.box.minX);
-            currentNode.box.maxX = std::max(currentNode.box.maxX, newNode.box.maxX);
-            currentNode.box.minY = std::min(currentNode.box.minY, newNode.box.minY);
-            currentNode.box.maxY = std::max(currentNode.box.maxY, newNode.box.maxY);
-
-            nodes[nodeIndex] = currentNode;
+            updateBoundingBox(currentNode);
         }
-        else if (currentNode.child[1] == -1)
+        else if (currentNode->child[1] == -1)
         {
             std::cout << "Adding child 1" << std::endl;
             newNode.leaf = 1;
 
-            currentNode.child[1] = currNumNodes;
-            nodes[currNumNodes] = newNode;
+            currentNode->child[1] = get_index(&newNode);
+            add_node(get_level(currentNode) - 1, newNode);
             currNumNodes++;
 
-            currentNode.box.minX = std::min(currentNode.box.minX, newNode.box.minX);
-            currentNode.box.maxX = std::max(currentNode.box.maxX, newNode.box.maxX);
-            currentNode.box.minY = std::min(currentNode.box.minY, newNode.box.minY);
-            currentNode.box.maxY = std::max(currentNode.box.maxY, newNode.box.maxY);
-
-            nodes[nodeIndex] = currentNode;
+            updateBoundingBox(currentNode);
         }
-        else if (currentNode.child[2] == -1)
+        else if (currentNode->child[2] == -1)
         {
             std::cout << "Adding child 2" << std::endl;
             newNode.leaf = 1;
 
-            currentNode.child[2] = currNumNodes;
-            nodes[currNumNodes] = newNode;
+            currentNode->child[2] = get_index(&newNode);
+            add_node(get_level(currentNode) - 1, newNode);
             currNumNodes++;
 
-            currentNode.box.minX = std::min(currentNode.box.minX, newNode.box.minX);
-            currentNode.box.maxX = std::max(currentNode.box.maxX, newNode.box.maxX);
-            currentNode.box.minY = std::min(currentNode.box.minY, newNode.box.minY);
-            currentNode.box.maxY = std::max(currentNode.box.maxY, newNode.box.maxY);
-
-            nodes[nodeIndex] = currentNode;
+            updateBoundingBox(currentNode);
         }
-        else if (currentNode.child[3] == -1)
+        else if (currentNode->child[3] == -1)
         {
             std::cout << "Adding child 3" << std::endl;
             newNode.leaf = 1;
 
-            currentNode.child[3] = currNumNodes;
-            nodes[currNumNodes] = newNode;
+            currentNode->child[3] = get_index(&newNode);
+            add_node(get_level(currentNode) - 1, newNode);
             currNumNodes++;
 
-            currentNode.box.minX = std::min(currentNode.box.minX, newNode.box.minX);
-            currentNode.box.maxX = std::max(currentNode.box.maxX, newNode.box.maxX);
-            currentNode.box.minY = std::min(currentNode.box.minY, newNode.box.minY);
-            currentNode.box.maxY = std::max(currentNode.box.maxY, newNode.box.maxY);
-
-            nodes[nodeIndex] = currentNode;
+            updateBoundingBox(currentNode);
         }
-        else if (currentNode.child[4] == -1)
+        else if (currentNode->child[4] == -1)
         {
             std::cout << "Adding child 4" << std::endl;
             newNode.leaf = 1;
 
-            currentNode.child[4] = currNumNodes;
-            nodes[currNumNodes] = newNode;
+            currentNode->child[4] = get_index(&newNode);
+            add_node(get_level(currentNode) - 1, newNode);
             currNumNodes++;
 
-            currentNode.box.minX = std::min(currentNode.box.minX, newNode.box.minX);
-            currentNode.box.maxX = std::max(currentNode.box.maxX, newNode.box.maxX);
-            currentNode.box.minY = std::min(currentNode.box.minY, newNode.box.minY);
-            currentNode.box.maxY = std::max(currentNode.box.maxY, newNode.box.maxY);
-
-            nodes[nodeIndex] = currentNode;
+            updateBoundingBox(currentNode);
         }
-        else if (currentNode.child[5] == -1)
+        else if (currentNode->child[5] == -1)
         {
             std::cout << "Calling OverflowTreatment" << std::endl;
             newNode.leaf = 1;
 
-            currentNode.child[5] = currNumNodes;
-            nodes[currNumNodes] = newNode;
+            currentNode->child[5] = get_index(&newNode);
+            add_node(get_level(currentNode) - 1, newNode);
             currNumNodes++;
 
-            currentNode.box.minX = std::min(currentNode.box.minX, newNode.box.minX);
-            currentNode.box.maxX = std::max(currentNode.box.maxX, newNode.box.maxX);
-            currentNode.box.minY = std::min(currentNode.box.minY, newNode.box.minY);
-            currentNode.box.maxY = std::max(currentNode.box.maxY, newNode.box.maxY);
-
-            nodes[nodeIndex] = currentNode;
+            updateBoundingBox(currentNode);
             overflowTreatment(currentNode, firstInsert);
         }
         else
         {
-            stack.push(chooseSubTree(currentNode));
+            stack.push(chooseSubTree(*currentNode));
         }
 
     } while (!stack.isEmpty() && count < MAX);
@@ -508,7 +484,7 @@ void insert(Node newNode, bool firstInsert = true)
  *
  * @param node The node to be deleted.
  */
-void deleteNode(Node node)
+void Remove(Node node, int index)
 {
     // if node is leaf
     // remove node from parent
@@ -516,10 +492,5 @@ void deleteNode(Node node)
     // reinsert all entries of parent
     // else
     // adjust bounding box of parent
-    // else
-    // remove node from parent
-    // if parent has less than m entries
-    // reinsert all entries of parent
-    // else
-    // adjust bounding box of parent
+    
 }

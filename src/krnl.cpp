@@ -4,6 +4,7 @@
 #include "node.h"
 #include "overlapEnlargementPair.h"
 #include "areaEnlargementPair.h"
+#include "nodeArray.h"
 #include <float.h>
 #include <iostream>
 #include <algorithm>
@@ -14,16 +15,28 @@ extern "C" void krnl(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t 
 
     // SetBB: (x1 -> x2) (y1 -> y2)
 
-    nodes[0] = createNode(false, setBB(0, 20, 0, 20), 1, 2, 3, 4, 5);
-    nodes[1] = createNode(false, setBB(0, 9, 0, 9), 6, 7, -1, -1, -1);
-    nodes[2] = createNode(false, setBB(10, 20, 10, 20), 8, 9, -1, -1, -1);
-    nodes[3] = createLeaf(true, setBB(0, 4, 0, 4));
-    nodes[4] = createLeaf(true, setBB(5, 9, 5, 9));
-    nodes[5] = createLeaf(true, setBB(10, 14, 10, 14));
-    nodes[6] = createLeaf(true, setBB(15, 19, 15, 19));
-    nodes[7] = createLeaf(true, setBB(0, 7, 0, 7));
-    nodes[8] = createLeaf(true, setBB(10, 14, 10, 14));
-    nodes[9] = createLeaf(true, setBB(17, 19, 17, 19));
+    add_node(MAX_LEVELS, createNode(false, setBB(0, 20, 0, 20),
+                                    get_level_start_index(MAX_LEVELS - 1),
+                                    get_level_start_index(MAX_LEVELS - 1) + 1,
+                                    get_level_start_index(MAX_LEVELS - 2),
+                                    get_level_start_index(MAX_LEVELS - 2) + 1,
+                                    get_level_start_index(MAX_LEVELS - 2) + 2)); // node 0 (root node)
+
+    add_node(MAX_LEVELS - 1, createNode(false, setBB(0, 9, 0, 9),
+                                        get_level_start_index(MAX_LEVELS - 2) + 3,
+                                        get_level_start_index(MAX_LEVELS - 2) + 4, -1, -1, -1)); // node 1
+
+    add_node(MAX_LEVELS - 1, createNode(false, setBB(10, 20, 10, 20),
+                                        get_level_start_index(MAX_LEVELS - 2) + 5,
+                                        get_level_start_index(MAX_LEVELS - 2) + 6, -1, -1, -1)); // node 2
+
+    add_node(MAX_LEVELS - 2, createLeaf(true, setBB(0, 4, 0, 4)));     // node 3
+    add_node(MAX_LEVELS - 2, createLeaf(true, setBB(5, 9, 5, 9)));     // node 4
+    add_node(MAX_LEVELS - 2, createLeaf(true, setBB(10, 14, 10, 14))); // node 5
+    add_node(MAX_LEVELS - 2, createLeaf(true, setBB(15, 19, 15, 19))); // node 6
+    add_node(MAX_LEVELS - 2, createLeaf(true, setBB(0, 7, 0, 7)));     // node 7
+    add_node(MAX_LEVELS - 2, createLeaf(true, setBB(10, 14, 10, 14))); // node 8
+    add_node(MAX_LEVELS - 2, createLeaf(true, setBB(17, 19, 17, 19))); // node 9
 
     // search(minX, maxY, minY, maxY, output);
 
