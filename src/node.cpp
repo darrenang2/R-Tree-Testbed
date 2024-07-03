@@ -36,7 +36,7 @@ int edgeDelta(boundingBox box)
 Node createLeaf(bool l, boundingBox box)
 {
     Node node;
-    node.leaf = &l;
+    node.leaf = l;
     node.box = box;
     return node;
 }

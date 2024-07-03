@@ -15,11 +15,13 @@ Node *get_node(int level, int index)
 
 int get_index(Node *node)
 {
+    std::cout << "index: " << node - hbm_array << std::endl;
     return node - hbm_array;
 }
 
 int get_level(Node *node)
 {
+    std::cout << "get_index(node) / MAX_NODES_PER_LEVEL: " << get_index(node) / MAX_NODES_PER_LEVEL << std::endl;
     return (get_index(node) / MAX_NODES_PER_LEVEL);
 }
 

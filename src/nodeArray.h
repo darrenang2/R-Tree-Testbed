@@ -3,8 +3,10 @@
 
 #include "node.h"
 
-#define MAX_NODES_PER_LEVEL 1000
-#define MAX_LEVELS 100
+#define MAX_NODES_PER_LEVEL 10000
+#define MAX_LEVELS 10000
+
+static int H = 3; // current height of tree
 
 Node hbm_array[MAX_NODES_PER_LEVEL * MAX_LEVELS];
 int nodes_in_level[MAX_LEVELS] = {0};

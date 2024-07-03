@@ -14,8 +14,8 @@ void sortByAreaEnlargement(Node newNode);
 void sortByOverlapEnlargement(Node newNode);
 int chooseSubTree(Node node);
 Node split(Node node);
-void reinsert(Node node);
-Node overflowTreatment(Node node, bool firstInsert);
+void reinsert(Node* node);
+Node overflowTreatment(Node* node, bool firstInsert);
 void insert(Node newNode, bool firstInsert);
 void deleteNode(Node node);
 

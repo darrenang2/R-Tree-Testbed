@@ -33,14 +33,14 @@ int search(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t *output)
 
     Stack stack;
 
-    stack.push(0); // Start with the root node index
+    stack.push(get_level_start_index(H)); // Start with the root node index
 
     while (!stack.isEmpty())
     {
         // int nodeIndex = stack.pop();         // Get the top node from the stack
         // Node currentNode = nodes[nodeIndex]; // Get the current node
 
-        Node *currentNode = get_node(MAX_LEVELS, 0);
+        Node *currentNode = get_node(H, 0);
 
         // Check if current node overlaps with search range
         if (currentNode->leaf)
@@ -81,13 +81,13 @@ void sortByAreaEnlargement(Node newNode)
     int area_maxX, area_maxY, area_minX, area_minY;
     int area_enlargement;
     Stack stack;
-    stack.push(0); // Start with the root node index
+    stack.push(get_level_start_index(H)); // Start with the root node index
     while (!stack.isEmpty())
     {
         // int nodeIndex = stack.pop();
         // Node currentNode = nodes[nodeIndex];
 
-        Node *currentNode = get_node(MAX_LEVELS, 0);
+        Node *currentNode = get_node(H, 0);
 
         if (currentNode->leaf)
         {
@@ -150,13 +150,13 @@ void sortByOverlapEnlargement(Node newNode)
     while (!stack.isEmpty())
     {
         int nodeIndex = stack.pop();
-        Node *currentNode = get_node(MAX_LEVELS, nodeIndex);
+        Node currentNode = hbm_array[nodeIndex];
 
         // the node being compared to new node is leaf
-        maxX = std::min(currentNode->box.maxX, newNode.box.maxX);
-        maxY = std::min(currentNode->box.maxY, newNode.box.maxY);
-        minX = std::max(currentNode->box.minX, newNode.box.minX);
-        minY = std::max(currentNode->box.minY, newNode.box.minY);
+        maxX = std::min(currentNode.box.maxX, newNode.box.maxX);
+        maxY = std::min(currentNode.box.maxY, newNode.box.maxY);
+        minX = std::max(currentNode.box.minX, newNode.box.minX);
+        minY = std::max(currentNode.box.minY, newNode.box.minY);
 
         int overlap = (maxX - minX) * (maxY - minY);
         std::cout << "Overlap: " << overlap << " Node: " << nodeIndex << std::endl;
@@ -282,7 +282,7 @@ Node *split(Node *node)
 
 Node overflowTreatment(Node *node, bool firstInsert)
 {
-    if (!equals(node, get_node(MAX_LEVELS, 0)) && firstInsert)
+    if (!equals(node, get_node(H, 0)) && firstInsert)
     {
         reinsert(node);
         return Node();
@@ -291,14 +291,16 @@ Node overflowTreatment(Node *node, bool firstInsert)
     Node *newNode = split(node);
 
     // If OverflowTreatment caused a split of the root, create a new root
-    if (equals(node, get_node(MAX_LEVELS, 0)))
+    if (equals(node, get_node(H, 0)))
     {
         Node *newRoot = createNode();
-        newRoot->child[0] = 0;
-        newRoot->child[1] = currNumNodes;
-        add_node(MAX_LEVELS, *newRoot);
-        add_node(MAX_LEVELS - 2, *newNode);
+        newRoot->child[0] = get_index(node);
+        newRoot->child[1] = get_index(node) + 1;
+        H += 1;
+        add_node(H, *newRoot);
+        add_node(H - 1, *newNode);
         updateBoundingBox(newRoot);
+        hbm_array[get_level_start_index(H)] = *newRoot;
         return *newRoot;
     }
 
@@ -382,16 +384,15 @@ void insert(Node newNode, bool firstInsert = true)
 {
     // Node newNode = createLeaf(true, setBB(minX, maxX, minY, maxY));
     // for (int i = 0; i < currNumNodes; i++)
-    int count = 0;
     Stack stack;
-    stack.push(count); // Start with the root node index
+    stack.push(get_level_start_index(H)); // Start with the root node index
 
     do
     {
         // int nodeIndex = stack.pop();
         // Node currentNode = nodes[nodeIndex];
 
-        Node *currentNode = get_node(MAX_LEVELS, 0);
+        Node currentNode = hbm_array[stack.pop()];
 
         // if is leaf (Lindex = -1)
         // insert node into Lindex
@@ -401,80 +402,80 @@ void insert(Node newNode, bool firstInsert = true)
         // insert into stack (choose subtree)
         // update left index / right index of parent node
 
-        if (currentNode->leaf)
+        if (currentNode.leaf)
         {
             std::cout << "Adding child 0" << std::endl;
             // currentNodeParent = Node();
-            currentNode->leaf = false;
+            currentNode.leaf = false;
 
-            currentNode->child[0] = get_index(&newNode);
-            add_node(get_level(currentNode) - 1, newNode); // currNumNodes = array index of newest node, gets updated everytime a node is added
+            currentNode.child[0] = get_index(&newNode);
+            add_node(get_level(&currentNode) - 1, newNode); // currNumNodes = array index of newest node, gets updated everytime a node is added
             currNumNodes++;
 
-            updateBoundingBox(currentNode);
+            updateBoundingBox(&currentNode);
         }
-        else if (currentNode->child[1] == -1)
+        else if (currentNode.child[1] == -1)
         {
             std::cout << "Adding child 1" << std::endl;
             newNode.leaf = 1;
 
-            currentNode->child[1] = get_index(&newNode);
-            add_node(get_level(currentNode) - 1, newNode);
+            currentNode.child[1] = get_index(&newNode);
+            add_node(get_level(&currentNode) - 1, newNode);
             currNumNodes++;
 
-            updateBoundingBox(currentNode);
+            updateBoundingBox(&currentNode);
         }
-        else if (currentNode->child[2] == -1)
+        else if (currentNode.child[2] == -1)
         {
             std::cout << "Adding child 2" << std::endl;
             newNode.leaf = 1;
 
-            currentNode->child[2] = get_index(&newNode);
-            add_node(get_level(currentNode) - 1, newNode);
+            currentNode.child[2] = get_index(&newNode);
+            add_node(get_level(&currentNode) - 1, newNode);
             currNumNodes++;
 
-            updateBoundingBox(currentNode);
+            updateBoundingBox(&currentNode);
         }
-        else if (currentNode->child[3] == -1)
+        else if (currentNode.child[3] == -1)
         {
             std::cout << "Adding child 3" << std::endl;
             newNode.leaf = 1;
 
-            currentNode->child[3] = get_index(&newNode);
-            add_node(get_level(currentNode) - 1, newNode);
+            currentNode.child[3] = get_index(&newNode);
+            add_node(get_level(&currentNode) - 1, newNode);
             currNumNodes++;
 
-            updateBoundingBox(currentNode);
+            updateBoundingBox(&currentNode);
         }
-        else if (currentNode->child[4] == -1)
+        else if (currentNode.child[4] == -1)
         {
             std::cout << "Adding child 4" << std::endl;
             newNode.leaf = 1;
 
-            currentNode->child[4] = get_index(&newNode);
-            add_node(get_level(currentNode) - 1, newNode);
+            currentNode.child[4] = get_index(&newNode);
+            add_node(get_level(&currentNode) - 1, newNode);
             currNumNodes++;
 
-            updateBoundingBox(currentNode);
+            updateBoundingBox(&currentNode);
         }
-        else if (currentNode->child[5] == -1)
+        else if (currentNode.child[5] == -1)
         {
             std::cout << "Calling OverflowTreatment" << std::endl;
             newNode.leaf = 1;
 
-            currentNode->child[5] = get_index(&newNode);
-            add_node(get_level(currentNode) - 1, newNode);
+            currentNode.child[5] = get_index(&newNode);
+            add_node(get_level(&currentNode) - 1, newNode);
             currNumNodes++;
 
-            updateBoundingBox(currentNode);
-            overflowTreatment(currentNode, firstInsert);
+            updateBoundingBox(&currentNode);
+            overflowTreatment(&currentNode, firstInsert);
         }
         else
         {
-            stack.push(chooseSubTree(*currentNode));
+            stack.push(chooseSubTree(currentNode));
         }
 
-    } while (!stack.isEmpty() && count < MAX);
+    } while (!stack.isEmpty());
 }
 
 /*==================================================== DELETION FUNCTIONS ===============================================================*/
@@ -492,5 +493,28 @@ void Remove(Node node, int index)
     // reinsert all entries of parent
     // else
     // adjust bounding box of parent
-    
+    if (node.leaf)
+    {
+        delete_node(get_level(&node), index);
+        if (nodes_in_level[get_level(&node)] < MAX_CHILDREN)
+        {
+            reinsert(get_node(get_level(&node), index));
+        }
+        else
+        {
+            updateBoundingBox(get_node(get_level(&node), index));
+        }
+    }
+    else
+    {
+        delete_node(get_level(&node), index);
+        if (nodes_in_level[get_level(&node)] < 2)
+        {
+            reinsert(get_node(get_level(&node), index));
+        }
+        else
+        {
+            updateBoundingBox(get_node(get_level(&node), index));
+        }
+    }
 }
