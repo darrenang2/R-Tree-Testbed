@@ -38,7 +38,9 @@ extern "C" void krnl(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t 
     add_node(H - 2, createLeaf(true, setBB(10, 14, 10, 14))); // node 8
     add_node(H - 2, createLeaf(true, setBB(17, 19, 17, 19))); // node 9
 
-    print_all_levels();
+    // print_level(0);
+    // print_level(1);
+    // print_level(2);
 
     search(minX, maxX, minY, maxY, output);
 

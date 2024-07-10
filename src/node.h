@@ -41,5 +41,6 @@ void sortItemsByUpperEdge(int axis, Node* node);
 void sortItemsByLowerEdge(int axis, Node* node);
 void updateBoundingBox(Node *node);
 bool equals(Node* node1, Node* node2);
+void printNode(Node* node);
 
 #endif // NODE_H

@@ -25,14 +25,13 @@ static int currNumNodes = 10;
  * @param output An array to store the indices of the nodes that overlap with the search range.
  * @return The number of nodes that overlap with the search range.
  */
-int search(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t *output)
+data_t *search(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t *output)
 {
     std::cout << "R-Tree Search: (" << minX << "->" << maxX << ")(" << minY << "->" << maxY << ")" << std::endl;
     // Return counter;
     int rt = 0;
 
     Stack stack;
-
     stack.push(get_level_start_index(H)); // Start with the root node index
 
     while (!stack.isEmpty())
@@ -40,30 +39,45 @@ int search(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t *output)
         // int nodeIndex = stack.pop();         // Get the top node from the stack
         // Node currentNode = nodes[nodeIndex]; // Get the current node
 
-        Node *currentNode = get_node(H, 0);
+        // print_level(H);
+        int nodeIndex = stack.pop();
+        std::cout << "node index: " << nodeIndex << std::endl;
+        Node* currentNode = get_node(nodeIndex);
+        printNode(currentNode);
 
         // Check if current node overlaps with search range
         if (currentNode->leaf)
         {
+            std::cout << "Leaf Node: " << nodeIndex << std::endl;
             if (currentNode->box.minX <= maxX && currentNode->box.maxX >= minX && currentNode->box.minY <= maxY && currentNode->box.maxY >= minY)
             {
-                output[rt++] = get_index(currentNode); // Node index matches search criteria
+                output[rt++] = nodeIndex; // Node index matches search criteria
             }
         }
         else
         {
             for (int i = 0; i < MAX_CHILDREN; i++)
             {
-                Node childNode = getChild(currentNode, i);
-                if (childNode.box.minX <= maxX && childNode.box.maxX >= minX && childNode.box.minY <= maxY && childNode.box.maxY >= minY)
+                if (currentNode->child[i] != -1)
                 {
-                    stack.push(currentNode->child[i]); // Push child node to stack
+                    Node* childNode = get_node(currentNode->child[i]);
+                    // printNode(childNode);
+                    if (childNode->box.minX <= maxX && childNode->box.maxX >= minX && childNode->box.minY <= maxY && childNode->box.maxY >= minY)
+                    {
+                        std::cout << "Pushing child " << i << std::endl;
+                        stack.push(currentNode->child[i]);    // Push child node to stack
+                    }
                 }
             }
         }
     }
-    std::cout << "Number of nodes with overlap: " << rt << std::endl;
-    return rt;
+    std::cout << "Number of leaves with overlap: " << rt << std::endl;
+    std::cout << "Output: ";
+    for (int i = 0; i < rt; i++)
+    {
+        std::cout << output[i] << ", ";
+    }
+    return output;
 }
 
 /*==================================================== INSERTION FUNCTIONS ===============================================================*/
@@ -87,43 +101,44 @@ void sortByAreaEnlargement(Node newNode)
         // int nodeIndex = stack.pop();
         // Node currentNode = nodes[nodeIndex];
 
-        Node *currentNode = get_node(H, 0);
+        int nodeIndex = stack.pop();
+        Node currentNode = hbm_array[stack.pop()];
 
-        if (currentNode->leaf)
+        if (currentNode.leaf)
         {
             // the node being compared to new node is leaf
-            area_maxX = std::max(currentNode->box.maxX, newNode.box.maxX);
-            area_maxY = std::max(currentNode->box.maxY, newNode.box.maxY);
-            area_minX = std::min(currentNode->box.minX, newNode.box.minX);
-            area_minY = std::min(currentNode->box.minY, newNode.box.minY);
+            area_maxX = std::max(currentNode.box.maxX, newNode.box.maxX);
+            area_maxY = std::max(currentNode.box.maxY, newNode.box.maxY);
+            area_minX = std::min(currentNode.box.minX, newNode.box.minX);
+            area_minY = std::min(currentNode.box.minY, newNode.box.minY);
 
-            area_enlargement = (area_maxX - area_minX) * (area_maxY - area_minY) - area(currentNode->box);
-            std::cout << "Area Enlargement: " << area_enlargement << " Leaf Node: " << get_index(currentNode) << std::endl;
-            areaEnlargementPair pair = {get_index(currentNode), area_enlargement};
+            area_enlargement = (area_maxX - area_minX) * (area_maxY - area_minY) - area(currentNode.box);
+            std::cout << "Area Enlargement: " << area_enlargement << " Leaf Node: " << nodeIndex << std::endl;
+            areaEnlargementPair pair = {nodeIndex, area_enlargement};
             AreaEnlargementArray[i++] = pair;
         }
         else
         {
-            if (currentNode->box.maxX >= newNode.box.maxX && currentNode->box.minX <= newNode.box.minX && currentNode->box.maxY >= newNode.box.maxY && currentNode->box.minY <= newNode.box.minY)
+            if (currentNode.box.maxX >= newNode.box.maxX && currentNode.box.minX <= newNode.box.minX && currentNode.box.maxY >= newNode.box.maxY && currentNode.box.minY <= newNode.box.minY)
             {
                 // new node is within the bounding box
                 for (int i = 0; i < MAX_CHILDREN; i++)
                 {
-                    if (currentNode->child[i] != -1)
-                        stack.push(currentNode->child[i]);
+                    if (currentNode.child[i] != -1)
+                        stack.push(currentNode.child[i]);
                 }
             }
             else
             {
                 // new node is not within the bounding box
-                area_maxX = std::max(currentNode->box.maxX, newNode.box.maxX);
-                area_maxY = std::max(currentNode->box.maxY, newNode.box.maxY);
-                area_minX = std::min(currentNode->box.minX, newNode.box.minX);
-                area_minY = std::min(currentNode->box.minY, newNode.box.minY);
+                area_maxX = std::max(currentNode.box.maxX, newNode.box.maxX);
+                area_maxY = std::max(currentNode.box.maxY, newNode.box.maxY);
+                area_minX = std::min(currentNode.box.minX, newNode.box.minX);
+                area_minY = std::min(currentNode.box.minY, newNode.box.minY);
 
-                area_enlargement = (area_maxX - area_minX) * (area_maxY - area_minY) - area(currentNode->box);
-                std::cout << "Area Enlargement: " << area_enlargement << " Node: " << get_index(currentNode) << std::endl;
-                areaEnlargementPair pair = {get_index(currentNode), area_enlargement};
+                area_enlargement = (area_maxX - area_minX) * (area_maxY - area_minY) - area(currentNode.box);
+                std::cout << "Area Enlargement: " << area_enlargement << " Node: " << nodeIndex << std::endl;
+                areaEnlargementPair pair = {nodeIndex, area_enlargement};
                 AreaEnlargementArray[i++] = pair;
             }
         }
@@ -159,7 +174,7 @@ void sortByOverlapEnlargement(Node newNode)
         minY = std::max(currentNode.box.minY, newNode.box.minY);
 
         int overlap = (maxX - minX) * (maxY - minY);
-        std::cout << "Overlap: " << overlap << " Node: " << nodeIndex << std::endl;
+        std::cout << "Overlap: " << overlap << " Index: " << nodeIndex << std::endl;
         overlapEnlargementPair pair = {nodeIndex, overlap};
         OverlapEnlargementArray[i++] = pair;
     }

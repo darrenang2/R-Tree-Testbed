@@ -38,6 +38,10 @@ Node createLeaf(bool l, boundingBox box)
     Node node;
     node.leaf = l;
     node.box = box;
+    for (int i = 0; i < MAX_CHILDREN; i++)
+    {
+        node.child[i] = -1;
+    }
     return node;
 }
 
@@ -236,4 +240,14 @@ bool equals(Node* node1, Node* node2)
         }
     }
     return true;
+}
+
+void printNode(Node* node)
+{
+    std::cout << "Node: leaf=" << node->leaf << ", box=(" << node->box.minX << ", " << node->box.maxX << ", " << node->box.minY << ", " << node->box.maxY << "), children=[";
+    for (int i = 0; i < MAX_CHILDREN; i++)
+    {
+        std::cout << node->child[i] << ", ";
+    }
+    std::cout << "]" << std::endl;
 }

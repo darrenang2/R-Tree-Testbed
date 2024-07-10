@@ -9,13 +9,13 @@
 #include <cstdlib>
 #include <float.h>
 
-int search(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t *output);
+data_t* search(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t *output);
 void sortByAreaEnlargement(Node newNode);
 void sortByOverlapEnlargement(Node newNode);
 int chooseSubTree(Node node);
 Node split(Node node);
-void reinsert(Node* node);
-Node overflowTreatment(Node* node, bool firstInsert);
+void reinsert(Node *node);
+Node overflowTreatment(Node *node, bool firstInsert);
 void insert(Node newNode, bool firstInsert);
 void deleteNode(Node node);
 

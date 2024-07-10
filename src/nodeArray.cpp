@@ -3,7 +3,7 @@
 // Function to get the starting index of a level
 int get_level_start_index(int level)
 {
-    return MAX_NODES_PER_LEVEL * (MAX_LEVELS - level - 1);
+    return MAX_NODES_PER_LEVEL * level;
 }
 
 // Function to access a node at a specific level and index within that level
@@ -11,6 +11,12 @@ Node *get_node(int level, int index)
 {
     int start_index = get_level_start_index(level);
     return &hbm_array[start_index + index];
+}
+
+// Function to access a node at a specific index in the array
+Node *get_node(int index)
+{
+    return &hbm_array[index];
 }
 
 int get_index(Node *node)

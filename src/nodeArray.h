@@ -3,16 +3,17 @@
 
 #include "node.h"
 
-#define MAX_NODES_PER_LEVEL 10000
-#define MAX_LEVELS 10000
+#define MAX_NODES_PER_LEVEL 100
+#define MAX_LEVELS 100
 
-static int H = 3; // current height of tree
+static int H = 2; // current height of root node - 1 (leaves are at level 0)
 
-Node hbm_array[MAX_NODES_PER_LEVEL * MAX_LEVELS];
-int nodes_in_level[MAX_LEVELS] = {0};
+static Node hbm_array[MAX_NODES_PER_LEVEL * MAX_LEVELS];
+static int nodes_in_level[MAX_LEVELS] = {0};
 
 int get_level_start_index(int level);
 Node *get_node(int level, int index);
+Node *get_node(int index);
 int get_index(Node *node);
 int get_level(Node *node);
 void add_node(int level, Node node);
