@@ -45,9 +45,9 @@ Node createLeaf(bool l, boundingBox box)
     return node;
 }
 
-Node* createNode()
+Node *createNode()
 {
-    Node* node;
+    Node *node;
     node->leaf = false;
     node->box = setBB(0, 0, 0, 0);
     for (int i = 0; i < MAX_CHILDREN; i++)
@@ -83,23 +83,23 @@ Node createNodeFromArray(bool l, boundingBox box, int arr[])
     return node;
 }
 
-Node getChild(Node* node, int index)
+Node *getChild(Node *node, int index)
 {
-    return hbm_array[node->child[index]];
+    return &hbm_array[node->child[index]];
 }
 
-int getCenterX(Node node)
+int getCenterX(Node *node)
 {
-    return (node.box.minX + node.box.maxX) / 2;
+    return (node->box.minX + node->box.maxX) / 2;
 }
 
-int getCenterY(Node node)
+int getCenterY(Node *node)
 {
-    return (node.box.minY + node.box.maxY) / 2;
+    return (node->box.minY + node->box.maxY) / 2;
 }
 
 // function to compute the distance between the centers of two nodes
-int computeDistCenters(Node node1, Node node2)
+int computeDistCenters(Node *node1, Node *node2)
 {
     int x1 = getCenterX(node1);
     int x2 = getCenterX(node2);
@@ -116,7 +116,7 @@ void setBB(Node *node, int x1, int x2, int y1, int y2)
     node->box.maxY = y2;
 }
 
-void sortItemsByUpperEdge(int axis, Node* node)
+void sortItemsByUpperEdge(int axis, Node *node)
 {
     // sorting with y-axis
     if (axis == 0)
@@ -125,7 +125,7 @@ void sortItemsByUpperEdge(int axis, Node* node)
         {
             for (int i = 1; i < MAX_CHILDREN; i++)
             {
-                if (getChild(node, i).box.maxY < getChild(node, i - 1).box.maxY)
+                if (getChild(node, i)->box.maxY < getChild(node, i - 1)->box.maxY)
                 {
                     int temp = node->child[i];
                     node->child[i] = node->child[i - 1];
@@ -141,7 +141,7 @@ void sortItemsByUpperEdge(int axis, Node* node)
         {
             for (int i = 1; i < MAX_CHILDREN; i++)
             {
-                if (getChild(node, i).box.maxX < getChild(node, i - 1).box.maxX)
+                if (getChild(node, i)->box.maxX < getChild(node, i - 1)->box.maxX)
                 {
                     int temp = node->child[i];
                     node->child[i] = node->child[i - 1];
@@ -152,7 +152,7 @@ void sortItemsByUpperEdge(int axis, Node* node)
     }
 }
 
-void sortItemsByLowerEdge(int axis, Node* node)
+void sortItemsByLowerEdge(int axis, Node *node)
 {
     // sorting with y-axis
     if (axis == 0)
@@ -161,7 +161,7 @@ void sortItemsByLowerEdge(int axis, Node* node)
         {
             for (int i = 1; i < MAX_CHILDREN; i++)
             {
-                if (getChild(node, i).box.minY < getChild(node, i - 1).box.minY)
+                if (getChild(node, i)->box.minY < getChild(node, i - 1)->box.minY)
                 {
                     int temp = node->child[i];
                     node->child[i] = node->child[i - 1];
@@ -177,7 +177,7 @@ void sortItemsByLowerEdge(int axis, Node* node)
         {
             for (int i = 1; i < MAX_CHILDREN; i++)
             {
-                if (getChild(node, i).box.minX < getChild(node, i - 1).box.minX)
+                if (getChild(node, i)->box.minX < getChild(node, i - 1)->box.minX)
                 {
                     int temp = node->child[i];
                     node->child[i] = node->child[i - 1];
@@ -198,10 +198,10 @@ void updateBoundingBox(Node *node)
     {
         if (node->child[i] != -1)
         {
-            minX = std::min(minX, getChild(node, i).box.minX);
-            maxX = std::max(maxX, getChild(node, i).box.maxX);
-            minY = std::min(minY, getChild(node, i).box.minY);
-            maxY = std::max(maxY, getChild(node, i).box.maxY);
+            minX = std::min(minX, getChild(node, i)->box.minX);
+            maxX = std::max(maxX, getChild(node, i)->box.maxX);
+            minY = std::min(minY, getChild(node, i)->box.minY);
+            maxY = std::max(maxY, getChild(node, i)->box.maxY);
         }
     }
     node->box.minX = minX;
@@ -210,7 +210,7 @@ void updateBoundingBox(Node *node)
     node->box.maxY = maxY;
 }
 
-bool equals(Node* node1, Node* node2)
+bool equals(Node *node1, Node *node2)
 {
     if (node1->leaf != node2->leaf)
     {
@@ -242,7 +242,7 @@ bool equals(Node* node1, Node* node2)
     return true;
 }
 
-void printNode(Node* node)
+void printNode(Node *node)
 {
     std::cout << "Node: leaf=" << node->leaf << ", box=(" << node->box.minX << ", " << node->box.maxX << ", " << node->box.minY << ", " << node->box.maxY << "), children=[";
     for (int i = 0; i < MAX_CHILDREN; i++)

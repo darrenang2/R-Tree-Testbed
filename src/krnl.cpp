@@ -42,44 +42,22 @@ extern "C" void krnl(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t 
     // print_level(1);
     // print_level(2);
 
-    search(minX, maxX, minY, maxY, output);
+    // search(minX, maxX, minY, maxY, output);
 
-    // insert(1, 3, 1, 3);
-    // insert(3, 4, 3, 4);
-    // insert(6, 9, 6, 9);
+    // volatile int x = minX;
+    // volatile int y = minY;
+    // volatile int x2 = maxX;
+    // volatile int y2 = maxY;
+    output[0] = minX + maxX + minY + maxY;
 
-    // sortByAreaEnlargement(nodes[7]);
-    // sortByOverlapEnlargement(nodes[7]);
+    Node node = split(get_node(1, 0));
+    printNode(&node);
+    print_level(2);
+    print_level(3);
 
-    // int ind = chooseSubTree(nodes[7]);
+    // Node node = overflowTreatment(get_node(1, 0), true);
+    // std::cout << "Height of tree: " << H << std::endl;
+    // printNode(&node);
 
-    // std::cout << "Sorted Area Enlargement Array" << std::endl;
-    // for (int i = 0; i < currNumNodes / 2; i++)
-    // {
-    //     std::cout << "Index: " << AreaEnlargementArray[i].index << " Area Enlargement: " << AreaEnlargementArray[i].areaEnlargement << std::endl;
-    // }
-
-    // std::cout << "Sorted Overlap Enlargement Array" << std::endl;
-    // for (int i = 0; i < currNumNodes / 2; i++)
-    // {
-    //     std::cout << "Index: " << OverlapEnlargementArray[i].index << " Overlap Enlargement: " << OverlapEnlargementArray[i].overlapEnlargement << std::endl;
-    // }
-
-    // std::cout << "chooseSubTree Index: " << ind << std::endl;
-
-    // reinsert(nodes[1]);
-
-    // for (int i = 0; i < currNumNodes; i++)
-    // {
-    //     if (!nodes[i].leaf)
-    //     {
-    //         std::cout << "Node " << i << ": " << nodes[i].box.minX << "->" << nodes[i].box.maxX << " " << nodes[i].box.minY << "->" << nodes[i].box.maxY
-    //                   << " child 0:" << nodes[i].child[0] << " child 1:" << nodes[i].child[1] << " child 2:" << nodes[i].child[2] << " child 3:" << nodes[i].child[3]
-    //                   << " child 4:" << nodes[i].child[4] << std::endl;
-    //     }
-    //     else
-    //     {
-    //         std::cout << "Leaf " << i << ": " << nodes[i].box.minX << "->" << nodes[i].box.maxX << " " << nodes[i].box.minY << "->" << nodes[i].box.maxY << std::endl;
-    //     }
-    // }
+    // reinsert(get_node(1, 0));
 }
