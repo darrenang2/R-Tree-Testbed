@@ -210,9 +210,10 @@ int chooseSubTree(Node node)
  */
 Node split(Node *node)
 {
+    std::cout << "Calling Split" << std::endl;
 
-    Node *newNode = createNode();
-    newNode->leaf = node->leaf;
+    Node newNode;
+    newNode.leaf = node->leaf;
 
     boundingBox R1;
     boundingBox R2;
@@ -278,7 +279,7 @@ Node split(Node *node)
 
     for (int i = 0; i <= split_index; i++)
     {
-        newNode->child[i] = node->child[split_index + i];
+        newNode.child[i] = node->child[split_index + i];
         node->child[split_index + i] = -1;
     }
 
@@ -288,9 +289,9 @@ Node split(Node *node)
     }
 
     updateBoundingBox(node);
-    updateBoundingBox(newNode);
+    updateBoundingBox(&newNode);
 
-    return *newNode;
+    return newNode;
 }
 
 Node overflowTreatment(Node *node, bool firstInsert)
@@ -339,7 +340,7 @@ void reinsert(Node *node)
     between the centers of their rectangles and the center
     of the bounding rectangle of N
 
-    Sort the entries m decreasmg order of their distances
+    Sort the entries in decreasing order of their distances
     computed in RI1
     */
     for (int i = 1; i < MAX_CHILDREN; i++)
@@ -381,19 +382,19 @@ void reinsert(Node *node)
  * @param minY The minimum y-coordinate of the node's bounding box.
  * @param maxY The maximum y-coordinate of the node's bounding box.
  */
-void insert(Node newNode, bool firstInsert = true)
+void insert(Node newNode, bool firstInsert)
 {
     // Node newNode = createLeaf(true, setBB(minX, maxX, minY, maxY));
     // for (int i = 0; i < currNumNodes; i++)
     Stack stack;
     stack.push(get_level_start_index(H)); // Start with the root node index
 
-    do
+    while (!stack.isEmpty())
     {
-        // int nodeIndex = stack.pop();
-        // Node currentNode = nodes[nodeIndex];
+        stack.printStack();
 
-        Node currentNode = hbm_array[stack.pop()];
+        int nodeIndex = stack.pop();
+        Node currentNode = hbm_array[nodeIndex];
 
         // if is leaf (Lindex = -1)
         // insert node into Lindex
@@ -471,12 +472,11 @@ void insert(Node newNode, bool firstInsert = true)
             updateBoundingBox(&currentNode);
             overflowTreatment(&currentNode, firstInsert);
         }
-        else
-        {
-            stack.push(chooseSubTree(currentNode));
-        }
-
-    } while (!stack.isEmpty());
+        // else
+        // {
+        //     stack.push(chooseSubTree(currentNode));
+        // }
+    }
 }
 
 /*==================================================== DELETION FUNCTIONS ===============================================================*/

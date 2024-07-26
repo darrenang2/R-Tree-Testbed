@@ -69,10 +69,10 @@ int main(int argc, char **argv)
     std::vector<data_t, aligned_allocator<data_t>> output_hw(6);
 
     // SEARCH AREA
-    int x1 = 1;
-    int x2 = 6;
-    int y1 = 1;
-    int y2 = 6;
+    // int x1 = 1;
+    // int x2 = 6;
+    // int y1 = 1;
+    // int y2 = 6;
 
     /*====================================================Setting up kernel I/O===============================================================*/
 
@@ -80,11 +80,11 @@ int main(int argc, char **argv)
     OCL_CHECK(err, cl::Buffer buffer_output(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, sizeof(data_t) * 6, output_hw.data(), &err));
 
     /* SETTING INPUT PARAMETERS */
-    OCL_CHECK(err, err = krnl1.setArg(0, x1));
-    OCL_CHECK(err, err = krnl1.setArg(1, x2));
-    OCL_CHECK(err, err = krnl1.setArg(2, y1));
-    OCL_CHECK(err, err = krnl1.setArg(3, y2));
-    OCL_CHECK(err, err = krnl1.setArg(4, buffer_output));
+    // OCL_CHECK(err, err = krnl1.setArg(0, x1));
+    // OCL_CHECK(err, err = krnl1.setArg(1, x2));
+    // OCL_CHECK(err, err = krnl1.setArg(2, y1));
+    // OCL_CHECK(err, err = krnl1.setArg(3, y2));
+    OCL_CHECK(err, err = krnl1.setArg(0, buffer_output));
 
     /*====================================================KERNEL===============================================================*/
     /* HOST -> DEVICE DATA TRANSFER*/

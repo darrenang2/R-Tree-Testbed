@@ -9,7 +9,7 @@
 #include <iostream>
 #include <algorithm>
 
-extern "C" void krnl(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t *output)
+extern "C" void krnl(data_t *output)
 {
 #pragma HLS INTERFACE mode = m_axi port = output
 
@@ -42,22 +42,33 @@ extern "C" void krnl(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t 
     // print_level(1);
     // print_level(2);
 
-    // search(minX, maxX, minY, maxY, output);
+    // search(1, 6, 1, 6, output);
 
     // volatile int x = minX;
     // volatile int y = minY;
     // volatile int x2 = maxX;
     // volatile int y2 = maxY;
-    output[0] = minX + maxX + minY + maxY;
+    // output[0] = minX + maxX + minY + maxY;
 
-    Node node = split(get_node(1, 0));
-    printNode(&node);
-    print_level(2);
-    print_level(3);
+    // createNode();
 
-    // Node node = overflowTreatment(get_node(1, 0), true);
-    // std::cout << "Height of tree: " << H << std::endl;
+    // Node node = split(get_node(H, 0));
     // printNode(&node);
+    // print_all_levels;
+    // print_level(0);
+    // print_level(1);
+    // print_level(2);
+    // print_level(3);
+
+    // if (node.leaf == true) {
+    //     output[0] = 1;
+    // }
+
+    Node node = overflowTreatment(get_node(1, 0), true);
+    std::cout << "Height of tree: " << H << std::endl;
+    printNode(&node);
 
     // reinsert(get_node(1, 0));
+
+    // insert(createNode(true, setBB(0, 1, 0, 1), -1, -1, -1, -1, -1), true);
 }

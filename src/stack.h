@@ -47,6 +47,13 @@ public:
     bool isEmpty() {
         return (top < 0);
     }
+
+    void printStack() {
+        for (int i = 0; i <= top; i++) {
+            std::cout << a[i] << " ";
+        }
+        std::cout << std::endl;
+    }
 };
 
 #endif // STACK_H
