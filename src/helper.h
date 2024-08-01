@@ -18,5 +18,6 @@ void reinsert(Node *node);
 Node overflowTreatment(Node *node, bool firstInsert);
 void insert(Node newNode, bool firstInsert);
 void deleteNode(Node node);
+void remove(Node *node, int index);
 
 #endif // HELPER_H

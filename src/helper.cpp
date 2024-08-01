@@ -9,10 +9,6 @@
 #include <iostream>
 #include <algorithm>
 
-/*==================================================== INITIALIZE DATA ================================================================*/
-
-static int currNumNodes = 10;
-
 /*==================================================== SEARCH FUNCTIONS ===============================================================*/
 
 /**
@@ -104,43 +100,27 @@ void sortByAreaEnlargement(Node newNode)
         int nodeIndex = stack.pop();
         Node *currentNode = get_node(nodeIndex);
 
-        if (currentNode->leaf)
+        if (!currentNode->leaf && currentNode->box.maxX >= newNode.box.maxX && currentNode->box.minX <= newNode.box.minX && currentNode->box.maxY >= newNode.box.maxY && currentNode->box.minY <= newNode.box.minY)
         {
-            // the node being compared to new node is leaf
+            // new node is within the bounding box
+            for (int i = 0; i < MAX_CHILDREN; i++)
+            {
+                if (currentNode->child[i] != -1)
+                    stack.push(currentNode->child[i]);
+            }
+        }
+        else
+        {
+            // new node is not within the bounding box
             area_maxX = std::max(currentNode->box.maxX, newNode.box.maxX);
             area_maxY = std::max(currentNode->box.maxY, newNode.box.maxY);
             area_minX = std::min(currentNode->box.minX, newNode.box.minX);
             area_minY = std::min(currentNode->box.minY, newNode.box.minY);
 
             area_enlargement = (area_maxX - area_minX) * (area_maxY - area_minY) - area(currentNode->box);
-            std::cout << "Area Enlargement: " << area_enlargement << " Leaf Node: " << nodeIndex << std::endl;
+            std::cout << "Area Enlargement: " << area_enlargement << " Node: " << nodeIndex << std::endl;
             areaEnlargementPair pair = {nodeIndex, area_enlargement};
             AreaEnlargementArray[i++] = pair;
-        }
-        else
-        {
-            if (currentNode->box.maxX >= newNode.box.maxX && currentNode->box.minX <= newNode.box.minX && currentNode->box.maxY >= newNode.box.maxY && currentNode->box.minY <= newNode.box.minY)
-            {
-                // new node is within the bounding box
-                for (int i = 0; i < MAX_CHILDREN; i++)
-                {
-                    if (currentNode->child[i] != -1)
-                        stack.push(currentNode->child[i]);
-                }
-            }
-            else
-            {
-                // new node is not within the bounding box
-                area_maxX = std::max(currentNode->box.maxX, newNode.box.maxX);
-                area_maxY = std::max(currentNode->box.maxY, newNode.box.maxY);
-                area_minX = std::min(currentNode->box.minX, newNode.box.minX);
-                area_minY = std::min(currentNode->box.minY, newNode.box.minY);
-
-                area_enlargement = (area_maxX - area_minX) * (area_maxY - area_minY) - area(currentNode->box);
-                std::cout << "Area Enlargement: " << area_enlargement << " Node: " << nodeIndex << std::endl;
-                areaEnlargementPair pair = {nodeIndex, area_enlargement};
-                AreaEnlargementArray[i++] = pair;
-            }
         }
     }
     sort(AreaEnlargementArray, i);
@@ -158,7 +138,7 @@ void sortByOverlapEnlargement(Node newNode)
     int i = 0;
     int maxX, maxY, minX, minY;
     Stack stack;
-    for (int i = 0; i < currNumNodes / 2; i++)
+    for (int i = 0; i < MAX_CHILDREN; i++)
     {
         stack.push(AreaEnlargementArray[i].index);
     }
@@ -196,10 +176,20 @@ int chooseSubTree(Node node)
         if no leaf nodes, choose node with least area enlargement
     */
 
+    // return a node in the level above the leaves
+
     sortByAreaEnlargement(node);
     sortByOverlapEnlargement(node);
 
-    return OverlapEnlargementArray[0].index;
+    for (int i = 0; i < MAX_CHILDREN; i++)
+    {
+        if (!get_node(OverlapEnlargementArray[i].index)->leaf)
+        {
+            return OverlapEnlargementArray[i].index;
+        }
+    }
+
+    return AreaEnlargementArray[0].index;
 }
 
 /**
@@ -310,11 +300,11 @@ Node overflowTreatment(Node *node, bool firstInsert)
         Node *newRoot = createNode();
         newRoot->child[0] = get_index(node);
         newRoot->child[1] = get_index(node) + 1;
-        H += 1;
+        increase_height(1);
         add_node(H, *newRoot);
         add_node(H - 1, newNode);
         updateBoundingBox(newRoot);
-        hbm_array[get_level_start_index(H)] = *newRoot;
+        set_node(H, 0, *newRoot);
         return *newRoot;
     }
 
@@ -384,98 +374,26 @@ void reinsert(Node *node)
  */
 void insert(Node newNode, bool firstInsert)
 {
-    // Node newNode = createLeaf(true, setBB(minX, maxX, minY, maxY));
-    // for (int i = 0; i < currNumNodes; i++)
-    Stack stack;
-    stack.push(get_level_start_index(H)); // Start with the root node index
+    std::cout << "calling insert" << std::endl;
+    int index = chooseSubTree(newNode);
+    std::cout << "Chosen subtree: " << index << std::endl;
+    Node *node = get_node(index);
+    printNode(node);
 
-    while (!stack.isEmpty())
+    for (int i = 0; i < MAX_CHILDREN; i++)
     {
-        stack.printStack();
-
-        int nodeIndex = stack.pop();
-        Node currentNode = hbm_array[nodeIndex];
-
-        // if is leaf (Lindex = -1)
-        // insert node into Lindex
-        // else if Rindex = -1
-        // insert node into Rindex
-        // else
-        // insert into stack (choose subtree)
-        // update left index / right index of parent node
-
-        if (currentNode.leaf)
+        if (node->child[i] == -1)
         {
-            std::cout << "Adding child 0" << std::endl;
-            // currentNodeParent = Node();
-            currentNode.leaf = false;
-
-            currentNode.child[0] = get_index(&newNode);
-            add_node(get_level(&currentNode) - 1, newNode); // currNumNodes = array index of newest node, gets updated everytime a node is added
-            currNumNodes++;
-
-            updateBoundingBox(&currentNode);
+            std::cout << "Inserting at index: " << i << std::endl;
+            node->child[i] = get_index(&newNode);
+            break;
         }
-        else if (currentNode.child[1] == -1)
-        {
-            std::cout << "Adding child 1" << std::endl;
-            newNode.leaf = 1;
+    }
 
-            currentNode.child[1] = get_index(&newNode);
-            add_node(get_level(&currentNode) - 1, newNode);
-            currNumNodes++;
-
-            updateBoundingBox(&currentNode);
-        }
-        else if (currentNode.child[2] == -1)
-        {
-            std::cout << "Adding child 2" << std::endl;
-            newNode.leaf = 1;
-
-            currentNode.child[2] = get_index(&newNode);
-            add_node(get_level(&currentNode) - 1, newNode);
-            currNumNodes++;
-
-            updateBoundingBox(&currentNode);
-        }
-        else if (currentNode.child[3] == -1)
-        {
-            std::cout << "Adding child 3" << std::endl;
-            newNode.leaf = 1;
-
-            currentNode.child[3] = get_index(&newNode);
-            add_node(get_level(&currentNode) - 1, newNode);
-            currNumNodes++;
-
-            updateBoundingBox(&currentNode);
-        }
-        else if (currentNode.child[4] == -1)
-        {
-            std::cout << "Adding child 4" << std::endl;
-            newNode.leaf = 1;
-
-            currentNode.child[4] = get_index(&newNode);
-            add_node(get_level(&currentNode) - 1, newNode);
-            currNumNodes++;
-
-            updateBoundingBox(&currentNode);
-        }
-        else if (currentNode.child[5] == -1)
-        {
-            std::cout << "Calling OverflowTreatment" << std::endl;
-            newNode.leaf = 1;
-
-            currentNode.child[5] = get_index(&newNode);
-            add_node(get_level(&currentNode) - 1, newNode);
-            currNumNodes++;
-
-            updateBoundingBox(&currentNode);
-            overflowTreatment(&currentNode, firstInsert);
-        }
-        // else
-        // {
-        //     stack.push(chooseSubTree(currentNode));
-        // }
+    if (node->child[5] != -1)
+    {
+        std::cout << "Overflow Treatment" << std::endl;
+        overflowTreatment(node, firstInsert);
     }
 }
 
@@ -485,37 +403,30 @@ void insert(Node newNode, bool firstInsert)
  * Deletes a node from the R-tree.
  *
  * @param node The node to be deleted.
+ * @param index The index of the node to be deleted.
  */
-void Remove(Node node, int index)
+void remove(int level, int index)
 {
     // if node is leaf
-    // remove node from parent
-    // if parent has less than m entries
-    // reinsert all entries of parent
-    // else
-    // adjust bounding box of parent
-    if (node.leaf)
+    // delete node and remove node from parent
+    // update bounding box of parent
+    // if parent has less than m children, reinsert children and parent node?
+
+    // else (intermediate node)
+    // delete node from parent of intermediate node
+    // delete node and reinsert all nodes underneath it
+    // update bounding box of parent
+
+    Node *node = get_node(level, index);
+
+    if (node->leaf)
     {
-        delete_node(get_level(&node), index);
-        if (nodes_in_level[get_level(&node)] < MAX_CHILDREN)
+        delete_node(level, index);
+        int num_nodes = nodes_in_level[level + 1];
+        for (int i = 0; i < num_nodes; i++)
         {
-            reinsert(get_node(get_level(&node), index));
-        }
-        else
-        {
-            updateBoundingBox(get_node(get_level(&node), index));
-        }
-    }
-    else
-    {
-        delete_node(get_level(&node), index);
-        if (nodes_in_level[get_level(&node)] < 2)
-        {
-            reinsert(get_node(get_level(&node), index));
-        }
-        else
-        {
-            updateBoundingBox(get_node(get_level(&node), index));
+            Node *parent = get_node(level + 1, i);
+            updateBoundingBox(parent);
         }
     }
 }

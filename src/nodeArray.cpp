@@ -19,15 +19,25 @@ Node *get_node(int index)
     return &hbm_array[index];
 }
 
+void set_node(int index, Node node)
+{
+    hbm_array[index] = node;
+}
+
+// Function to set a node at a specific level and index within that level
+void set_node(int level, int index, Node node)
+{
+    int start_index = get_level_start_index(level);
+    hbm_array[start_index + index] = node;
+}
+
 int get_index(Node *node)
 {
-    std::cout << "index: " << node - hbm_array << std::endl;
     return node - hbm_array;
 }
 
 int get_level(Node *node)
 {
-    std::cout << "get_index(node) / MAX_NODES_PER_LEVEL: " << get_index(node) / MAX_NODES_PER_LEVEL << std::endl;
     return (get_index(node) / MAX_NODES_PER_LEVEL);
 }
 
@@ -96,4 +106,10 @@ void clear_all_levels()
     {
         nodes_in_level[i] = 0;
     }
+}
+
+// Function to increase the height of the tree
+void increase_height(int h)
+{
+    H += h;
 }
