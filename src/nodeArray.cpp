@@ -31,6 +31,18 @@ void set_node(int level, int index, Node node)
     hbm_array[start_index + index] = node;
 }
 
+// Function to set a child of a node at a specific index
+void set_child(Node *node, int child, int child_index)
+{
+    node->child[child] = child_index;
+}
+
+// Function to get a child of a node at a specific index
+int get_child(Node *node, int child)
+{
+    return node->child[child];
+}
+
 int get_index(Node *node)
 {
     return node - hbm_array;
@@ -69,6 +81,26 @@ void delete_node(int level, int index)
     {
         hbm_array[start_index + i] = hbm_array[start_index + i + 1];
     }
+    hbm_array[start_index + num_nodes] = Node();
+    nodes_in_level[level]--;
+}
+
+// Function to delete a node at a specific index
+void delete_node(int index)
+{
+    int level = get_level(&hbm_array[index]);
+    int start_index = get_level_start_index(level);
+    int num_nodes = nodes_in_level[level];
+    if (index >= start_index + num_nodes)
+    {
+        printf("Error: Node %d does not exist in level %d.\n", index, level);
+        return;
+    }
+    for (int i = index; i < start_index + num_nodes - 1; i++)
+    {
+        hbm_array[i] = hbm_array[i + 1];
+    }
+    hbm_array[start_index + num_nodes] = Node();
     nodes_in_level[level]--;
 }
 
@@ -109,7 +141,7 @@ void clear_all_levels()
 }
 
 // Function to increase the height of the tree
-void increase_height(int h)
+void increase_height()
 {
-    H += h;
+    H++;
 }

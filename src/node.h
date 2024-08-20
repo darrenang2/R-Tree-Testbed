@@ -7,25 +7,39 @@
 #include <iostream>
 #include <algorithm>
 
-typedef struct
+struct boundingBox
 {
     int minX = 0;
     int maxX = 0;
     int minY = 0;
     int maxY = 0;
-} boundingBox;
+};
 
-typedef struct
+struct Node
 {
     bool leaf;
     boundingBox box;
     int child[MAX_CHILDREN];
-} Node;
+
+    Node()
+    {
+        leaf = false;
+        box = boundingBox();
+        for (int i = 0; i < MAX_CHILDREN; i++)
+        {
+            child[i] = -1;
+        }
+    }
+};
 
 boundingBox setBB(int x1, int x2, int y1, int y2);
 int area(boundingBox box);
 boundingBox intersection(boundingBox box1, boundingBox box2);
 int edgeDelta(boundingBox box);
+int getminX(boundingBox box);
+int getmaxX(boundingBox box);
+int getminY(boundingBox box);
+int getmaxY(boundingBox box);
 
 Node createLeaf(bool l, boundingBox box);
 Node *createNode();

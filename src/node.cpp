@@ -1,5 +1,6 @@
 #include "node.h"
 #include "nodeArray.h"
+#include "climits"
 
 boundingBox setBB(int x1, int x2, int y1, int y2)
 {
@@ -31,6 +32,26 @@ int edgeDelta(boundingBox box)
     int deltaX = box.maxX - box.minX;
     int deltaY = box.maxY - box.minY;
     return deltaX + deltaY;
+}
+
+int getminX(boundingBox box)
+{
+    return box.minX;
+}
+
+int getmaxX(boundingBox box)
+{
+    return box.maxX;
+}
+
+int getminY(boundingBox box)
+{
+    return box.minY;
+}
+
+int getmaxY(boundingBox box)
+{
+    return box.maxY;
 }
 
 Node createLeaf(bool l, boundingBox box)
@@ -85,7 +106,7 @@ Node createNodeFromArray(bool l, boundingBox box, int arr[])
 
 Node *getChild(Node *node, int index)
 {
-    return &hbm_array[node->child[index]];
+    return get_node(get_child(node, index));
 }
 
 int getCenterX(Node *node)
@@ -190,24 +211,49 @@ void sortItemsByLowerEdge(int axis, Node *node)
 
 void updateBoundingBox(Node *node)
 {
-    int minX = INT32_MAX;
-    int maxX = INT32_MIN;
-    int minY = INT32_MAX;
-    int maxY = INT32_MIN;
+    int minX = INT_MAX;
+    int maxX = INT_MIN;
+    int minY = INT_MAX;
+    int maxY = INT_MIN;
+    bool hasValidChild = false;
+
     for (int i = 0; i < MAX_CHILDREN; i++)
     {
-        if (node->child[i] != -1)
+        int childIndex = get_child(node, i);
+        if (childIndex != -1)
         {
-            minX = std::min(minX, getChild(node, i)->box.minX);
-            maxX = std::max(maxX, getChild(node, i)->box.maxX);
-            minY = std::min(minY, getChild(node, i)->box.minY);
-            maxY = std::max(maxY, getChild(node, i)->box.maxY);
+            hasValidChild = true;
+            Node *childNode = get_node(childIndex);
+            printNode(childNode);
+            minX = std::min(minX, getminX(childNode->box));
+            maxX = std::max(maxX, getmaxX(childNode->box));
+            minY = std::min(minY, getminY(childNode->box));
+            maxY = std::max(maxY, getmaxY(childNode->box));
+            std::cout << "Child " << i << ": minX=" << childNode->box.minX
+                      << ", maxX=" << childNode->box.maxX
+                      << ", minY=" << childNode->box.minY
+                      << ", maxY=" << childNode->box.maxY << std::endl;
         }
     }
-    node->box.minX = minX;
-    node->box.maxX = maxX;
-    node->box.minY = minY;
-    node->box.maxY = maxY;
+    if (hasValidChild)
+    {
+        std::cout << "minX: " << minX << ", maxX: " << maxX
+                  << ", minY: " << minY << ", maxY: " << maxY << std::endl;
+        node->box.minX = minX;
+        node->box.maxX = maxX;
+        node->box.minY = minY;
+        node->box.maxY = maxY;
+        std::cout << "Updated bounding box: minX=" << node->box.minX
+                  << ", maxX=" << node->box.maxX
+                  << ", minY=" << node->box.minY
+                  << ", maxY=" << node->box.maxY << std::endl;
+    }
+    else
+    {
+        // Handle case where node has no valid children
+        std::cout << "No valid children found." << std::endl;
+        // Set default values or leave unchanged
+    }
 }
 
 bool equals(Node *node1, Node *node2)

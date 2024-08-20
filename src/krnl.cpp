@@ -17,7 +17,8 @@ extern "C" void krnl(data_t *output)
 
     add_node(H, createNode(false, setBB(0, 20, 0, 20),
                            get_level_start_index(H - 1),
-                           get_level_start_index(H - 1) + 1, -1, -1, -1)); // node 0 (root node)
+                           get_level_start_index(H - 1) + 1,
+                           get_level_start_index(H - 1) + 2, -1, -1)); // node 0 (root node)
 
     add_node(H - 1, createNode(false, setBB(0, 9, 0, 9),
                                get_level_start_index(H - 2),
@@ -29,6 +30,8 @@ extern "C" void krnl(data_t *output)
     add_node(H - 1, createNode(false, setBB(10, 20, 10, 20),
                                get_level_start_index(H - 2) + 5,
                                get_level_start_index(H - 2) + 6, -1, -1, -1)); // node 2
+
+    add_node(H - 1, createNode(false, setBB(0, 16, 0, 16), -1, -1, -1, -1, -1));
 
     add_node(H - 2, createLeaf(true, setBB(0, 4, 0, 4)));     // node 3
     add_node(H - 2, createLeaf(true, setBB(5, 9, 5, 9)));     // node 4
@@ -64,7 +67,7 @@ extern "C" void krnl(data_t *output)
     //     output[0] = 1;
     // }
 
-    // Node node = overflowTreatment(get_node(1, 0), true);
+    // Node node = overflowTreatment(get_node(2, 0), true);
     // std::cout << "Height of tree: " << H << std::endl;
     // printNode(&node);
 
@@ -72,9 +75,9 @@ extern "C" void krnl(data_t *output)
 
     // insert(createNode(true, setBB(0, 30, 0, 30), -1, -1, -1, -1, -1), true);
 
-    // Node *node = get_node(1, 0);
-    // remove(node, 0);
+    // printNode(get_node(0, 5));
+    // printNode(get_node(0, 6));
 
-    delete_node(0, 0);
-    print_level(0);
+    remove(1, 0);
+    print_level(1);
 }

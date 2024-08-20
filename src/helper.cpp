@@ -54,14 +54,14 @@ data_t *search(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t *outpu
         {
             for (int i = 0; i < MAX_CHILDREN; i++)
             {
-                if (currentNode->child[i] != -1)
+                if (get_child(currentNode, i) != -1)
                 {
-                    Node *childNode = get_node(currentNode->child[i]);
+                    Node *childNode = get_node(get_child(currentNode, i));
                     // printNode(childNode);
                     if (childNode->box.minX <= maxX && childNode->box.maxX >= minX && childNode->box.minY <= maxY && childNode->box.maxY >= minY)
                     {
                         std::cout << "Pushing child " << i << std::endl;
-                        stack.push(currentNode->child[i]); // Push child node to stack
+                        stack.push(get_child(currentNode, i)); // Push child node to stack
                     }
                 }
             }
@@ -100,13 +100,22 @@ void sortByAreaEnlargement(Node newNode)
         int nodeIndex = stack.pop();
         Node *currentNode = get_node(nodeIndex);
 
+        std::cout << "Current Node: " << std::endl;
+        printNode(currentNode);
+
+        std::cout << "New Node: " << std::endl;
+        printNode(&newNode);
+
         if (!currentNode->leaf && currentNode->box.maxX >= newNode.box.maxX && currentNode->box.minX <= newNode.box.minX && currentNode->box.maxY >= newNode.box.maxY && currentNode->box.minY <= newNode.box.minY)
         {
             // new node is within the bounding box
             for (int i = 0; i < MAX_CHILDREN; i++)
             {
-                if (currentNode->child[i] != -1)
-                    stack.push(currentNode->child[i]);
+                if (get_child(currentNode, i) != -1)
+                {
+                    std::cout << "Area Enlargement Push: ";
+                    stack.push(get_child(currentNode, i));
+                }
             }
         }
         else
@@ -140,7 +149,11 @@ void sortByOverlapEnlargement(Node newNode)
     Stack stack;
     for (int i = 0; i < MAX_CHILDREN; i++)
     {
-        stack.push(AreaEnlargementArray[i].index);
+        if (AreaEnlargementArray[i].index > 0)
+        {
+            std::cout << "Overlap Enlargement Push: ";
+            stack.push(AreaEnlargementArray[i].index);
+        }
     }
     while (!stack.isEmpty())
     {
@@ -183,7 +196,17 @@ int chooseSubTree(Node node)
 
     for (int i = 0; i < MAX_CHILDREN; i++)
     {
-        if (!get_node(OverlapEnlargementArray[i].index)->leaf)
+        std::cout << "Area Enlargement Array at " << i << ": " << AreaEnlargementArray[i].index << std::endl;
+    }
+
+    for (int i = 0; i < MAX_CHILDREN; i++)
+    {
+        std::cout << "Overlap Enlargement Array at " << i << ": " << OverlapEnlargementArray[i].index << std::endl;
+    }
+
+    for (int i = 0; i < MAX_CHILDREN; i++)
+    {
+        if (get_level(get_node(AreaEnlargementArray[i].index)) == 1)
         {
             return OverlapEnlargementArray[i].index;
         }
@@ -269,13 +292,13 @@ Node split(Node *node)
 
     for (int i = 0; i <= split_index; i++)
     {
-        newNode.child[i] = node->child[split_index + i];
-        node->child[split_index + i] = -1;
+        set_child(&newNode, i, get_child(node, split_index + i));
+        set_child(node, split_index + i, -1);
     }
 
     for (int i = split_index + 1; i < MAX_CHILDREN; i++)
     {
-        node->child[i] = -1;
+        set_child(node, i, -1);
     }
 
     updateBoundingBox(node);
@@ -286,8 +309,9 @@ Node split(Node *node)
 
 Node overflowTreatment(Node *node, bool firstInsert)
 {
-    if (!equals(node, get_node(H, 0)) && firstInsert)
+    if (get_level(node) != H && firstInsert)
     {
+        std::cout << "Reinserting node" << std::endl;
         reinsert(node);
         return Node();
     }
@@ -295,16 +319,30 @@ Node overflowTreatment(Node *node, bool firstInsert)
     Node newNode = split(node);
 
     // If OverflowTreatment caused a split of the root, create a new root
-    if (equals(node, get_node(H, 0)))
+    if (get_level(node) == H)
     {
-        Node *newRoot = createNode();
-        newRoot->child[0] = get_index(node);
-        newRoot->child[1] = get_index(node) + 1;
-        increase_height(1);
+        std::cout << "Creating new root" << std::endl;
+        Node *newRoot;
+
+        std::cout << "Set Child 0" << std::endl;
+        set_child(newRoot, 0, get_index(node));
+
+        std::cout << "Set Child 1" << std::endl;
+        set_child(newRoot, 1, get_index(node) + 1);
+
+        std::cout << "Increase height" << std::endl;
+        increase_height();
+        std::cout << "Increased height: " << H << std::endl;
+
+        std::cout << "Add new root" << std::endl;
         add_node(H, *newRoot);
+
+        std::cout << "Add new node" << std::endl;
         add_node(H - 1, newNode);
+
+        std::cout << "Updated bounding box" << std::endl;
         updateBoundingBox(newRoot);
-        set_node(H, 0, *newRoot);
+
         return *newRoot;
     }
 
@@ -335,17 +373,17 @@ void reinsert(Node *node)
     */
     for (int i = 1; i < MAX_CHILDREN; i++)
     {
-        int key = node->child[i];
+        int key = get_child(node, i);
         int j = i - 1;
-        while (j >= 0 && computeDistCenters(getChild(node, j), node) > computeDistCenters(get_node(key), node) && node->child[i] != -1)
+        while (j >= 0 && computeDistCenters(getChild(node, j), node) > computeDistCenters(get_node(key), node) && get_child(node, i) != -1)
         {
-            node->child[j + 1] = node->child[j];
+            set_child(node, j + 1, get_child(node, j));
             j = j - 1;
         }
-        node->child[j + 1] = key;
+        set_child(node, j + 1, key);
         for (int i = 0; i < MAX_CHILDREN; i++)
         {
-            std::cout << "Child " << i << ": " << node->child[i] << std::endl;
+            std::cout << "Child " << i << ": " << get_child(node, i) << std::endl;
         }
     }
 
@@ -357,9 +395,9 @@ void reinsert(Node *node)
     distance (= far reinsert) or minimum distance (= close
     reinsert), invoke Insert to reinsert the entries
     */
-    insert(*getChild(node, 5), false);
+    insert(getChild(node, 5), false);
 
-    node->child[5] = -1;
+    set_child(node, 5, -1);
 
     updateBoundingBox(node);
 }
@@ -372,25 +410,33 @@ void reinsert(Node *node)
  * @param minY The minimum y-coordinate of the node's bounding box.
  * @param maxY The maximum y-coordinate of the node's bounding box.
  */
-void insert(Node newNode, bool firstInsert)
+void insert(Node *newNode, bool firstInsert)
 {
     std::cout << "calling insert" << std::endl;
-    int index = chooseSubTree(newNode);
+    int index = chooseSubTree(*newNode);
+
+    // clear AreaEnlargementArray and OverlapEnlargementArray
+    for (int i = 0; i < MAX; i++)
+    {
+        AreaEnlargementArray[i].index = 0;
+        OverlapEnlargementArray[i].index = 0;
+    }
+
     std::cout << "Chosen subtree: " << index << std::endl;
     Node *node = get_node(index);
     printNode(node);
 
     for (int i = 0; i < MAX_CHILDREN; i++)
     {
-        if (node->child[i] == -1)
+        if (get_child(node, i) == -1)
         {
             std::cout << "Inserting at index: " << i << std::endl;
-            node->child[i] = get_index(&newNode);
+            set_child(node, i, get_index(newNode));
             break;
         }
     }
 
-    if (node->child[5] != -1)
+    if (get_child(node, 5) != -1)
     {
         std::cout << "Overflow Treatment" << std::endl;
         overflowTreatment(node, firstInsert);
@@ -417,16 +463,86 @@ void remove(int level, int index)
     // delete node and reinsert all nodes underneath it
     // update bounding box of parent
 
+    // NODE LEVEL
+    int ind = get_level_start_index(level) + index;
     Node *node = get_node(level, index);
+
+    // PARENT LEVEL
+    int parent_level = level + 1;
+    int parent_num_nodes = nodes_in_level[parent_level];
+
+    std::cout << "Parent Level: " << parent_level << std::endl;
+    std::cout << "Parent Num Nodes: " << parent_num_nodes << std::endl;
 
     if (node->leaf)
     {
-        delete_node(level, index);
-        int num_nodes = nodes_in_level[level + 1];
-        for (int i = 0; i < num_nodes; i++)
+        for (int i = 0; i < MAX_NODES_PER_LEVEL; i++)
         {
-            Node *parent = get_node(level + 1, i);
-            updateBoundingBox(parent);
+            Node *parentNode = get_node(parent_level, i);
+            for (int j = 0; j < MAX_CHILDREN; j++)
+            {
+                if (get_child(parentNode, j) == ind)
+                {
+                    set_child(parentNode, j, -1);
+                    updateBoundingBox(parentNode);
+                    delete_node(level, index);
+                    return;
+                }
+            }
+        }
+    }
+    else
+    {
+        int children[MAX_CHILDREN];
+        for (int i = 0; i < MAX_CHILDREN; i++)
+        {
+            children[i] = get_child(node, i);
+            std::cout << "Child " << i << ": " << children[i] << std::endl;
+        }
+
+        for (int i = 0; i < MAX_NODES_PER_LEVEL; i++)
+        {
+            Node *parentNode = get_node(parent_level, i);
+            for (int j = 0; j < MAX_CHILDREN; j++)
+            {
+                if (get_child(parentNode, j) == ind)
+                {
+                    std::cout << "Deleting node: " << ind << std::endl;
+                    set_child(parentNode, j, -1);
+                    printNode(parentNode);
+                    updateBoundingBox(parentNode);
+                    printNode(parentNode);
+                    delete_node(level, index);
+                    continue;
+                }
+            }
+        }
+
+        Stack stack;
+
+        for (int i = 0; i < MAX_CHILDREN; i++)
+        {
+            if (children[i] != -1)
+            {
+                std::cout << "Inital Push child: " << i << std::endl;
+                stack.push(children[i]);
+            }
+        }
+
+        while (!stack.isEmpty())
+        {
+            int child_index = stack.pop();
+            Node *child = get_node(child_index);
+            insert(child, true);
+            for (int i = 0; i < MAX_CHILDREN; i++)
+            {
+                if (!child->leaf && get_child(child, i) != -1)
+                {
+                    std::cout << "Secondary Push child: " << i << std::endl;
+                    stack.push(get_child(child, i));
+                }
+            }
+            delete_node(child_index);
         }
     }
 }
