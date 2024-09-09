@@ -5,6 +5,7 @@
 #include "overlapEnlargementPair.h"
 #include "areaEnlargementPair.h"
 #include "nodeArray.h"
+#include "climits"
 #include <float.h>
 #include <iostream>
 #include <algorithm>
@@ -232,9 +233,9 @@ Node split(Node *node)
     boundingBox R2;
 
     int split_axis = 0, split_edge = 0, split_index = 0;
-    int split_margin = std::numeric_limits<int>::max();
-    int dist_overlap = std::numeric_limits<int>::max();
-    int dist_area = std::numeric_limits<int>::max();
+    int split_margin = INT_MAX;
+    int dist_overlap = INT_MAX;
+    int dist_area = INT_MAX;
 
     for (int axis = 0; axis < 2; axis++)
     {
@@ -247,10 +248,8 @@ Node split(Node *node)
 
             for (int k = 0; k < MAX_CHILDREN; k++)
             {
-                boundingBox tempR1 = {std::numeric_limits<int>::max(), std::numeric_limits<int>::min(),
-                                      std::numeric_limits<int>::max(), std::numeric_limits<int>::min()};
-                boundingBox tempR2 = {std::numeric_limits<int>::max(), std::numeric_limits<int>::min(),
-                                      std::numeric_limits<int>::max(), std::numeric_limits<int>::min()};
+                boundingBox tempR1 = setBB(INT_MAX, INT_MIN, INT_MAX, INT_MIN);
+                boundingBox tempR2 = setBB(INT_MAX, INT_MIN, INT_MAX, INT_MIN);
 
                 for (int i = 0; i <= k; i++)
                 {

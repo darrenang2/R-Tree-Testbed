@@ -9,75 +9,216 @@
 #include <iostream>
 #include <algorithm>
 
-extern "C" void krnl(data_t *output)
+void memory_manager(
+    hls::stream<int> &search2mem,
+    hls::stream<Node> &mem2search,
+    Node *HBM_PTR)
 {
-#pragma HLS INTERFACE mode = m_axi port = output
+    int node_index;
+    if (!search2mem.empty() && !mem2search.full())
+    {
+        search2mem.read(node_index);
+        std::cout << "Requesting: " << node_index << std::endl;
+        mem2search.write(HBM_PTR[node_index]);
+        std::cout << "Writing: " << node_index << std::endl;
+    }
+}
 
-    // SetBB: (x1 -> x2) (y1 -> y2)
+void search(
+    hls::stream<boundingBox> &input,
+    hls::stream<data_t> &output,
+    hls::stream<int> &search2mem,
+    hls::stream<Node> &mem2search)
+{
+    enum SearchStates
+    {
+        INIT,
+        POP,
+        GET_NODE,
+        PUSH,
+        FOUND
+    };
+    static SearchStates state = INIT;
 
-    add_node(H, createNode(false, setBB(0, 20, 0, 20),
-                           get_level_start_index(H - 1),
-                           get_level_start_index(H - 1) + 1,
-                           get_level_start_index(H - 1) + 2, -1, -1)); // node 0 (root node)
+    boundingBox find;
+    static Stack stack;
+    static int rt = 0;
+    static int ch = 0;
+    static int pushIndex = 0;
+    Node currentNode;
+    static int nodeIndex;
+    // Max size
+    static data_t found[1000];
+    static data_t child[10];
 
-    add_node(H - 1, createNode(false, setBB(0, 9, 0, 9),
-                               get_level_start_index(H - 2),
-                               get_level_start_index(H - 2) + 1,
-                               get_level_start_index(H - 2) + 2,
-                               get_level_start_index(H - 2) + 3,
-                               get_level_start_index(H - 2) + 4)); // node 1
+    switch (state)
+    {
+    case INIT:
+    {
+        std::cout << "STATE: INIT" << std::endl;
+        if (!input.empty())
+        {
+            input.read(find);
+            stack.push(get_level_start_index(H));
+            std::cout << "Search: " << find.minX << " " << find.maxX << " " << find.minY << " " << find.maxY << std::endl;
+            state = POP;
+        }
+        break;
+    }
 
-    add_node(H - 1, createNode(false, setBB(10, 20, 10, 20),
-                               get_level_start_index(H - 2) + 5,
-                               get_level_start_index(H - 2) + 6, -1, -1, -1)); // node 2
+    case POP:
+    {
+        std::cout << "STATE: POP" << std::endl;
+        if (!stack.isEmpty() && !search2mem.full())
+        {
+            nodeIndex = stack.pop();
+            std::cout << "node index: " << nodeIndex << std::endl;
+            search2mem.write(nodeIndex);
+            state = GET_NODE;
+        }
+        else
+        {
+            state = FOUND;
+        }
+        break;
+    }
 
-    add_node(H - 1, createNode(false, setBB(0, 16, 0, 16), -1, -1, -1, -1, -1));
+    case GET_NODE:
+    {
+        if (!mem2search.empty())
+        {
+            state = POP;
+            std::cout << "STATE: GET_NODE" << std::endl;
+            mem2search.read(currentNode);
+            if (currentNode.leaf)
+            {
+                std::cout << "Leaf Node: " << nodeIndex << std::endl;
+                if (currentNode.box.minX <= find.maxX && currentNode.box.maxX >= find.minX &&
+                    currentNode.box.minY <= find.maxY && currentNode.box.maxY >= find.minY)
+                {
+                    std::cout << "Adding Leaf Node to Found: " << nodeIndex << std::endl;
+                    found[rt++] = nodeIndex; // Node index matches search criteria
+                }
+            }
+            else
+            {
+                for (int i = 0; i < MAX_CHILDREN; i++)
+                {
+                    if (currentNode.child[i] != -1)
+                    {
+                        search2mem.write(currentNode.child[i]);
+                        child[ch++] = currentNode.child[i];
+                        state = PUSH;
+                    }
+                }
+            }
+        }
 
-    add_node(H - 2, createLeaf(true, setBB(0, 4, 0, 4)));     // node 3
-    add_node(H - 2, createLeaf(true, setBB(5, 9, 5, 9)));     // node 4
-    add_node(H - 2, createLeaf(true, setBB(10, 14, 10, 14))); // node 5
-    add_node(H - 2, createLeaf(true, setBB(15, 19, 15, 19))); // node 6
-    add_node(H - 2, createLeaf(true, setBB(0, 7, 0, 7)));     // node 7
-    add_node(H - 2, createLeaf(true, setBB(10, 14, 10, 14))); // node 8
-    add_node(H - 2, createLeaf(true, setBB(17, 19, 17, 19))); // node 9
+        break;
+    }
 
-    // print_level(0);
-    // print_level(1);
-    // print_level(2);
+    case PUSH:
+    {
+        std::cout << "STATE: PUSH" << std::endl;
+        if (!mem2search.empty())
+        {
+            mem2search.read(currentNode);
+            std::cout << "Current Node: " << currentNode.box.minX << " " << currentNode.box.maxX << " " << currentNode.box.minY << " " << currentNode.box.maxY << std::endl;
+            if (currentNode.box.minX <= find.maxX && currentNode.box.maxX >= find.minX && currentNode.box.minY <= find.maxY && currentNode.box.maxY >= find.minY)
+            {
+                std::cout << "Pushing Child: " << child[pushIndex] << std::endl;
+                stack.push(child[pushIndex++]); // Push child node to stack
+            }
+            else
+            {
+                pushIndex++;
+            }
+            if (stack.isEmpty())
+            {
+                state = FOUND;
+            }
+            else if (pushIndex == ch)
+            {
+                pushIndex = 0;
+                ch = 0;
+                state = POP;
+            }
+        }
+        break;
+    }
 
-    // search(1, 6, 1, 6, output);
+    case FOUND:
+    {
+        std::cout << "STATE: FOUND" << std::endl;
+        for (int i = 0; i < rt; i++)
+        {
+            output.write(found[i]); // Write found nodes
+            if (rt < 0)
+            {
+                state = INIT;
+            }
+        }
+        break;
+    }
+    }
+}
 
-    // volatile int x = minX;
-    // volatile int y = minY;
-    // volatile int x2 = maxX;
-    // volatile int y2 = maxY;
-    // output[0] = minX + maxX + minY + maxY;
+extern "C" void krnl(
+    Node *HBM_PTR,
+    ap_uint<32> *operations,
+    int number_of_operations,
+    ap_uint<64> *parameters_for_operations,
+    // RDMA
+    int board_num,
+    int exe)
+{
+#pragma HLS INTERFACE mode = m_axi port = HBM_PTR
+#pragma HLS INTERFACE mode = m_axi port = operations
 
-    // createNode();
+    int operation = 0;
+    int debugCounter = 0;
+    ap_uint<32> curr;
+    ap_uint<64> param;
+    data_t temp;
 
-    // Node node = split(get_node(H, 0));
-    // printNode(&node);
-    // print_all_levels;
-    // print_level(0);
-    // print_level(1);
-    // print_level(2);
-    // print_level(3);
+    static hls::stream<boundingBox> searchInput;
+    static hls::stream<data_t> searchOutput;
+    static hls::stream<int> search2mem;
+    static hls::stream<Node> mem2search;
 
-    // if (node.leaf == true) {
-    //     output[0] = 1;
-    // }
+#pragma HLS STREAM depth = 8 variable = search2mem
+#pragma HLS STREAM depth = 8 variable = mem2search
 
-    // Node node = overflowTreatment(get_node(2, 0), true);
-    // std::cout << "Height of tree: " << H << std::endl;
-    // printNode(&node);
+    while (operation < number_of_operations && debugCounter < exe)
+    // search = 00, insert = 01, delete = 10
 
-    // reinsert(get_node(1, 0));
+    {
+        debugCounter++;
 
-    // insert(createNode(true, setBB(0, 30, 0, 30), -1, -1, -1, -1, -1), true);
+        curr = operations[operation];
+        param = parameters_for_operations[operation];
 
-    // printNode(get_node(0, 5));
-    // printNode(get_node(0, 6));
+        if (curr.range(1, 0) == 0 && !searchInput.full())
+        {
+            boundingBox searchTerm = setBB(param.range(15, 0), param.range(31, 16), param.range(47, 32), param.range(63, 48));
+            searchInput.write(searchTerm);
+            search(
+                searchInput,
+                searchOutput,
+                search2mem,
+                mem2search);
+        }
 
-    remove(1, 0);
-    print_level(1);
+        while (!searchOutput.empty())
+        {
+            operation++;
+            searchOutput.read(temp);
+            std::cout << "Found: " << temp << std::endl;
+        }
+
+        memory_manager(
+            search2mem,
+            mem2search,
+            HBM_PTR);
+    }
 }
