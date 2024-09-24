@@ -68,7 +68,7 @@ int main(int argc, char **argv)
     /*====================================================INIT INPUT/OUTPUT VECTORS===============================================================*/
     std::vector<Node, aligned_allocator<Node>> HBM_PTR(10000);
     std::vector<uint32_t, aligned_allocator<uint32_t>> operations(1);
-    std::vector<uint64_t, aligned_allocator<uint64_t>> parameters_for_operations(1);
+    std::vector<uint64_t, aligned_allocator<uint64_t>> parameters_for_operations(4);
     int number_of_operations = 1;
     int board_num = 0;
 
@@ -90,15 +90,18 @@ int main(int argc, char **argv)
     HBM_PTR[5] = createLeaf(true, setBB(10, 14, 10, 14)); 
     HBM_PTR[6] = createLeaf(true, setBB(17, 19, 17, 19)); 
 
-    operations[0] = 0;
+    operations[0] = 1;
     parameters_for_operations[0] = 0x0006000100060001;
+    parameters_for_operations[1] = 0xFFFFFFFFFFFFFFFF;
+    parameters_for_operations[2] = 0xFFFFFFFFFFFFFFFF;
+    parameters_for_operations[3] = 0xFFFFFFFF00000000;
 
     /*====================================================Setting up kernel I/O===============================================================*/
 
     /* OUTPUT BUFFERS */
     OCL_CHECK(err, cl::Buffer buffer_hbm(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE, sizeof(Node) * 10000, HBM_PTR.data(), &err));
     OCL_CHECK(err, cl::Buffer buffer_operations(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE, sizeof(uint32_t) * number_of_operations, operations.data(), &err));
-    OCL_CHECK(err, cl::Buffer buffer_parameters(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE, sizeof(uint64_t) * number_of_operations, parameters_for_operations.data(), &err));
+    OCL_CHECK(err, cl::Buffer buffer_parameters(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_WRITE, sizeof(uint64_t) * number_of_operations * 4, parameters_for_operations.data(), &err));
 
     /* SETTING INPUT PARAMETERS */
     // Node *HBM_PTR,

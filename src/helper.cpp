@@ -107,6 +107,10 @@ void sortByAreaEnlargement(Node newNode)
         std::cout << "New Node: " << std::endl;
         printNode(&newNode);
 
+        // currentNode is any node in the R-tree
+        // newNode is the node being compared to for chooseSubTree
+        // basically push any node that is bigger than newNode
+
         if (!currentNode->leaf && currentNode->box.maxX >= newNode.box.maxX && currentNode->box.minX <= newNode.box.minX && currentNode->box.maxY >= newNode.box.maxY && currentNode->box.minY <= newNode.box.minY)
         {
             // new node is within the bounding box
