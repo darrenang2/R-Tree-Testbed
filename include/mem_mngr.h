@@ -3,17 +3,10 @@
 
 #include "constants.h"
 #include "stack.h"
-#include "helper.h"
 #include "node.h"
 #include "overlapEnlargementPair.h"
 #include "areaEnlargementPair.h"
 #include "nodeArray.h"
-#include <float.h>
-#include <iostream>
-#include <algorithm>
-
-areaEnlargementPair AreaEnlargementArray[MAX];
-overlapEnlargementPair OverlapEnlargementArray[MAX];
 
 void memory_manager(
     hls::stream<int> &search2mem,

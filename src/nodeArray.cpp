@@ -48,7 +48,7 @@ int get_index(Node *node)
     return node - hbm_array;
 }
 
-int get_level(Node *node)
+int get_level(Node* node)
 {
     return (get_index(node) / MAX_NODES_PER_LEVEL);
 }

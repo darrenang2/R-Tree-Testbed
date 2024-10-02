@@ -3,15 +3,10 @@
 
 #include "constants.h"
 #include "stack.h"
-#include "helper.h"
 #include "node.h"
+#include "nodeArray.h"
 #include "overlapEnlargementPair.h"
 #include "areaEnlargementPair.h"
-#include "nodeArray.h"
-#include <float.h>
-#include <iostream>
-#include <algorithm>
-#include "krnlSearch.h"
 #include "mem_mngr.h"
 
 void chooseSubTree(hls::stream<Node> &cst2mem,

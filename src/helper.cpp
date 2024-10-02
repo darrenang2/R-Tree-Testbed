@@ -1,5 +1,4 @@
 #include "helper.h"
-#include "constants.h"
 #include "stack.h"
 #include "node.h"
 #include "overlapEnlargementPair.h"
@@ -22,7 +21,7 @@
  * @param output An array to store the indices of the nodes that overlap with the search range.
  * @return The number of nodes that overlap with the search range.
  */
-data_t *search(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t *output)
+int *search(int minX, int maxX, int minY, int maxY, int *output)
 {
     std::cout << "R-Tree Search: (" << minX << "->" << maxX << ")(" << minY << "->" << maxY << ")" << std::endl;
     // Return counter;

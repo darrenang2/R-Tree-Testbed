@@ -1,15 +1,4 @@
-#include "constants.h"
-#include "stack.h"
-#include "helper.h"
-#include "node.h"
-#include "overlapEnlargementPair.h"
-#include "areaEnlargementPair.h"
-#include "nodeArray.h"
-#include <float.h>
-#include <iostream>
-#include <algorithm>
-#include "krnlSearch.h"
-#include "mem_mngr.h"
+#include "krnlInsert.h"
 
 void chooseSubTree(hls::stream<Node> &cst2mem,
                    hls::stream<int> &mem2cst,
@@ -33,6 +22,7 @@ void chooseSubTree(hls::stream<Node> &cst2mem,
     case INIT:
         if (!cstInput.empty())
         {
+            std::cout << "Choose Subtree: INIT" << std::endl;
             cstInput.read(newNode);
             state = WRITE;
         }
@@ -40,22 +30,22 @@ void chooseSubTree(hls::stream<Node> &cst2mem,
     case WRITE:
         if (!cst2mem.full())
         {
+            std::cout << "Choose Subtree: WRITE" << std::endl;
             cst2mem.write(newNode);
-            state = FOUND;
+            state = RECEIVE;
         }
         break;
     case RECEIVE:
         if (!mem2cst.empty())
         {
+            std::cout << "Choose Subtree: RECEIVE" << std::endl;
             mem2cst.read(result);
             state = FOUND;
         }
         break;
     case FOUND:
-        if (!mem2cst.empty())
-        {
-            cstOutput.write(result);
-        }
+        std::cout << "Choose Subtree: FOUND" << std::endl;
+        cstOutput.write(result);
         break;
     }
 }
@@ -88,6 +78,7 @@ void insert(hls::stream<Node> &insert2mem,
     case READ_NODE:
         if (!insertInput.empty())
         {
+            std::cout << "Insert: READ_NODE" << std::endl;
             insertInput.read(newNode);
             state = READ_INDEX;
         }
@@ -95,6 +86,7 @@ void insert(hls::stream<Node> &insert2mem,
     case READ_INDEX:
         if (!cstOutput.empty())
         {
+            std::cout << "Insert: READ_INDEX" << std::endl;
             cstOutput.read(index);
             state = WRITE_INDEX;
         }
@@ -102,6 +94,7 @@ void insert(hls::stream<Node> &insert2mem,
     case WRITE_INDEX:
         if (!index2mem.empty())
         {
+            std::cout << "Insert: WRITE_INDEX" << std::endl;
             index2mem.write(index);
             state = INSERT;
         }
@@ -109,6 +102,7 @@ void insert(hls::stream<Node> &insert2mem,
     case INSERT:
         if (!insert2mem.full())
         {
+            std::cout << "Insert: INSERT" << std::endl;
             insert2mem.write(newNode);
             state = OVERFLOWTREATMENT;
         }
@@ -116,11 +110,15 @@ void insert(hls::stream<Node> &insert2mem,
     case OVERFLOWTREATMENT:
         if (!mem2insert.empty())
         {
+            std::cout << "Insert: OVERFLOWTREATMENT" << std::endl;
             mem2insert.read(result);
+            state = OUTPUT;
         }
+        break;
     case OUTPUT:
         if (!insertOutput.full())
         {
+            std::cout << "Insert: OUTPUT" << std::endl;
             // OUTPUT = 1 if insertion is successful, 2 if overflow treatment is required
             insertOutput.write(output);
         }

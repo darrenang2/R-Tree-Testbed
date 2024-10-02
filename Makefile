@@ -133,7 +133,7 @@ build: check-vitis check-device $(BINARY_CONTAINERS)
 xclbin: build
 
 ############################## Setting Rules for Binary Containers (Building Kernels) ##############################
-$(TEMP_DIR)/krnl.xo: ./src/krnl.cpp ./src/helper.cpp ./src/areaEnlargementPair.cpp ./src/node.cpp ./src/overlapEnlargementPair.cpp ./src/nodeArray.cpp
+$(TEMP_DIR)/krnl.xo: ./src/krnl.cpp ./src/node.cpp ./src/nodeArray.cpp ./src/mem_mngr.cpp ./src/krnlSearch.cpp ./src/krnlInsert.cpp ./src/overlapEnlargementPair.cpp ./src/areaEnlargementPair.cpp
 	mkdir -p $(TEMP_DIR)
 	$(VPP) $(VPP_FLAGS) -c -k krnl --temp_dir $(TEMP_DIR)  -I'$(<D)' -o'$@' $^
 BINARY_CONTAINER_krnl_OBJS += $(TEMP_DIR)/krnl.xo

@@ -7,17 +7,6 @@
 #include <cstdlib>
 #include <float.h>
 
-double mean(const double a[], const int size)
-{
-    double m = 0.0;
-    for (int i = 0; i < size; i++)
-    {
-        m += a[i];
-    }
-    m /= size;
-    return m;
-}
-
 int main(int argc, char **argv)
 {
     if (argc != 2)
@@ -79,16 +68,16 @@ int main(int argc, char **argv)
     // int y2 = 6;
 
     HBM_PTR[200] = createNode(false, setBB(0, 20, 0, 20), 100, 101, 102, -1, -1);
-    HBM_PTR[100] = createNode(false, setBB(0, 9, 0, 9), 0, 1, 2, 3, 4);     
+    HBM_PTR[100] = createNode(false, setBB(0, 9, 0, 9), 0, 1, 2, 3, 4);
     HBM_PTR[101] = createNode(false, setBB(10, 20, 10, 20), 5, 6, -1, -1, -1);
     HBM_PTR[102] = createNode(false, setBB(0, 16, 0, 16), -1, -1, -1, -1, -1);
-    HBM_PTR[0] = createLeaf(true, setBB(0, 4, 0, 4));     
-    HBM_PTR[1] = createLeaf(true, setBB(5, 9, 5, 9));     
-    HBM_PTR[2] = createLeaf(true, setBB(10, 14, 10, 14)); 
-    HBM_PTR[3] = createLeaf(true, setBB(15, 19, 15, 19)); 
-    HBM_PTR[4] = createLeaf(true, setBB(0, 7, 0, 7));     
-    HBM_PTR[5] = createLeaf(true, setBB(10, 14, 10, 14)); 
-    HBM_PTR[6] = createLeaf(true, setBB(17, 19, 17, 19)); 
+    HBM_PTR[0] = createLeaf(true, setBB(0, 4, 0, 4));
+    HBM_PTR[1] = createLeaf(true, setBB(5, 9, 5, 9));
+    HBM_PTR[2] = createLeaf(true, setBB(10, 14, 10, 14));
+    HBM_PTR[3] = createLeaf(true, setBB(15, 19, 15, 19));
+    HBM_PTR[4] = createLeaf(true, setBB(0, 7, 0, 7));
+    HBM_PTR[5] = createLeaf(true, setBB(10, 14, 10, 14));
+    HBM_PTR[6] = createLeaf(true, setBB(17, 19, 17, 19));
 
     operations[0] = 1;
     parameters_for_operations[0] = 0x0006000100060001;

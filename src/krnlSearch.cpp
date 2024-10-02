@@ -1,14 +1,4 @@
-#include "constants.h"
-#include "stack.h"
-#include "helper.h"
-#include "node.h"
-#include "overlapEnlargementPair.h"
-#include "areaEnlargementPair.h"
-#include "nodeArray.h"
-#include <float.h>
-#include <iostream>
-#include <algorithm>
-#include "mem_mngr.h"
+#include "krnlSearch.h"
 
 void search(
     hls::stream<boundingBox> &searchInput,
