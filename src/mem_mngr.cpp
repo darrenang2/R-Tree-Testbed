@@ -100,12 +100,14 @@ void memory_manager(
         {
             if (get_level(HBM_PTR + AreaEnlargementArray[i].index) == 1)
             {
+                // std::cout << "Found: " << AreaEnlargementArray[i].index << std::endl;
                 mem2cst.write(OverlapEnlargementArray[i].index);
             }
         }
 
         if (mem2cst.empty())
         {
+            // std::cout << "Found: " << AreaEnlargementArray[0].index << std::endl;
             mem2cst.write(AreaEnlargementArray[0].index);
         }
 
@@ -117,7 +119,7 @@ void memory_manager(
         }
     }
 
-    if (!insert2mem.empty() && !mem2insert.full())
+    if (!insert2mem.empty() && !index2mem.empty())
     {
         Node node;
         insert2mem.read(node);
@@ -136,11 +138,11 @@ void memory_manager(
 
         if (node.child[5] != -1)
         {
-            mem2insert.write(2);
+            mem2insert.write(1);
         }
         else
         {
-            mem2insert.write(1);
+            mem2insert.write(2);
         }
     }
 }

@@ -46,6 +46,7 @@ void chooseSubTree(hls::stream<Node> &cst2mem,
     case FOUND:
         std::cout << "Choose Subtree: FOUND" << std::endl;
         cstOutput.write(result);
+        state = INIT;
         break;
     }
 }
@@ -59,7 +60,6 @@ void insert(hls::stream<Node> &insert2mem,
 {
     static int index = -1;
     static int result = -1;
-    static int output = -1;
     Node newNode;
 
     enum InsertStates
@@ -92,7 +92,7 @@ void insert(hls::stream<Node> &insert2mem,
         }
         break;
     case WRITE_INDEX:
-        if (!index2mem.empty())
+        if (!index2mem.full())
         {
             std::cout << "Insert: WRITE_INDEX" << std::endl;
             index2mem.write(index);
@@ -120,7 +120,7 @@ void insert(hls::stream<Node> &insert2mem,
         {
             std::cout << "Insert: OUTPUT" << std::endl;
             // OUTPUT = 1 if insertion is successful, 2 if overflow treatment is required
-            insertOutput.write(output);
+            insertOutput.write(result);
         }
         break;
     }

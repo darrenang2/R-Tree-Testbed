@@ -61,11 +61,11 @@ extern "C" void krnl(
 #pragma HLS STREAM depth = 8 variable = cstInput
 #pragma HLS STREAM depth = 8 variable = cstOutput
 
-    while (operation < number_of_operations)
+    while (operation < number_of_operations && debugCounter < 20)
     // search = 00, insert = 01, delete = 10
 
     {
-
+        debugCounter++;
         curr = operations[operation];
         param = parameters_for_operations[operation];
 
@@ -89,6 +89,7 @@ extern "C" void krnl(
 
         if (curr.range(1, 0) == 1)
         {
+
             if (startChooseSubtree == true)
             {
                 Node newNode = createNode(param.range(224, 224), setBB(param.range(15, 0), param.range(31, 16), param.range(47, 32), param.range(63, 48)), param.range(95, 64), param.range(127, 96), param.range(159, 128), param.range(191, 160), param.range(223, 192));
@@ -101,23 +102,23 @@ extern "C" void krnl(
                 mem2cst,
                 cstInput,
                 cstOutput);
-            if (!cstOutput.empty())
-                insert(
-                    insert2mem,
-                    mem2insert,
-                    index2mem,
-                    cstOutput,
-                    insertInput,
-                    insertOutput);
-        }
 
-        if (!insertOutput.empty())
-        {
-            startChooseSubtree = true;
-            operation++;
-            insertOutput.read(insertResult);
-            std::cout << "Insert: " << insertResult << std::endl;
-            // 2 = no overflow, 1 = overflow
+            insert(
+                insert2mem,
+                mem2insert,
+                index2mem,
+                cstOutput,
+                insertInput,
+                insertOutput);
+
+            if (!insertOutput.empty())
+            {
+                startChooseSubtree = true;
+                operation++;
+                insertOutput.read(insertResult);
+                std::cout << "Insert: " << insertResult << std::endl;
+                // 1 = no overflow, 2 = overflow
+            }
         }
 
         memory_manager(
