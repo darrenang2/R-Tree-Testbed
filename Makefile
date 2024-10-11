@@ -91,7 +91,7 @@ PLATFORM_BLOCKLIST += nodma
 ############################## Setting up Host Variables ##############################
 #Include Required Host Source Files
 # add host2.cpp for two array functions
-HOST_SRCS += ./src/host.cpp ./src/helper.cpp ./src/areaEnlargementPair.cpp ./src/node.cpp ./src/overlapEnlargementPair.cpp ./src/nodeArray.cpp
+HOST_SRCS += ./src/host.cpp ./src/areaEnlargementPair.cpp ./src/node.cpp ./src/overlapEnlargementPair.cpp ./src/nodeArray.cpp
 # Host compiler global settings
 CXXFLAGS += -fmessage-length=0 -I$(INCLUDES_H)
 LDFLAGS += -lrt -lstdc++ 

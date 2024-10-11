@@ -1,0 +1,166 @@
+
+****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2022.2 (64-bit)
+  **** SW Build 3670227 on Oct 13 2022
+  **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source /tools/Xilinx/Vitis_HLS/2022.2/scripts/vitis_hls/hls.tcl -notrace
+INFO: [HLS 200-10] Running '/tools/Xilinx/Vitis_HLS/2022.2/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'dang004' on host 'wolverine.cs.ucr.edu' (Linux_x86_64 version 3.10.0-1160.119.1.el7.x86_64) on Fri Oct 11 16:28:09 PDT 2024
+INFO: [HLS 200-10] On os "CentOS Linux release 7.9.2009 (Core)"
+INFO: [HLS 200-10] In directory '/home/dang004/R-Tree-Testbed/build/src'
+Sourcing Tcl script 'make.tcl'
+INFO: [HLS 200-1510] Running: open_project krnl_prj 
+INFO: [HLS 200-10] Opening project '/home/dang004/R-Tree-Testbed/build/src/krnl_prj'.
+INFO: [HLS 200-1510] Running: open_solution solution1 
+INFO: [HLS 200-10] Opening solution '/home/dang004/R-Tree-Testbed/build/src/krnl_prj/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 3.333ns.
+INFO: [HLS 200-1611] Setting target device to 'xcu280-fsvh2892-2L-e'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2022.2;t=hls+guidance;d=200-1505.html
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_latency=0
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_alignment_byte_size=1
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_max_widen_bitwidth=0
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_rtl -register_reset_num=0
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+INFO: [HLS 200-1510] Running: set_part xcu280-fsvh2892-2L-e 
+INFO: [HLS 200-1510] Running: create_clock -period 300.000000MHz -name default 
+INFO: [HLS 200-1510] Running: set_top krnl 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_latency=64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num=3 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnl.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb /home/dang004/R-Tree-Testbed/src/test_krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding test bench file '/home/dang004/R-Tree-Testbed/src/test_krnl.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnlSearch.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnlSearch.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/mem_mngr.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/mem_mngr.cpp' to the project
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/node.cpp' to the project
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/nodeArray.cpp' to the project
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp' to the project
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnlInsert.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnlInsert.cpp' to the project
+INFO: [HLS 200-1510] Running: csim_design 
+Running Dispatch Server on port: 36385
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+STATE: INIT
+200 pushed into stack
+Search: 0 10 0 10
+STATE: POP
+node index: 200
+Requesting: 200
+Writing: 200
+STATE: GET_NODE
+Requesting: 100
+Writing: 100
+STATE: PUSH
+Current Node: 0 9 0 9
+Pushing Child: 100
+100 pushed into stack
+Requesting: 101
+Writing: 101
+STATE: PUSH
+Current Node: 10 20 10 20
+Requesting: 102
+Writing: 102
+STATE: PUSH
+Current Node: 0 16 0 16
+Pushing Child: 102
+102 pushed into stack
+STATE: POP
+node index: 102
+Requesting: 102
+Writing: 102
+STATE: GET_NODE
+STATE: POP
+node index: 100
+Requesting: 100
+Writing: 100
+STATE: GET_NODE
+Requesting: 0
+Writing: 0
+STATE: PUSH
+Current Node: 0 4 0 4
+Pushing Child: 0
+0 pushed into stack
+Requesting: 1
+Writing: 1
+STATE: PUSH
+Current Node: 5 9 5 9
+Requesting: 2
+Writing: 2
+STATE: PUSH
+Current Node: 10 14 10 14
+Requesting: 3
+Writing: 3
+STATE: PUSH
+Current Node: 15 19 15 19
+Requesting: 4
+Writing: 4
+STATE: PUSH
+Current Node: 0 7 0 7
+Pushing Child: 4
+4 pushed into stack
+STATE: POP
+node index: 4
+Requesting: 4
+Writing: 4
+STATE: GET_NODE
+Leaf Node: 4
+Adding Leaf Node to Found: 4
+STATE: POP
+node index: 0
+Requesting: 0
+Writing: 0
+STATE: GET_NODE
+Leaf Node: 0
+Adding Leaf Node to Found: 0
+STATE: POP
+STATE: FOUND
+Found: 4
+Found: 0
+STATE: FOUND
+Found: 4
+Found: 0
+STATE: FOUND
+Found: 4
+Found: 0
+STATE: FOUND
+Found: 4
+Found: 0
+STATE: FOUND
+Found: 4
+Found: 0
+STATE: FOUND
+Found: 4
+Found: 0
+STATE: FOUND
+Found: 4
+Found: 0
+STATE: FOUND
+Found: 4
+Found: 0
+STATE: FOUND
+Found: 4
+Found: 0
+STATE: FOUND
+Found: 4
+Found: 0
+INFO [HLS SIM]: The maximum depth reached by any hls::stream() instance in the design is 5
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 0.12 seconds. CPU system time: 0.44 seconds. Elapsed time: 0.57 seconds; current allocated memory: 0.000 MB.
+INFO: [HLS 200-112] Total CPU user time: 6.21 seconds. Total CPU system time: 2.95 seconds. Total elapsed time: 19 seconds; peak allocated memory: 848.629 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Fri Oct 11 16:28:27 2024...

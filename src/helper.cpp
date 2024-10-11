@@ -377,11 +377,11 @@ void reinsert(Node *node)
     {
         int key = get_child(node, i);
         int j = i - 1;
-        while (j >= 0 && computeDistCenters(getChild(node, j), node) > computeDistCenters(get_node(key), node) && get_child(node, i) != -1)
-        {
-            set_child(node, j + 1, get_child(node, j));
-            j = j - 1;
-        }
+        // while (j >= 0 && computeDistCenters(getChild(node, j), node) > computeDistCenters(get_node(key), node) && get_child(node, i) != -1)
+        // {
+        //     set_child(node, j + 1, get_child(node, j));
+        //     j = j - 1;
+        // }
         set_child(node, j + 1, key);
         for (int i = 0; i < MAX_CHILDREN; i++)
         {

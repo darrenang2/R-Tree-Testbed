@@ -121,7 +121,59 @@ void insert(hls::stream<Node> &insert2mem,
             std::cout << "Insert: OUTPUT" << std::endl;
             // OUTPUT = 1 if insertion is successful, 2 if overflow treatment is required
             insertOutput.write(result);
+            state = READ_NODE;
         }
+        break;
+    }
+}
+
+void overflowTreatment(hls::stream<Node> &overflow2mem,
+                       hls::stream<Node> &mem2overflow,
+                       hls::stream<Node> &overflowInput,
+                       hls::stream<Node> &overflowOutput)
+{
+    Node newNode;
+    Node result;
+
+    enum overflowStates
+    {
+        INIT,
+        WRITE,
+        RECEIVE,
+        FOUND
+    };
+    static overflowStates state = INIT;
+
+    switch (state)
+    {
+    case INIT:
+        if (!overflowInput.empty())
+        {
+            std::cout << "Overflow Treatment: INIT" << std::endl;
+            overflowInput.read(newNode);
+            state = WRITE;
+        }
+        break;
+    case WRITE:
+        if (!overflow2mem.full())
+        {
+            std::cout << "Overflow Treatment: WRITE" << std::endl;
+            overflow2mem.write(newNode);
+            state = RECEIVE;
+        }
+        break;
+    case RECEIVE:
+        if (!mem2overflow.empty())
+        {
+            std::cout << "Overflow Treatment: RECEIVE" << std::endl;
+            mem2overflow.read(result);
+            state = FOUND;
+        }
+        break;
+    case FOUND:
+        std::cout << "Overflow Treatment: FOUND" << std::endl;
+        overflowOutput.write(result);
+        state = INIT;
         break;
     }
 }

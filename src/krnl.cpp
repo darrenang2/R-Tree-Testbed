@@ -48,6 +48,25 @@ extern "C" void krnl(
     static hls::stream<Node> insertInput;
     static hls::stream<int> insertOutput;
 
+    static hls::stream<Node> overflow2mem;
+    static hls::stream<Node> mem2overflow;
+    static hls::stream<Node> overflowInput;
+    static hls::stream<Node> overflowOutput;
+
+    static hls::stream<Node> split2mem;
+    static hls::stream<Node> mem2split;
+    static hls::stream<Node> splitInput;
+    static hls::stream<Node> splitOutput;
+
+    static hls::stream<Node> reinsert2mem;
+    static hls::stream<int> mem2reinsert;
+    static hls::stream<Node> reinsertInput;
+    static hls::stream<int> reinsertOutput;
+
+    static hls::stream<Node> overflow2reinsert;
+    static hls::stream<Node> overflow2split;
+    static hls::stream<Node> split2overflow;
+
 #pragma HLS STREAM depth = 8 variable = search2mem
 #pragma HLS STREAM depth = 8 variable = mem2search
 #pragma HLS STREAM depth = 8 variable = cst2mem
@@ -60,6 +79,20 @@ extern "C" void krnl(
 #pragma HLS STREAM depth = 8 variable = insertOutput
 #pragma HLS STREAM depth = 8 variable = cstInput
 #pragma HLS STREAM depth = 8 variable = cstOutput
+
+#pragma HLS STREAM depth = 8 variable = overflow2mem
+#pragma HLS STREAM depth = 8 variable = mem2overflow
+#pragma HLS STREAM depth = 8 variable = overflowInput
+#pragma HLS STREAM depth = 8 variable = overflowOutput
+
+#pragma HLS STREAM depth = 8 variable = split2mem
+#pragma HLS STREAM depth = 8 variable = mem2split
+#pragma HLS STREAM depth = 8 variable = splitInput
+#pragma HLS STREAM depth = 8 variable = splitOutput
+
+#pragma HLS STREAM depth = 8 variable = overflow2reinsert
+#pragma HLS STREAM depth = 8 variable = overflow2split
+#pragma HLS STREAM depth = 8 variable = split2overflow
 
     while (operation < number_of_operations && debugCounter < 20)
     // search = 00, insert = 01, delete = 10
@@ -111,6 +144,12 @@ extern "C" void krnl(
                 insertInput,
                 insertOutput);
 
+            overflowTreatment(
+                overflow2mem,
+                mem2overflow,
+                overflowInput,
+                overflowOutput);
+
             if (!insertOutput.empty())
             {
                 startChooseSubtree = true;
@@ -129,6 +168,11 @@ extern "C" void krnl(
             insert2mem,
             mem2insert,
             index2mem,
+            overflow2mem,
+            mem2overflow,
+            overflow2reinsert,
+            overflow2split,
+            split2overflow,
             HBM_PTR);
     }
 }
