@@ -6,7 +6,7 @@
 
 source /tools/Xilinx/Vitis_HLS/2022.2/scripts/vitis_hls/hls.tcl -notrace
 INFO: [HLS 200-10] Running '/tools/Xilinx/Vitis_HLS/2022.2/bin/unwrapped/lnx64.o/vitis_hls'
-INFO: [HLS 200-10] For user 'dang004' on host 'wolverine.cs.ucr.edu' (Linux_x86_64 version 3.10.0-1160.119.1.el7.x86_64) on Fri Nov 01 15:50:12 PDT 2024
+INFO: [HLS 200-10] For user 'dang004' on host 'wolverine.cs.ucr.edu' (Linux_x86_64 version 3.10.0-1160.119.1.el7.x86_64) on Fri Nov 01 16:15:16 PDT 2024
 INFO: [HLS 200-10] On os "CentOS Linux release 7.9.2009 (Core)"
 INFO: [HLS 200-10] In directory '/home/dang004/R-Tree-Testbed/build/src'
 Sourcing Tcl script 'make.tcl'
@@ -52,26 +52,53 @@ INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/areaEnla
 INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnlInsert.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
 INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnlInsert.cpp' to the project
 INFO: [HLS 200-1510] Running: csim_design 
-Running Dispatch Server on port: 35225
+Running Dispatch Server on port: 45894
 INFO: [SIM 211-2] *************** CSIM start ***************
 INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
-   Compiling ../../../../../../src/mem_mngr.cpp in debug mode
-../../../../../../src/mem_mngr.cpp:6:1: error: ‘nodes_in_level’ does not name a type
- nodes_in_level[0] = 7;
- ^~~~~~~~~~~~~~
-../../../../../../src/mem_mngr.cpp:7:1: error: ‘nodes_in_level’ does not name a type
- nodes_in_level[1] = 4;
- ^~~~~~~~~~~~~~
-make[4]: *** [obj/mem_mngr.o] Error 1
-ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s).
+   Compiling ../../../../../../src/test_krnl.cpp in debug mode
+   Compiling ../../../../../../src/krnlInsert.cpp in debug mode
+   Generating csim.exe
+Choose Subtree: INIT
+Insert: READ_NODE
+Choose Subtree: WRITE
+200 pushed into stack
+100 pushed into stack
+101 pushed into stack
+102 pushed into stack
+0 pushed into stack
+1 pushed into stack
+2 pushed into stack
+3 pushed into stack
+4 pushed into stack
+4 pushed into stack
+0 pushed into stack
+1 pushed into stack
+2 pushed into stack
+101 pushed into stack
+3 pushed into stack
+Choose Subtree: RECEIVE
+Choose Subtree: FOUND
+result: 101
+Insert: READ_INDEX
+Insert: WRITE_INDEX
+Insert: INSERT
+child level: 0
+node_index: 7
+start index: 0
+Inserting node at index: 7
+Child 0: 5
+Child 1: 6
+Child 2: 7
+Child 3: -1
+Child 4: -1
+Child 5: -1
+Insert: OVERFLOWTREATMENT
+Insert: OUTPUT
+Insert: 1
+INFO [HLS SIM]: The maximum depth reached by any hls::stream() instance in the design is 1
+WARNING [HLS SIM]: hls::stream 'hls::stream<boundingBox, 0>0' contains leftover data, which may result in RTL simulation hanging.
+INFO: [SIM 211-1] CSim done with 0 errors.
 INFO: [SIM 211-3] *************** CSIM finish ***************
-INFO: [HLS 200-111] Finished Command csim_design CPU user time: 8.28 seconds. CPU system time: 1.2 seconds. Elapsed time: 9.49 seconds; current allocated memory: 0.000 MB.
-4
-    while executing
-"source make.tcl"
-    ("uplevel" body line 1)
-    invoked from within
-"uplevel \#0 [list source $arg] "
-
-INFO: [HLS 200-112] Total CPU user time: 12.66 seconds. Total CPU system time: 3.33 seconds. Total elapsed time: 25.68 seconds; peak allocated memory: 848.629 MB.
-INFO: [Common 17-206] Exiting vitis_hls at Fri Nov  1 15:50:37 2024...
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 18.08 seconds. CPU system time: 2.01 seconds. Elapsed time: 20.08 seconds; current allocated memory: 0.000 MB.
+INFO: [HLS 200-112] Total CPU user time: 22.82 seconds. Total CPU system time: 4.16 seconds. Total elapsed time: 36.63 seconds; peak allocated memory: 848.629 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Fri Nov  1 16:15:52 2024...

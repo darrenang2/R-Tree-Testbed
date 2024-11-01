@@ -11564,3 +11564,1013 @@ Command     csim_design done; error code: 2; 9.49 sec.
 INFO: [HLS 200-111] Finished Command csim_design CPU user time: 8.28 seconds. CPU system time: 1.2 seconds. Elapsed time: 9.49 seconds; current allocated memory: 0.000 MB.
 Command   ap_source done; error code: 1; 24.53 sec.
 Execute   cleanup_all 
+INFO-FLOW: Workspace /home/dang004/R-Tree-Testbed/build/src/krnl_prj/solution1 opened at Fri Nov 01 15:53:42 PDT 2024
+Execute       ap_set_clock -name default -period 3.333 -unit ns -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 3.333ns.
+Execute       set_part xcu280-fsvh2892-2L-e 
+Execute         create_platform xcu280-fsvh2892-2L-e -board  
+DBG:HLSDevice: Trying to load device library: /tools/Xilinx/Vitis_HLS/2022.2/lib/lnx64.o/libxv_hlsvwrap.so
+DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: /tools/Xilinx/Vivado/2022.2/data/parts/arch.xml
+DBG:HLSDevice: init success
+INFO: [HLS 200-1611] Setting target device to 'xcu280-fsvh2892-2L-e'
+Command         create_platform done; 4.94 sec.
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/common/xilinx.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/plb46.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/axi4.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute             source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/saxilite.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfft.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfir.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/util.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/DSP48/dsp48.gen 
+Command         ap_source done; 0.12 sec.
+Execute         ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute         config_compile -quiet -complex-mul-dsp=0 
+Command       set_part done; 5.09 sec.
+Execute       send_msg_by_id INFO @200-1505@%s%s  vivado 
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_latency=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_latency=0
+Execute       config_interface -m_axi_latency=0 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_alignment_byte_size=1 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_alignment_byte_size=1
+Execute       config_interface -m_axi_alignment_byte_size=1 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_max_widen_bitwidth=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_max_widen_bitwidth=0
+Execute       config_interface -m_axi_max_widen_bitwidth=0 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_rtl -register_reset_num=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_rtl -register_reset_num=0
+Execute       config_rtl -register_reset_num=0 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_latency=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+Execute       config_interface -m_axi_latency=64 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+Execute       config_interface -m_axi_alignment_byte_size=64 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+Execute       config_interface -m_axi_max_widen_bitwidth=512 
+Execute       send_msg_by_id INFO @200-1464@%s config_rtl -register_reset_num=3 
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+Execute       config_rtl -register_reset_num=3 
+Command     open_solution done; 5.43 sec.
+Execute     set_part xcu280-fsvh2892-2L-e 
+INFO: [HLS 200-1510] Running: set_part xcu280-fsvh2892-2L-e 
+Execute       create_platform xcu280-fsvh2892-2L-e -board  
+Execute       source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/util.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute       ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute       config_compile -quiet -complex-mul-dsp=0 
+Command     set_part done; 0.15 sec.
+Execute     create_clock -period 300.000000MHz -name default 
+INFO: [HLS 200-1510] Running: create_clock -period 300.000000MHz -name default 
+Execute     set_top krnl 
+INFO: [HLS 200-1510] Running: set_top krnl 
+Execute     config_interface -m_axi_latency=64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_latency=64 
+Execute     config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size=64 
+Execute     config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_max_widen_bitwidth=512 
+Execute     config_rtl -register_reset_num=3 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num=3 
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnl.cpp' to the project
+Execute     add_files -tb /home/dang004/R-Tree-Testbed/src/test_krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files -tb /home/dang004/R-Tree-Testbed/src/test_krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding test bench file '/home/dang004/R-Tree-Testbed/src/test_krnl.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnlSearch.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnlSearch.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnlSearch.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/mem_mngr.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/mem_mngr.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/mem_mngr.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/node.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/node.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/node.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/nodeArray.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/nodeArray.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/nodeArray.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnlInsert.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnlInsert.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnlInsert.cpp' to the project
+Execute     csim_design 
+INFO: [HLS 200-1510] Running: csim_design 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+Execute       source csim/.lst_opt.tcl 
+Execute       ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute       source run_sim.tcl 
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+Command     csim_design done; 11.82 sec.
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 10.4 seconds. CPU system time: 1.42 seconds. Elapsed time: 11.83 seconds; current allocated memory: 0.000 MB.
+Execute     cleanup_all 
+INFO-FLOW: Workspace /home/dang004/R-Tree-Testbed/build/src/krnl_prj/solution1 opened at Fri Nov 01 16:02:12 PDT 2024
+Execute       ap_set_clock -name default -period 3.333 -unit ns -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 3.333ns.
+Execute       set_part xcu280-fsvh2892-2L-e 
+Execute         create_platform xcu280-fsvh2892-2L-e -board  
+DBG:HLSDevice: Trying to load device library: /tools/Xilinx/Vitis_HLS/2022.2/lib/lnx64.o/libxv_hlsvwrap.so
+DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: /tools/Xilinx/Vivado/2022.2/data/parts/arch.xml
+DBG:HLSDevice: init success
+INFO: [HLS 200-1611] Setting target device to 'xcu280-fsvh2892-2L-e'
+Command         create_platform done; 4.92 sec.
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/common/xilinx.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/plb46.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/axi4.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute             source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/saxilite.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfft.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfir.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/util.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/DSP48/dsp48.gen 
+Command         ap_source done; 0.12 sec.
+Execute         ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute         config_compile -quiet -complex-mul-dsp=0 
+Command       set_part done; 5.09 sec.
+Execute       send_msg_by_id INFO @200-1505@%s%s  vivado 
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_latency=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_latency=0
+Execute       config_interface -m_axi_latency=0 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_alignment_byte_size=1 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_alignment_byte_size=1
+Execute       config_interface -m_axi_alignment_byte_size=1 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_max_widen_bitwidth=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_max_widen_bitwidth=0
+Execute       config_interface -m_axi_max_widen_bitwidth=0 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_rtl -register_reset_num=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_rtl -register_reset_num=0
+Execute       config_rtl -register_reset_num=0 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_latency=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+Execute       config_interface -m_axi_latency=64 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+Execute       config_interface -m_axi_alignment_byte_size=64 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+Execute       config_interface -m_axi_max_widen_bitwidth=512 
+Execute       send_msg_by_id INFO @200-1464@%s config_rtl -register_reset_num=3 
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+Execute       config_rtl -register_reset_num=3 
+Command     open_solution done; 5.43 sec.
+Execute     set_part xcu280-fsvh2892-2L-e 
+INFO: [HLS 200-1510] Running: set_part xcu280-fsvh2892-2L-e 
+Execute       create_platform xcu280-fsvh2892-2L-e -board  
+Execute       source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/util.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute       ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute       config_compile -quiet -complex-mul-dsp=0 
+Command     set_part done; 0.16 sec.
+Execute     create_clock -period 300.000000MHz -name default 
+INFO: [HLS 200-1510] Running: create_clock -period 300.000000MHz -name default 
+Execute     set_top krnl 
+INFO: [HLS 200-1510] Running: set_top krnl 
+Execute     config_interface -m_axi_latency=64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_latency=64 
+Execute     config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size=64 
+Execute     config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_max_widen_bitwidth=512 
+Execute     config_rtl -register_reset_num=3 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num=3 
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnl.cpp' to the project
+Execute     add_files -tb /home/dang004/R-Tree-Testbed/src/test_krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files -tb /home/dang004/R-Tree-Testbed/src/test_krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding test bench file '/home/dang004/R-Tree-Testbed/src/test_krnl.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnlSearch.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnlSearch.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnlSearch.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/mem_mngr.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/mem_mngr.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/mem_mngr.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/node.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/node.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/node.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/nodeArray.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/nodeArray.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/nodeArray.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnlInsert.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnlInsert.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnlInsert.cpp' to the project
+Execute     csim_design 
+INFO: [HLS 200-1510] Running: csim_design 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+Execute       source csim/.lst_opt.tcl 
+Execute       ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute       source run_sim.tcl 
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+Command     csim_design done; 20.52 sec.
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 18.33 seconds. CPU system time: 2.16 seconds. Elapsed time: 20.52 seconds; current allocated memory: 0.000 MB.
+Execute     cleanup_all 
+INFO-FLOW: Workspace /home/dang004/R-Tree-Testbed/build/src/krnl_prj/solution1 opened at Fri Nov 01 16:05:19 PDT 2024
+Execute       ap_set_clock -name default -period 3.333 -unit ns -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 3.333ns.
+Execute       set_part xcu280-fsvh2892-2L-e 
+Execute         create_platform xcu280-fsvh2892-2L-e -board  
+DBG:HLSDevice: Trying to load device library: /tools/Xilinx/Vitis_HLS/2022.2/lib/lnx64.o/libxv_hlsvwrap.so
+DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: /tools/Xilinx/Vivado/2022.2/data/parts/arch.xml
+DBG:HLSDevice: init success
+INFO: [HLS 200-1611] Setting target device to 'xcu280-fsvh2892-2L-e'
+Command         create_platform done; 4.91 sec.
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/common/xilinx.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/plb46.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/axi4.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute             source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/saxilite.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfft.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfir.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/util.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/DSP48/dsp48.gen 
+Command         ap_source done; 0.11 sec.
+Execute         ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute         config_compile -quiet -complex-mul-dsp=0 
+Command       set_part done; 5.07 sec.
+Execute       send_msg_by_id INFO @200-1505@%s%s  vivado 
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_latency=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_latency=0
+Execute       config_interface -m_axi_latency=0 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_alignment_byte_size=1 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_alignment_byte_size=1
+Execute       config_interface -m_axi_alignment_byte_size=1 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_max_widen_bitwidth=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_max_widen_bitwidth=0
+Execute       config_interface -m_axi_max_widen_bitwidth=0 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_rtl -register_reset_num=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_rtl -register_reset_num=0
+Execute       config_rtl -register_reset_num=0 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_latency=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+Execute       config_interface -m_axi_latency=64 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+Execute       config_interface -m_axi_alignment_byte_size=64 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+Execute       config_interface -m_axi_max_widen_bitwidth=512 
+Execute       send_msg_by_id INFO @200-1464@%s config_rtl -register_reset_num=3 
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+Execute       config_rtl -register_reset_num=3 
+Command     open_solution done; 5.39 sec.
+Execute     set_part xcu280-fsvh2892-2L-e 
+INFO: [HLS 200-1510] Running: set_part xcu280-fsvh2892-2L-e 
+Execute       create_platform xcu280-fsvh2892-2L-e -board  
+Execute       source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/util.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/DSP48/dsp48.gen 
+Command       ap_source done; 0.11 sec.
+Execute       ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute       config_compile -quiet -complex-mul-dsp=0 
+Command     set_part done; 0.18 sec.
+Execute     create_clock -period 300.000000MHz -name default 
+INFO: [HLS 200-1510] Running: create_clock -period 300.000000MHz -name default 
+Execute     set_top krnl 
+INFO: [HLS 200-1510] Running: set_top krnl 
+Execute     config_interface -m_axi_latency=64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_latency=64 
+Execute     config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size=64 
+Execute     config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_max_widen_bitwidth=512 
+Execute     config_rtl -register_reset_num=3 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num=3 
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnl.cpp' to the project
+Execute     add_files -tb /home/dang004/R-Tree-Testbed/src/test_krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files -tb /home/dang004/R-Tree-Testbed/src/test_krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding test bench file '/home/dang004/R-Tree-Testbed/src/test_krnl.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnlSearch.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnlSearch.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnlSearch.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/mem_mngr.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/mem_mngr.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/mem_mngr.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/node.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/node.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/node.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/nodeArray.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/nodeArray.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/nodeArray.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnlInsert.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnlInsert.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnlInsert.cpp' to the project
+Execute     csim_design 
+INFO: [HLS 200-1510] Running: csim_design 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+Execute       source csim/.lst_opt.tcl 
+Execute       ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute       source run_sim.tcl 
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+Command     csim_design done; 20.24 sec.
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 18.19 seconds. CPU system time: 2.03 seconds. Elapsed time: 20.24 seconds; current allocated memory: 0.000 MB.
+Execute     cleanup_all 
+INFO-FLOW: Workspace /home/dang004/R-Tree-Testbed/build/src/krnl_prj/solution1 opened at Fri Nov 01 16:06:32 PDT 2024
+Execute       ap_set_clock -name default -period 3.333 -unit ns -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 3.333ns.
+Execute       set_part xcu280-fsvh2892-2L-e 
+Execute         create_platform xcu280-fsvh2892-2L-e -board  
+DBG:HLSDevice: Trying to load device library: /tools/Xilinx/Vitis_HLS/2022.2/lib/lnx64.o/libxv_hlsvwrap.so
+DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: /tools/Xilinx/Vivado/2022.2/data/parts/arch.xml
+DBG:HLSDevice: init success
+INFO: [HLS 200-1611] Setting target device to 'xcu280-fsvh2892-2L-e'
+Command         create_platform done; 5.13 sec.
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/common/xilinx.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/plb46.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/axi4.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute             source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/saxilite.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfft.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfir.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/util.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/DSP48/dsp48.gen 
+Command         ap_source done; 0.12 sec.
+Execute         ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute         config_compile -quiet -complex-mul-dsp=0 
+Command       set_part done; 5.29 sec.
+Execute       send_msg_by_id INFO @200-1505@%s%s  vivado 
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_latency=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_latency=0
+Execute       config_interface -m_axi_latency=0 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_alignment_byte_size=1 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_alignment_byte_size=1
+Execute       config_interface -m_axi_alignment_byte_size=1 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_max_widen_bitwidth=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_max_widen_bitwidth=0
+Execute       config_interface -m_axi_max_widen_bitwidth=0 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_rtl -register_reset_num=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_rtl -register_reset_num=0
+Execute       config_rtl -register_reset_num=0 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_latency=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+Execute       config_interface -m_axi_latency=64 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+Execute       config_interface -m_axi_alignment_byte_size=64 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+Execute       config_interface -m_axi_max_widen_bitwidth=512 
+Execute       send_msg_by_id INFO @200-1464@%s config_rtl -register_reset_num=3 
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+Execute       config_rtl -register_reset_num=3 
+Command     open_solution done; 5.57 sec.
+Execute     set_part xcu280-fsvh2892-2L-e 
+INFO: [HLS 200-1510] Running: set_part xcu280-fsvh2892-2L-e 
+Execute       create_platform xcu280-fsvh2892-2L-e -board  
+Execute       source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/util.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute       ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute       config_compile -quiet -complex-mul-dsp=0 
+Command     set_part done; 0.15 sec.
+Execute     create_clock -period 300.000000MHz -name default 
+INFO: [HLS 200-1510] Running: create_clock -period 300.000000MHz -name default 
+Execute     set_top krnl 
+INFO: [HLS 200-1510] Running: set_top krnl 
+Execute     config_interface -m_axi_latency=64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_latency=64 
+Execute     config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size=64 
+Execute     config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_max_widen_bitwidth=512 
+Execute     config_rtl -register_reset_num=3 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num=3 
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnl.cpp' to the project
+Execute     add_files -tb /home/dang004/R-Tree-Testbed/src/test_krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files -tb /home/dang004/R-Tree-Testbed/src/test_krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding test bench file '/home/dang004/R-Tree-Testbed/src/test_krnl.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnlSearch.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnlSearch.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnlSearch.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/mem_mngr.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/mem_mngr.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/mem_mngr.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/node.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/node.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/node.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/nodeArray.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/nodeArray.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/nodeArray.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnlInsert.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnlInsert.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnlInsert.cpp' to the project
+Execute     csim_design 
+INFO: [HLS 200-1510] Running: csim_design 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+Execute       source csim/.lst_opt.tcl 
+Execute       ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute       source run_sim.tcl 
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+Command     csim_design done; 9.68 sec.
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 8.48 seconds. CPU system time: 1.18 seconds. Elapsed time: 9.68 seconds; current allocated memory: 0.000 MB.
+Execute     cleanup_all 
+INFO-FLOW: Workspace /home/dang004/R-Tree-Testbed/build/src/krnl_prj/solution1 opened at Fri Nov 01 16:10:30 PDT 2024
+Execute       ap_set_clock -name default -period 3.333 -unit ns -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 3.333ns.
+Execute       set_part xcu280-fsvh2892-2L-e 
+Execute         create_platform xcu280-fsvh2892-2L-e -board  
+DBG:HLSDevice: Trying to load device library: /tools/Xilinx/Vitis_HLS/2022.2/lib/lnx64.o/libxv_hlsvwrap.so
+DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: /tools/Xilinx/Vivado/2022.2/data/parts/arch.xml
+DBG:HLSDevice: init success
+INFO: [HLS 200-1611] Setting target device to 'xcu280-fsvh2892-2L-e'
+Command         create_platform done; 4.93 sec.
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/common/xilinx.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/plb46.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/axi4.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute             source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/saxilite.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfft.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfir.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/util.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/DSP48/dsp48.gen 
+Command         ap_source done; 0.11 sec.
+Execute         ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute         config_compile -quiet -complex-mul-dsp=0 
+Command       set_part done; 5.11 sec.
+Execute       send_msg_by_id INFO @200-1505@%s%s  vivado 
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_latency=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_latency=0
+Execute       config_interface -m_axi_latency=0 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_alignment_byte_size=1 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_alignment_byte_size=1
+Execute       config_interface -m_axi_alignment_byte_size=1 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_max_widen_bitwidth=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_max_widen_bitwidth=0
+Execute       config_interface -m_axi_max_widen_bitwidth=0 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_rtl -register_reset_num=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_rtl -register_reset_num=0
+Execute       config_rtl -register_reset_num=0 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_latency=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+Execute       config_interface -m_axi_latency=64 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+Execute       config_interface -m_axi_alignment_byte_size=64 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+Execute       config_interface -m_axi_max_widen_bitwidth=512 
+Execute       send_msg_by_id INFO @200-1464@%s config_rtl -register_reset_num=3 
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+Execute       config_rtl -register_reset_num=3 
+Command     open_solution done; 5.43 sec.
+Execute     set_part xcu280-fsvh2892-2L-e 
+INFO: [HLS 200-1510] Running: set_part xcu280-fsvh2892-2L-e 
+Execute       create_platform xcu280-fsvh2892-2L-e -board  
+Execute       source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/util.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute       ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute       config_compile -quiet -complex-mul-dsp=0 
+Command     set_part done; 0.16 sec.
+Execute     create_clock -period 300.000000MHz -name default 
+INFO: [HLS 200-1510] Running: create_clock -period 300.000000MHz -name default 
+Execute     set_top krnl 
+INFO: [HLS 200-1510] Running: set_top krnl 
+Execute     config_interface -m_axi_latency=64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_latency=64 
+Execute     config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size=64 
+Execute     config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_max_widen_bitwidth=512 
+Execute     config_rtl -register_reset_num=3 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num=3 
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnl.cpp' to the project
+Execute     add_files -tb /home/dang004/R-Tree-Testbed/src/test_krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files -tb /home/dang004/R-Tree-Testbed/src/test_krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding test bench file '/home/dang004/R-Tree-Testbed/src/test_krnl.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnlSearch.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnlSearch.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnlSearch.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/mem_mngr.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/mem_mngr.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/mem_mngr.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/node.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/node.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/node.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/nodeArray.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/nodeArray.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/nodeArray.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnlInsert.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnlInsert.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnlInsert.cpp' to the project
+Execute     csim_design 
+INFO: [HLS 200-1510] Running: csim_design 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+Execute       source csim/.lst_opt.tcl 
+Execute       ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute       source run_sim.tcl 
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+Command     csim_design done; 20.83 sec.
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 18.49 seconds. CPU system time: 2.32 seconds. Elapsed time: 20.83 seconds; current allocated memory: 0.000 MB.
+Execute     cleanup_all 
+INFO-FLOW: Workspace /home/dang004/R-Tree-Testbed/build/src/krnl_prj/solution1 opened at Fri Nov 01 16:11:45 PDT 2024
+Execute       ap_set_clock -name default -period 3.333 -unit ns -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 3.333ns.
+Execute       set_part xcu280-fsvh2892-2L-e 
+Execute         create_platform xcu280-fsvh2892-2L-e -board  
+DBG:HLSDevice: Trying to load device library: /tools/Xilinx/Vitis_HLS/2022.2/lib/lnx64.o/libxv_hlsvwrap.so
+DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: /tools/Xilinx/Vivado/2022.2/data/parts/arch.xml
+DBG:HLSDevice: init success
+INFO: [HLS 200-1611] Setting target device to 'xcu280-fsvh2892-2L-e'
+Command         create_platform done; 4.89 sec.
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/common/xilinx.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/plb46.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/axi4.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute             source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/saxilite.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfft.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfir.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/util.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/DSP48/dsp48.gen 
+Command         ap_source done; 0.12 sec.
+Execute         ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute         config_compile -quiet -complex-mul-dsp=0 
+Command       set_part done; 5.04 sec.
+Execute       send_msg_by_id INFO @200-1505@%s%s  vivado 
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_latency=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_latency=0
+Execute       config_interface -m_axi_latency=0 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_alignment_byte_size=1 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_alignment_byte_size=1
+Execute       config_interface -m_axi_alignment_byte_size=1 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_max_widen_bitwidth=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_max_widen_bitwidth=0
+Execute       config_interface -m_axi_max_widen_bitwidth=0 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_rtl -register_reset_num=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_rtl -register_reset_num=0
+Execute       config_rtl -register_reset_num=0 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_latency=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+Execute       config_interface -m_axi_latency=64 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+Execute       config_interface -m_axi_alignment_byte_size=64 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+Execute       config_interface -m_axi_max_widen_bitwidth=512 
+Execute       send_msg_by_id INFO @200-1464@%s config_rtl -register_reset_num=3 
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+Execute       config_rtl -register_reset_num=3 
+Command     open_solution done; 5.36 sec.
+Execute     set_part xcu280-fsvh2892-2L-e 
+INFO: [HLS 200-1510] Running: set_part xcu280-fsvh2892-2L-e 
+Execute       create_platform xcu280-fsvh2892-2L-e -board  
+Execute       source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/util.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute       ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute       config_compile -quiet -complex-mul-dsp=0 
+Command     set_part done; 0.17 sec.
+Execute     create_clock -period 300.000000MHz -name default 
+INFO: [HLS 200-1510] Running: create_clock -period 300.000000MHz -name default 
+Execute     set_top krnl 
+INFO: [HLS 200-1510] Running: set_top krnl 
+Execute     config_interface -m_axi_latency=64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_latency=64 
+Execute     config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size=64 
+Execute     config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_max_widen_bitwidth=512 
+Execute     config_rtl -register_reset_num=3 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num=3 
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnl.cpp' to the project
+Execute     add_files -tb /home/dang004/R-Tree-Testbed/src/test_krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files -tb /home/dang004/R-Tree-Testbed/src/test_krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding test bench file '/home/dang004/R-Tree-Testbed/src/test_krnl.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnlSearch.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnlSearch.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnlSearch.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/mem_mngr.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/mem_mngr.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/mem_mngr.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/node.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/node.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/node.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/nodeArray.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/nodeArray.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/nodeArray.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnlInsert.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnlInsert.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnlInsert.cpp' to the project
+Execute     csim_design 
+INFO: [HLS 200-1510] Running: csim_design 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+Execute       source csim/.lst_opt.tcl 
+Execute       ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute       source run_sim.tcl 
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+Command     csim_design done; 19.88 sec.
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 17.89 seconds. CPU system time: 1.98 seconds. Elapsed time: 19.88 seconds; current allocated memory: 0.000 MB.
+Execute     cleanup_all 
+INFO-FLOW: Workspace /home/dang004/R-Tree-Testbed/build/src/krnl_prj/solution1 opened at Fri Nov 01 16:13:34 PDT 2024
+Execute       ap_set_clock -name default -period 3.333 -unit ns -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 3.333ns.
+Execute       set_part xcu280-fsvh2892-2L-e 
+Execute         create_platform xcu280-fsvh2892-2L-e -board  
+DBG:HLSDevice: Trying to load device library: /tools/Xilinx/Vitis_HLS/2022.2/lib/lnx64.o/libxv_hlsvwrap.so
+DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: /tools/Xilinx/Vivado/2022.2/data/parts/arch.xml
+DBG:HLSDevice: init success
+INFO: [HLS 200-1611] Setting target device to 'xcu280-fsvh2892-2L-e'
+Command         create_platform done; 4.97 sec.
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/common/xilinx.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/plb46.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/axi4.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute             source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/saxilite.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfft.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfir.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/util.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/DSP48/dsp48.gen 
+Command         ap_source done; 0.12 sec.
+Execute         ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute         config_compile -quiet -complex-mul-dsp=0 
+Command       set_part done; 5.12 sec.
+Execute       send_msg_by_id INFO @200-1505@%s%s  vivado 
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_latency=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_latency=0
+Execute       config_interface -m_axi_latency=0 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_alignment_byte_size=1 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_alignment_byte_size=1
+Execute       config_interface -m_axi_alignment_byte_size=1 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_max_widen_bitwidth=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_max_widen_bitwidth=0
+Execute       config_interface -m_axi_max_widen_bitwidth=0 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_rtl -register_reset_num=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_rtl -register_reset_num=0
+Execute       config_rtl -register_reset_num=0 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_latency=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+Execute       config_interface -m_axi_latency=64 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+Execute       config_interface -m_axi_alignment_byte_size=64 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+Execute       config_interface -m_axi_max_widen_bitwidth=512 
+Execute       send_msg_by_id INFO @200-1464@%s config_rtl -register_reset_num=3 
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+Execute       config_rtl -register_reset_num=3 
+Command     open_solution done; 5.44 sec.
+Execute     set_part xcu280-fsvh2892-2L-e 
+INFO: [HLS 200-1510] Running: set_part xcu280-fsvh2892-2L-e 
+Execute       create_platform xcu280-fsvh2892-2L-e -board  
+Execute       source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/util.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/DSP48/dsp48.gen 
+Execute       ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute       config_compile -quiet -complex-mul-dsp=0 
+Command     set_part done; 0.15 sec.
+Execute     create_clock -period 300.000000MHz -name default 
+INFO: [HLS 200-1510] Running: create_clock -period 300.000000MHz -name default 
+Execute     set_top krnl 
+INFO: [HLS 200-1510] Running: set_top krnl 
+Execute     config_interface -m_axi_latency=64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_latency=64 
+Execute     config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size=64 
+Execute     config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_max_widen_bitwidth=512 
+Execute     config_rtl -register_reset_num=3 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num=3 
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnl.cpp' to the project
+Execute     add_files -tb /home/dang004/R-Tree-Testbed/src/test_krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files -tb /home/dang004/R-Tree-Testbed/src/test_krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding test bench file '/home/dang004/R-Tree-Testbed/src/test_krnl.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnlSearch.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnlSearch.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnlSearch.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/mem_mngr.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/mem_mngr.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/mem_mngr.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/node.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/node.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/node.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/nodeArray.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/nodeArray.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/nodeArray.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnlInsert.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnlInsert.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnlInsert.cpp' to the project
+Execute     csim_design 
+INFO: [HLS 200-1510] Running: csim_design 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+Execute       source csim/.lst_opt.tcl 
+Execute       ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute       source run_sim.tcl 
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+Command     csim_design done; 10.28 sec.
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 9.05 seconds. CPU system time: 1.22 seconds. Elapsed time: 10.28 seconds; current allocated memory: 0.000 MB.
+Execute     cleanup_all 
+INFO-FLOW: Workspace /home/dang004/R-Tree-Testbed/build/src/krnl_prj/solution1 opened at Fri Nov 01 16:15:16 PDT 2024
+Execute       ap_set_clock -name default -period 3.333 -unit ns -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 3.333ns.
+Execute       set_part xcu280-fsvh2892-2L-e 
+Execute         create_platform xcu280-fsvh2892-2L-e -board  
+DBG:HLSDevice: Trying to load device library: /tools/Xilinx/Vitis_HLS/2022.2/lib/lnx64.o/libxv_hlsvwrap.so
+DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: /tools/Xilinx/Vivado/2022.2/data/parts/arch.xml
+DBG:HLSDevice: init success
+INFO: [HLS 200-1611] Setting target device to 'xcu280-fsvh2892-2L-e'
+Command         create_platform done; 4.85 sec.
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/common/xilinx.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/plb46.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/axi4.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute             source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/saxilite.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfft.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfir.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/util.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/DSP48/dsp48.gen 
+Command         ap_source done; 0.11 sec.
+Execute         ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute         config_compile -quiet -complex-mul-dsp=0 
+Command       set_part done; 5 sec.
+Execute       send_msg_by_id INFO @200-1505@%s%s  vivado 
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_latency=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_latency=0
+Execute       config_interface -m_axi_latency=0 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_alignment_byte_size=1 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_alignment_byte_size=1
+Execute       config_interface -m_axi_alignment_byte_size=1 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_interface -m_axi_max_widen_bitwidth=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_max_widen_bitwidth=0
+Execute       config_interface -m_axi_max_widen_bitwidth=0 
+Execute       send_msg_by_id INFO @200-435@%s%s 'open_solution -flow_target vivado' config_rtl -register_reset_num=0 
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_rtl -register_reset_num=0
+Execute       config_rtl -register_reset_num=0 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_latency=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+Execute       config_interface -m_axi_latency=64 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+Execute       config_interface -m_axi_alignment_byte_size=64 
+Execute       send_msg_by_id INFO @200-1464@%s config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+Execute       config_interface -m_axi_max_widen_bitwidth=512 
+Execute       send_msg_by_id INFO @200-1464@%s config_rtl -register_reset_num=3 
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+Execute       config_rtl -register_reset_num=3 
+Command     open_solution done; 5.34 sec.
+Execute     set_part xcu280-fsvh2892-2L-e 
+INFO: [HLS 200-1510] Running: set_part xcu280-fsvh2892-2L-e 
+Execute       create_platform xcu280-fsvh2892-2L-e -board  
+Execute       source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/common/xilinx.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/plb46.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/axi4.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/saxilite.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfft.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/xfir.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/util.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source /tools/Xilinx/Vitis_HLS/2022.2/common/technology/xilinx/DSP48/dsp48.gen 
+Command       ap_source done; 0.11 sec.
+Execute       ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute       config_compile -quiet -complex-mul-dsp=0 
+Command     set_part done; 0.15 sec.
+Execute     create_clock -period 300.000000MHz -name default 
+INFO: [HLS 200-1510] Running: create_clock -period 300.000000MHz -name default 
+Execute     set_top krnl 
+INFO: [HLS 200-1510] Running: set_top krnl 
+Execute     config_interface -m_axi_latency=64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_latency=64 
+Execute     config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size=64 
+Execute     config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_max_widen_bitwidth=512 
+Execute     config_rtl -register_reset_num=3 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num=3 
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnl.cpp' to the project
+Execute     add_files -tb /home/dang004/R-Tree-Testbed/src/test_krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files -tb /home/dang004/R-Tree-Testbed/src/test_krnl.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding test bench file '/home/dang004/R-Tree-Testbed/src/test_krnl.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnlSearch.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnlSearch.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnlSearch.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/mem_mngr.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/mem_mngr.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/mem_mngr.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/node.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/node.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/node.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/nodeArray.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/nodeArray.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/nodeArray.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/overlapEnlargementPair.cpp' to the project
+Execute     add_file /home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+WARNING: [HLS 200-40] Command 'add_file' is deprecated; please use 'add_files'.
+Execute       add_files /home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp -type c -tb=0 -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/areaEnlargementPair.cpp' to the project
+Execute     add_files /home/dang004/R-Tree-Testbed/src/krnlInsert.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-1510] Running: add_files /home/dang004/R-Tree-Testbed/src/krnlInsert.cpp -cflags -I/home/dang004/R-Tree-Testbed/build/src/../../include 
+INFO: [HLS 200-10] Adding design file '/home/dang004/R-Tree-Testbed/src/krnlInsert.cpp' to the project
+Execute     csim_design 
+INFO: [HLS 200-1510] Running: csim_design 
+INFO: [SIM 211-2] *************** CSIM start ***************
+INFO: [SIM 211-4] CSIM will launch GCC as the compiler.
+Execute       source csim/.lst_opt.tcl 
+Execute       ap_part_info -name xcu280-fsvh2892-2L-e -data info 
+Execute       source run_sim.tcl 
+INFO: [SIM 211-1] CSim done with 0 errors.
+INFO: [SIM 211-3] *************** CSIM finish ***************
+Command     csim_design done; 20.08 sec.
+INFO: [HLS 200-111] Finished Command csim_design CPU user time: 18.08 seconds. CPU system time: 2.01 seconds. Elapsed time: 20.08 seconds; current allocated memory: 0.000 MB.
+Execute     cleanup_all 

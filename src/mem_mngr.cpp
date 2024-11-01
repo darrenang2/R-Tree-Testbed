@@ -18,6 +18,10 @@ void memory_manager(
     hls::stream<Node> &split2overflow,
     Node *HBM_PTR)
 {
+
+    nodes_in_level[0] = 7;
+    nodes_in_level[1] = 4;
+
     if (!search2mem.empty() && !mem2search.full())
     {
         int node_index;
@@ -150,13 +154,19 @@ void memory_manager(
                 int start_index = get_level_start_index(childLevel);
                 std::cout << "start index: " << start_index << std::endl;
                 HBM_PTR[start_index + node_index] = node;
+                nodeParent.child[i] = start_index + node_index;
                 nodes_in_level[childLevel]++;
                 std::cout << "Inserting node at index: " << start_index + node_index << std::endl;
                 break;
             }
         }
 
-        if (nodeParent.child[5] != -1)
+        for (int i = 0; i < MAX_CHILDREN; i++)
+        {
+            std::cout << "Child " << i << ": " << nodeParent.child[i] << std::endl;
+        }
+
+        if (nodeParent.child[5] == -1)
         {
             // std::cout << "writing to mem2insert" << std::endl;
             mem2insert.write(1);

@@ -64,9 +64,6 @@ int main()
     HBM_PTR[5] = createLeaf(true, setBB(10, 14, 10, 14));
     HBM_PTR[6] = createLeaf(true, setBB(17, 19, 17, 19));
 
-    nodes_in_level[0] = 7;
-    nodes_in_level[1] = 4;
-
     searchInput.write(setBB(0, 10, 0, 10));
 
     Node newNode = createNode(false, setBB(12, 13, 12, 13), -1, -1, -1, -1, -1);

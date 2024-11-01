@@ -1,12 +1,46 @@
 INFO: [SIM 2] *************** CSIM start ***************
 INFO: [SIM 4] CSIM will launch GCC as the compiler.
-   Compiling ../../../../../../src/mem_mngr.cpp in debug mode
-../../../../../../src/mem_mngr.cpp:6:1: error: ‘nodes_in_level’ does not name a type
- nodes_in_level[0] = 7;
- ^~~~~~~~~~~~~~
-../../../../../../src/mem_mngr.cpp:7:1: error: ‘nodes_in_level’ does not name a type
- nodes_in_level[1] = 4;
- ^~~~~~~~~~~~~~
-make[4]: *** [obj/mem_mngr.o] Error 1
-ERR: [SIM 100] 'csim_design' failed: compilation error(s).
+   Compiling ../../../../../../src/test_krnl.cpp in debug mode
+   Compiling ../../../../../../src/krnlInsert.cpp in debug mode
+   Generating csim.exe
+Choose Subtree: INIT
+Insert: READ_NODE
+Choose Subtree: WRITE
+200 pushed into stack
+100 pushed into stack
+101 pushed into stack
+102 pushed into stack
+0 pushed into stack
+1 pushed into stack
+2 pushed into stack
+3 pushed into stack
+4 pushed into stack
+4 pushed into stack
+0 pushed into stack
+1 pushed into stack
+2 pushed into stack
+101 pushed into stack
+3 pushed into stack
+Choose Subtree: RECEIVE
+Choose Subtree: FOUND
+result: 101
+Insert: READ_INDEX
+Insert: WRITE_INDEX
+Insert: INSERT
+child level: 0
+node_index: 7
+start index: 0
+Inserting node at index: 7
+Child 0: 5
+Child 1: 6
+Child 2: 7
+Child 3: -1
+Child 4: -1
+Child 5: -1
+Insert: OVERFLOWTREATMENT
+Insert: OUTPUT
+Insert: 1
+INFO [HLS SIM]: The maximum depth reached by any hls::stream() instance in the design is 1
+WARNING [HLS SIM]: hls::stream 'hls::stream<boundingBox, 0>0' contains leftover data, which may result in RTL simulation hanging.
+INFO: [SIM 1] CSim done with 0 errors.
 INFO: [SIM 3] *************** CSIM finish ***************

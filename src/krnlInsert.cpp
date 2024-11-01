@@ -115,8 +115,8 @@ void insert(hls::stream<Node> &insert2mem,
         {
             std::cout << "Insert: OVERFLOWTREATMENT" << std::endl;
             mem2insert.read(result);
-            state = OUTPUT;
         }
+        state = OUTPUT;
         break;
     case OUTPUT:
         if (!insertOutput.full())
