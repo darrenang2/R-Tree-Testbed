@@ -1,108 +1,12 @@
 INFO: [SIM 2] *************** CSIM start ***************
 INFO: [SIM 4] CSIM will launch GCC as the compiler.
-STATE: INIT
-200 pushed into stack
-Search: 0 10 0 10
-STATE: POP
-node index: 200
-Requesting: 200
-Writing: 200
-STATE: GET_NODE
-Requesting: 100
-Writing: 100
-STATE: PUSH
-Current Node: 0 9 0 9
-Pushing Child: 100
-100 pushed into stack
-Requesting: 101
-Writing: 101
-STATE: PUSH
-Current Node: 10 20 10 20
-Requesting: 102
-Writing: 102
-STATE: PUSH
-Current Node: 0 16 0 16
-Pushing Child: 102
-102 pushed into stack
-STATE: POP
-node index: 102
-Requesting: 102
-Writing: 102
-STATE: GET_NODE
-STATE: POP
-node index: 100
-Requesting: 100
-Writing: 100
-STATE: GET_NODE
-Requesting: 0
-Writing: 0
-STATE: PUSH
-Current Node: 0 4 0 4
-Pushing Child: 0
-0 pushed into stack
-Requesting: 1
-Writing: 1
-STATE: PUSH
-Current Node: 5 9 5 9
-Requesting: 2
-Writing: 2
-STATE: PUSH
-Current Node: 10 14 10 14
-Requesting: 3
-Writing: 3
-STATE: PUSH
-Current Node: 15 19 15 19
-Requesting: 4
-Writing: 4
-STATE: PUSH
-Current Node: 0 7 0 7
-Pushing Child: 4
-4 pushed into stack
-STATE: POP
-node index: 4
-Requesting: 4
-Writing: 4
-STATE: GET_NODE
-Leaf Node: 4
-Adding Leaf Node to Found: 4
-STATE: POP
-node index: 0
-Requesting: 0
-Writing: 0
-STATE: GET_NODE
-Leaf Node: 0
-Adding Leaf Node to Found: 0
-STATE: POP
-STATE: FOUND
-Found: 4
-Found: 0
-STATE: FOUND
-Found: 4
-Found: 0
-STATE: FOUND
-Found: 4
-Found: 0
-STATE: FOUND
-Found: 4
-Found: 0
-STATE: FOUND
-Found: 4
-Found: 0
-STATE: FOUND
-Found: 4
-Found: 0
-STATE: FOUND
-Found: 4
-Found: 0
-STATE: FOUND
-Found: 4
-Found: 0
-STATE: FOUND
-Found: 4
-Found: 0
-STATE: FOUND
-Found: 4
-Found: 0
-INFO [HLS SIM]: The maximum depth reached by any hls::stream() instance in the design is 5
-INFO: [SIM 1] CSim done with 0 errors.
+   Compiling ../../../../../../src/mem_mngr.cpp in debug mode
+../../../../../../src/mem_mngr.cpp:6:1: error: ‘nodes_in_level’ does not name a type
+ nodes_in_level[0] = 7;
+ ^~~~~~~~~~~~~~
+../../../../../../src/mem_mngr.cpp:7:1: error: ‘nodes_in_level’ does not name a type
+ nodes_in_level[1] = 4;
+ ^~~~~~~~~~~~~~
+make[4]: *** [obj/mem_mngr.o] Error 1
+ERR: [SIM 100] 'csim_design' failed: compilation error(s).
 INFO: [SIM 3] *************** CSIM finish ***************

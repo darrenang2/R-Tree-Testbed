@@ -47,8 +47,10 @@ int main()
     static hls::stream<Node> split2overflow;
 
     Node HBM_PTR[2000];
+
     data_t searchResult;
-    int cnt = 0;
+    static int insertResult;
+    static int cnt = 0;
 
     HBM_PTR[200] = createNode(false, setBB(0, 20, 0, 20), 100, 101, 102, -1, -1);
     HBM_PTR[100] = createNode(false, setBB(0, 9, 0, 9), 0, 1, 2, 3, 4);
@@ -62,17 +64,45 @@ int main()
     HBM_PTR[5] = createLeaf(true, setBB(10, 14, 10, 14));
     HBM_PTR[6] = createLeaf(true, setBB(17, 19, 17, 19));
 
+    nodes_in_level[0] = 7;
+    nodes_in_level[1] = 4;
+
     searchInput.write(setBB(0, 10, 0, 10));
 
-    while (cnt < 30)
+    Node newNode = createNode(false, setBB(12, 13, 12, 13), -1, -1, -1, -1, -1);
+    cstInput.write(newNode);
+    insertInput.write(newNode);
+
+    while (cnt < 20)
     {
         cnt++;
 
-        search(
-            searchInput,
-            searchOutput,
-            search2mem,
-            mem2search);
+        chooseSubTree(
+            cst2mem,
+            mem2cst,
+            cstInput,
+            cstOutput);
+
+        // if (!cstOutput.empty())
+            insert(
+                insert2mem,
+                mem2insert,
+                index2mem,
+                cstOutput,
+                insertInput,
+                insertOutput);
+
+        if (!insertOutput.empty())
+        {
+            insertOutput.read(insertResult);
+            std::cout << "Insert: " << insertResult << std::endl;
+            // 1 = no overflow, 2 = overflow
+        }
+
+        if (!overflow2mem.empty())
+        {
+            std::cout << "Overflow" << std::endl;
+        }
 
         memory_manager(
             search2mem,
@@ -88,11 +118,5 @@ int main()
             overflow2split,
             split2overflow,
             HBM_PTR);
-
-        while (!searchOutput.empty())
-        {
-            searchOutput.read(searchResult);
-            std::cout << "Found: " << searchResult << std::endl;
-        }
     }
 }

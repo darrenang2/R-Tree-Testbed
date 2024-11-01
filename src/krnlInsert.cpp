@@ -6,7 +6,7 @@ void chooseSubTree(hls::stream<Node> &cst2mem,
                    hls::stream<int> &cstOutput)
 {
     Node newNode;
-    int result;
+    static int result = -1;
 
     enum cstStates
     {
@@ -40,11 +40,13 @@ void chooseSubTree(hls::stream<Node> &cst2mem,
         {
             std::cout << "Choose Subtree: RECEIVE" << std::endl;
             mem2cst.read(result);
+            // std::cout << "Choose Subtree result: " << result << std::endl;
             state = FOUND;
         }
         break;
     case FOUND:
         std::cout << "Choose Subtree: FOUND" << std::endl;
+        std::cout << "result: " << result << std::endl;
         cstOutput.write(result);
         state = INIT;
         break;
@@ -92,6 +94,7 @@ void insert(hls::stream<Node> &insert2mem,
         }
         break;
     case WRITE_INDEX:
+        // std::cout << "Insert: WRITE_INDEX" << std::endl;
         if (!index2mem.full())
         {
             std::cout << "Insert: WRITE_INDEX" << std::endl;

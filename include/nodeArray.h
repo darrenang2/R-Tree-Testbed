@@ -4,7 +4,7 @@
 #include "node.h"
 
 #define MAX_NODES_PER_LEVEL 100
-#define MAX_LEVELS 100
+#define MAX_LEVELS 20
 
 volatile static int H = 2; // current height of root node - 1 (leaves are at level 0)
 

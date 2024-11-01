@@ -144,12 +144,6 @@ extern "C" void krnl(
                 insertInput,
                 insertOutput);
 
-            overflowTreatment(
-                overflow2mem,
-                mem2overflow,
-                overflowInput,
-                overflowOutput);
-
             if (!insertOutput.empty())
             {
                 startChooseSubtree = true;
