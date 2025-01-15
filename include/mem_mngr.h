@@ -22,6 +22,13 @@ void memory_manager(
     hls::stream<Node> &overflow2reinsert,
     hls::stream<Node> &overflow2split,
     hls::stream<Node> &split2overflow,
+    hls::stream<int> &removeInputLevel,
+    hls::stream<int> &removeInputIndex,
+    hls::stream<int> &removeLevel2mem,
+    hls::stream<int> &removeIndex2mem,
+    hls::stream<int> &mem2removeLevel,
+    hls::stream<int> &mem2removeIndex,
+    hls::stream<Node> &mem2node,
     Node *HBM_PTR);
 
 #endif // MEM_MNGR_H

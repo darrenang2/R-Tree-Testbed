@@ -17,7 +17,7 @@
         <library value="xilinx/virtexuplus/virtexuplus" name="DefaultPlatform"/>
     </libraryList>
     <clockList>
-        <clock name="default" default="false" period="300.000000MHz"/>
+        <clock default="false" name="default" period="300.000000MHz"/>
     </clockList>
 </AutoPilot:solution>
 

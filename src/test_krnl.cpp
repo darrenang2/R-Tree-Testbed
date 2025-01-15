@@ -1,6 +1,7 @@
 #include "constants.h"
 #include "krnlSearch.h"
 #include "krnlInsert.h"
+#include "krnlRemove.h"
 #include "constants.h"
 #include "stack.h"
 #include "node.h"
@@ -46,6 +47,14 @@ int main()
     static hls::stream<Node> overflow2split;
     static hls::stream<Node> split2overflow;
 
+    static hls::stream<int> removeInputLevel;
+    static hls::stream<int> removeInputIndex;
+    static hls::stream<int> removeLevel2mem;
+    static hls::stream<int> removeIndex2mem;
+    static hls::stream<int> mem2removeLevel;
+    static hls::stream<int> mem2removeIndex;
+    static hls::stream<Node> mem2node;
+
     Node HBM_PTR[2000];
 
     data_t searchResult;
@@ -58,15 +67,15 @@ int main()
     HBM_PTR[102] = createNode(false, setBB(0, 16, 0, 16), -1, -1, -1, -1, -1);
     HBM_PTR[0] = createLeaf(true, setBB(0, 4, 0, 4));
     HBM_PTR[1] = createLeaf(true, setBB(5, 9, 5, 9));
-    HBM_PTR[2] = createLeaf(true, setBB(10, 14, 10, 14));
-    HBM_PTR[3] = createLeaf(true, setBB(15, 19, 15, 19));
+    HBM_PTR[2] = createLeaf(true, setBB(1, 3, 1, 3));
+    HBM_PTR[3] = createLeaf(true, setBB(5, 8, 5, 8));
     HBM_PTR[4] = createLeaf(true, setBB(0, 7, 0, 7));
     HBM_PTR[5] = createLeaf(true, setBB(10, 14, 10, 14));
     HBM_PTR[6] = createLeaf(true, setBB(17, 19, 17, 19));
 
     searchInput.write(setBB(0, 10, 0, 10));
+    Node newNode = createNode(false, setBB(0, 3, 0, 3), -1, -1, -1, -1, -1);
 
-    Node newNode = createNode(false, setBB(12, 13, 12, 13), -1, -1, -1, -1, -1);
     cstInput.write(newNode);
     insertInput.write(newNode);
 
@@ -74,32 +83,35 @@ int main()
     {
         cnt++;
 
-        chooseSubTree(
-            cst2mem,
-            mem2cst,
-            cstInput,
-            cstOutput);
+        // chooseSubTree(
+        //     cst2mem,
+        //     mem2cst,
+        //     cstInput,
+        //     cstOutput);
 
-        // if (!cstOutput.empty())
-            insert(
-                insert2mem,
-                mem2insert,
-                index2mem,
-                cstOutput,
-                insertInput,
-                insertOutput);
+        // // if (!cstOutput.empty())
+        // insert(
+        //     insert2mem,
+        //     mem2insert,
+        //     index2mem,
+        //     cstOutput,
+        //     insertInput,
+        //     insertOutput);
 
-        if (!insertOutput.empty())
-        {
-            insertOutput.read(insertResult);
-            std::cout << "Insert: " << insertResult << std::endl;
-            // 1 = no overflow, 2 = overflow
-        }
+        // if (!insertOutput.empty())
+        // {
+        //     insertOutput.read(insertResult);
+        //     std::cout << "Insert: " << insertResult << std::endl;
+        //     // 1 = no overflow, 2 = overflow
+        // }
 
-        if (!overflow2mem.empty())
-        {
-            std::cout << "Overflow" << std::endl;
-        }
+        // if (!overflow2mem.empty())
+        // {
+        //     std::cout << "Overflow" << std::endl;
+        // }
+
+        removeInputLevel.write(1);
+        removeInputIndex.write(0);
 
         memory_manager(
             search2mem,
@@ -114,6 +126,13 @@ int main()
             overflow2reinsert,
             overflow2split,
             split2overflow,
+            removeInputLevel,
+            removeInputIndex,
+            removeLevel2mem,
+            removeIndex2mem,
+            mem2removeLevel,
+            mem2removeIndex,
+            mem2node,
             HBM_PTR);
     }
 }

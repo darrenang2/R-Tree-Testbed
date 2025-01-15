@@ -67,6 +67,14 @@ extern "C" void krnl(
     static hls::stream<Node> overflow2split;
     static hls::stream<Node> split2overflow;
 
+    static hls::stream<int> removeInputLevel;
+    static hls::stream<int> removeInputIndex;
+    static hls::stream<int> removeLevel2mem;
+    static hls::stream<int> removeIndex2mem;
+    static hls::stream<int> mem2removeLevel;
+    static hls::stream<int> mem2removeIndex;
+    static hls::stream<Node> mem2node;
+
 #pragma HLS STREAM depth = 8 variable = search2mem
 #pragma HLS STREAM depth = 8 variable = mem2search
 #pragma HLS STREAM depth = 8 variable = cst2mem
@@ -167,6 +175,13 @@ extern "C" void krnl(
             overflow2reinsert,
             overflow2split,
             split2overflow,
+            removeInputLevel,
+            removeInputIndex,
+            removeLevel2mem,
+            removeIndex2mem,
+            mem2removeLevel,
+            mem2removeIndex,
+            mem2node,
             HBM_PTR);
     }
 }

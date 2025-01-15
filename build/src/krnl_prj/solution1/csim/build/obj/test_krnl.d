@@ -65,6 +65,7 @@ obj/test_krnl.o: ../../../../../../src/test_krnl.cpp \
  /home/dang004/R-Tree-Testbed/build/src/../../include/overlapEnlargementPair.h \
  /home/dang004/R-Tree-Testbed/build/src/../../include/areaEnlargementPair.h \
  /home/dang004/R-Tree-Testbed/build/src/../../include/krnlInsert.h \
+ /home/dang004/R-Tree-Testbed/build/src/../../include/krnlRemove.h \
  /home/dang004/R-Tree-Testbed/build/src/../../include/stack.h \
  /home/dang004/R-Tree-Testbed/build/src/../../include/node.h \
  /home/dang004/R-Tree-Testbed/build/src/../../include/overlapEnlargementPair.h \
