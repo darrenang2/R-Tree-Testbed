@@ -26,23 +26,31 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/make.tcl.in make.tcl)
 
 
 set(EXAMPLE_HLS_DEPENDS
-    ${CMAKE_CURRENT_SOURCE_DIR}/krnl.cpp 
-    ${CMAKE_CURRENT_SOURCE_DIR}/krnlSearch.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/krnlInsert.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/mem_mngr.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/krnlSearch.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/mem_mngr.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/constants.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/stack.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/node.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/overlapEnlargementPair.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/areaEnlargementPair.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/nodeArray.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/node.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/overlapEnlargementPair.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/areaEnlargementPair.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/nodeArray.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/test_krnl.cpp)
+   
+   # HLS
+   ${CMAKE_CURRENT_SOURCE_DIR}/hls/krnl.cpp 
+   ${CMAKE_CURRENT_SOURCE_DIR}/hls/krnlSearch.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/hls/krnlInsert.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/hls/mem_mngr.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/hls/node.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/hls/overlapEnlargementPair.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/hls/areaEnlargementPair.cpp
+   ${CMAKE_CURRENT_SOURCE_DIR}/hls/nodeArray.cpp
+
+   # Testbed
+   ${CMAKE_CURRENT_SOURCE_DIR}/hls/test_krnl.cpp
+
+   # inclues 
+   ${CMAKE_CURRENT_SOURCE_DIR}/include/krnlSearch.h
+   ${CMAKE_CURRENT_SOURCE_DIR}/include/mem_mngr.h
+   ${CMAKE_CURRENT_SOURCE_DIR}/include/constants.h
+   ${CMAKE_CURRENT_SOURCE_DIR}/include/stack.h
+   ${CMAKE_CURRENT_SOURCE_DIR}/include/node.h
+   ${CMAKE_CURRENT_SOURCE_DIR}/include/overlapEnlargementPair.h
+   ${CMAKE_CURRENT_SOURCE_DIR}/include/areaEnlargementPair.h
+   ${CMAKE_CURRENT_SOURCE_DIR}/include/nodeArray.h
+    
+)
 
 
 #Setup HLS custom targets

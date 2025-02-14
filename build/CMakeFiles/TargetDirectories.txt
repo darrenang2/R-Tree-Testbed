@@ -1,0 +1,10 @@
+/home/pyuva001/R-Tree-Testbed/build/src/CMakeFiles/installip.krnl.dir
+/home/pyuva001/R-Tree-Testbed/build/src/CMakeFiles/installip.dir
+/home/pyuva001/R-Tree-Testbed/build/src/CMakeFiles/ip.krnl.dir
+/home/pyuva001/R-Tree-Testbed/build/src/CMakeFiles/csim.krnl.dir
+/home/pyuva001/R-Tree-Testbed/build/src/CMakeFiles/cosim.krnl.dir
+/home/pyuva001/R-Tree-Testbed/build/src/CMakeFiles/csim.dir
+/home/pyuva001/R-Tree-Testbed/build/src/CMakeFiles/synthesis.krnl.dir
+/home/pyuva001/R-Tree-Testbed/build/src/CMakeFiles/ip.dir
+/home/pyuva001/R-Tree-Testbed/build/src/CMakeFiles/cosim.dir
+/home/pyuva001/R-Tree-Testbed/build/src/CMakeFiles/synthesis.dir
