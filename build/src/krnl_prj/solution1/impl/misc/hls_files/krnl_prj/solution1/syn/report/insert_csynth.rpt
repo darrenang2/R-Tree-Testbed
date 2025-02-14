@@ -1,0 +1,352 @@
+
+
+================================================================
+== Vitis HLS Report for 'insert'
+================================================================
+* Date:           Thu Feb 13 17:40:56 2025
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        krnl_prj
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcu280-fsvh2892-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.33 ns|  2.147 ns|     0.90 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max    | min | max |   Type  |
+    +---------+---------+----------+-----------+-----+-----+---------+
+    |        2|       20|  6.666 ns|  66.660 ns|    2|   20|       no|
+    +---------+---------+----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +--------------------+---------+---------+----------+-----------+-----------+-------+----------+
+        |                    |  Latency (cycles) | Iteration|  Initiation Interval  |  Trip |          |
+        |      Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count | Pipelined|
+        +--------------------+---------+---------+----------+-----------+-----------+-------+----------+
+        |- VITIS_LOOP_34_1   |        6|        6|         1|          -|          -|      6|        no|
+        |- VITIS_LOOP_334_1  |        2|       13|         2|          -|          -|  1 ~ 6|        no|
+        +--------------------+---------+---------+----------+-----------+-----------+-------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+---------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT   | URAM|
++---------------------+---------+------+---------+---------+-----+
+|DSP                  |        -|     -|        -|        -|    -|
+|Expression           |        -|     -|        0|      846|    -|
+|FIFO                 |        -|     -|        -|        -|    -|
+|Instance             |        -|     -|        -|        -|    -|
+|Memory               |        0|     -|       34|       36|    0|
+|Multiplexer          |        -|     -|        -|      977|    -|
+|Register             |        -|     -|     2824|        -|    -|
++---------------------+---------+------+---------+---------+-----+
+|Total                |        0|     0|     2858|     1859|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available SLR        |     1344|  3008|   869120|   434560|  320|
++---------------------+---------+------+---------+---------+-----+
+|Utilization SLR (%)  |        0|     0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available            |     4032|  9024|  2607360|  1303680|  960|
++---------------------+---------+------+---------+---------+-----+
+|Utilization (%)      |        0|     0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +--------------+---------------------------------+---------+----+----+-----+------+-----+------+-------------+
+    |    Memory    |              Module             | BRAM_18K| FF | LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +--------------+---------------------------------+---------+----+----+-----+------+-----+------+-------------+
+    |cur_child_U   |insert_cur_child_RAM_AUTO_1R1W   |        0|  32|  33|    0|     6|   32|     1|          192|
+    |root_child_U  |insert_root_child_RAM_AUTO_1R1W  |        0|   2|   3|    0|     6|    1|     1|            6|
+    +--------------+---------------------------------+---------+----+----+-----+------+-----+------+-------------+
+    |Total         |                                 |        0|  34|  36|    0|    12|   33|     2|          198|
+    +--------------+---------------------------------+---------+----+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------------+----------+----+---+-----+------------+------------+
+    |          Variable Name         | Operation| DSP| FF| LUT | Bitwidth P0| Bitwidth P1|
+    +--------------------------------+----------+----+---+-----+------------+------------+
+    |add_ln334_fu_1648_p2            |         +|   0|  0|   10|           3|           1|
+    |add_ln336_fu_1689_p2            |         +|   0|  0|   39|          32|          32|
+    |add_ln339_fu_1706_p2            |         +|   0|  0|   39|          32|           1|
+    |add_ln34_fu_1957_p2             |         +|   0|  0|   10|           3|           1|
+    |sub_ln336_fu_1677_p2            |         -|   0|  0|   39|          32|          32|
+    |ap_block_state18                |       and|   0|  0|    2|           1|           1|
+    |ap_condition_548                |       and|   0|  0|    2|           1|           1|
+    |ap_predicate_op135_read_state2  |       and|   0|  0|    2|           1|           1|
+    |tmp_55_nbreadreq_fu_232_p3      |       and|   0|  0|    2|           1|           0|
+    |tmp_nbreadreq_fu_256_p3         |       and|   0|  0|    2|           1|           0|
+    |tmp_s_nbreadreq_fu_240_p3       |       and|   0|  0|    2|           1|           0|
+    |grp_fu_843_p2                   |      icmp|   0|  0|   20|          32|           2|
+    |icmp_ln31_fu_1051_p2            |      icmp|   0|  0|   20|          32|          32|
+    |icmp_ln32_fu_1065_p2            |      icmp|   0|  0|   20|          32|          32|
+    |icmp_ln334_fu_1642_p2           |      icmp|   0|  0|    8|           3|           3|
+    |icmp_ln335_fu_1654_p2           |      icmp|   0|  0|   20|          32|           2|
+    |icmp_ln33_fu_1079_p2            |      icmp|   0|  0|   20|          32|          32|
+    |icmp_ln34_2_fu_1951_p2          |      icmp|   0|  0|    8|           3|           3|
+    |icmp_ln34_fu_1093_p2            |      icmp|   0|  0|   20|          32|          32|
+    |ap_block_state12                |        or|   0|  0|    2|           1|           1|
+    |ap_block_state2                 |        or|   0|  0|    2|           1|           1|
+    |or_ln316_fu_2054_p2             |        or|   0|  0|  385|         385|          65|
+    |or_ln336_fu_1683_p2             |        or|   0|  0|   32|          32|           1|
+    |select_ln316_1_fu_2005_p3       |    select|   0|  0|    2|           1|           2|
+    |select_ln316_2_fu_2013_p3       |    select|   0|  0|    2|           1|           2|
+    |select_ln316_3_fu_2021_p3       |    select|   0|  0|    2|           1|           2|
+    |select_ln316_4_fu_2029_p3       |    select|   0|  0|    2|           1|           2|
+    |select_ln316_5_fu_2107_p3       |    select|   0|  0|    2|           1|           2|
+    |select_ln316_fu_1997_p3         |    select|   0|  0|    2|           1|           2|
+    |select_ln31_fu_1057_p3          |    select|   0|  0|   32|           1|          32|
+    |select_ln32_fu_1071_p3          |    select|   0|  0|   32|           1|          32|
+    |select_ln33_fu_1085_p3          |    select|   0|  0|   32|           1|          32|
+    |select_ln34_fu_1099_p3          |    select|   0|  0|   32|           1|          32|
+    +--------------------------------+----------+----+---+-----+------------+------------+
+    |Total                           |          |   0|  0|  846|         735|         416|
+    +--------------------------------+----------+----+---+-----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------------------------+-----+-----------+-----+-----------+
+    |                    Name                   | LUT | Input Size| Bits| Total Bits|
+    +-------------------------------------------+-----+-----------+-----+-----------+
+    |addLeaf_flag_2_reg_642                     |   14|          3|    1|          3|
+    |ap_NS_fsm                                  |  134|         27|    1|         27|
+    |ap_phi_mux_addLeaf_flag_0_phi_fu_417_p26   |    9|          2|    1|          2|
+    |ap_phi_mux_addLeaf_flag_2_phi_fu_646_p18   |    9|          2|    1|          2|
+    |ap_phi_mux_addLeaf_new_2_phi_fu_680_p18    |    9|          2|    1|          2|
+    |ap_phi_mux_empty_phi_fu_561_p26            |   20|          4|    3|         12|
+    |ap_phi_mux_received_flag_0_phi_fu_464_p26  |    9|          2|    1|          2|
+    |ap_phi_mux_received_flag_2_phi_fu_713_p18  |    9|          2|    1|          2|
+    |ap_phi_mux_received_new_2_phi_fu_747_p18   |    9|          2|    1|          2|
+    |ap_phi_mux_wait_flag_0_phi_fu_511_p26      |    9|          2|    1|          2|
+    |ap_phi_mux_wait_flag_2_phi_fu_780_p18      |    9|          2|    1|          2|
+    |ap_phi_mux_wait_new_2_phi_fu_814_p18       |    9|          2|    1|          2|
+    |cst_req_blk_n                              |    9|          2|    1|          2|
+    |cst_req_din                                |   14|          3|  417|       1251|
+    |cur_amount_of_children                     |   20|          4|   32|        128|
+    |cur_amount_of_children_loc_0_reg_621       |    9|          2|   32|         64|
+    |cur_amount_of_children_loc_1_reg_631       |    9|          2|   32|         64|
+    |cur_box_maxX                               |   20|          4|   32|        128|
+    |cur_box_maxY                               |   20|          4|   32|        128|
+    |cur_box_minX                               |   20|          4|   32|        128|
+    |cur_box_minY                               |   20|          4|   32|        128|
+    |cur_child_address0                         |   37|          7|    3|         21|
+    |cur_child_address1                         |   49|          9|    3|         27|
+    |cur_child_d0                               |   54|         10|   32|        320|
+    |cur_child_d1                               |   59|         11|   32|        352|
+    |cur_hasLeaves                              |   14|          3|    1|          3|
+    |cur_index                                  |   14|          3|   32|         96|
+    |cur_parent                                 |   14|          3|   32|         96|
+    |empty_reg_553                              |   31|          6|    3|         18|
+    |getNode4insert2_blk_n                      |    9|          2|    1|          2|
+    |i_12_fu_228                                |    9|          2|    3|          6|
+    |i_fu_224                                   |    9|          2|    3|          6|
+    |insertFinished3_blk_n                      |    9|          2|    1|          2|
+    |insertNode4insert_blk_n                    |    9|          2|    1|          2|
+    |insertNode4insert_din                      |   14|          3|  417|       1251|
+    |newLeaf2insert_blk_n                       |    9|          2|    1|          2|
+    |newLeaf_index                              |    9|          2|   32|         64|
+    |newLeaf_index_loc_0_reg_603                |    9|          2|   32|         64|
+    |newLeaf_parent                             |    9|          2|   32|         64|
+    |newLeaf_parent_loc_0_reg_612               |    9|          2|   32|         64|
+    |overflow2split_blk_n                       |    9|          2|    1|          2|
+    |receiveNode4insert_blk_n                   |    9|          2|    1|          2|
+    |received_flag_2_reg_709                    |   14|          3|    1|          3|
+    |reg_849                                    |    9|          2|   32|         64|
+    |reg_854                                    |    9|          2|   32|         64|
+    |reg_859                                    |    9|          2|   32|         64|
+    |reg_864                                    |    9|          2|   32|         64|
+    |root_child_address0                        |   26|          5|    3|         15|
+    |root_child_address1                        |   20|          4|    3|         12|
+    |split2overflow_blk_n                       |    9|          2|    1|          2|
+    |state                                      |   65|         12|    3|         36|
+    |wait_flag_2_reg_776                        |   14|          3|    1|          3|
+    |writeChanges4insert_blk_n                  |    9|          2|    1|          2|
+    +-------------------------------------------+-----+-----------+-----+-----------+
+    |Total                                      |  977|        199| 1492|       4874|
+    +-------------------------------------------+-----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------------------------------+-----+----+-----+-----------+
+    |                   Name                   |  FF | LUT| Bits| Const Bits|
+    +------------------------------------------+-----+----+-----+-----------+
+    |addLeaf                                   |    1|   0|    1|          0|
+    |addLeaf_flag_0_reg_412                    |    1|   0|    1|          0|
+    |addLeaf_flag_2_reg_642                    |    1|   0|    1|          0|
+    |addLeaf_new_2_reg_675                     |    1|   0|    1|          0|
+    |add_ln334_reg_2398                        |    3|   0|    3|          0|
+    |add_ln336_reg_2411                        |   32|   0|   32|          0|
+    |ap_CS_fsm                                 |   26|   0|   26|          0|
+    |base_maxX_reg_2248                        |   32|   0|   32|          0|
+    |base_maxY_reg_2258                        |   32|   0|   32|          0|
+    |base_minX_reg_2243                        |   32|   0|   32|          0|
+    |base_minY_reg_2253                        |   32|   0|   32|          0|
+    |cur_amount_of_children                    |   32|   0|   32|          0|
+    |cur_amount_of_children_load_reg_2263      |   32|   0|   32|          0|
+    |cur_amount_of_children_loc_0_reg_621      |   32|   0|   32|          0|
+    |cur_amount_of_children_loc_1_reg_631      |   32|   0|   32|          0|
+    |cur_box_maxX                              |   32|   0|   32|          0|
+    |cur_box_maxY                              |   32|   0|   32|          0|
+    |cur_box_minX                              |   32|   0|   32|          0|
+    |cur_box_minY                              |   32|   0|   32|          0|
+    |cur_child_addr_reg_2403                   |    3|   0|    3|          0|
+    |cur_hasLeaves                             |    1|   0|    1|          0|
+    |cur_hasLeaves_load_reg_2149               |    1|   0|    1|          0|
+    |cur_index                                 |   32|   0|   32|          0|
+    |cur_index_load_reg_2225                   |   32|   0|   32|          0|
+    |cur_parent                                |   32|   0|   32|          0|
+    |cur_parent_load_load_fu_1011_p1           |   32|   0|   32|          0|
+    |cur_parent_load_reg_2236                  |   32|   0|   32|          0|
+    |empty_reg_553                             |    3|   0|    3|          0|
+    |i_12_fu_228                               |    3|   0|    3|          0|
+    |i_fu_224                                  |    3|   0|    3|          0|
+    |newLeaf2insert_read_reg_2336              |  417|   0|  417|          0|
+    |newLeaf_amount_of_children                |   32|   0|   32|          0|
+    |newLeaf_amount_of_children_load_reg_2219  |   32|   0|   32|          0|
+    |newLeaf_box_maxX                          |   32|   0|   32|          0|
+    |newLeaf_box_maxY                          |   32|   0|   32|          0|
+    |newLeaf_box_minX                          |   32|   0|   32|          0|
+    |newLeaf_box_minY                          |   32|   0|   32|          0|
+    |newLeaf_child                             |   32|   0|   32|          0|
+    |newLeaf_child_1                           |   32|   0|   32|          0|
+    |newLeaf_child_1_load_reg_2207             |   32|   0|   32|          0|
+    |newLeaf_child_2                           |   32|   0|   32|          0|
+    |newLeaf_child_2_load_reg_2201             |   32|   0|   32|          0|
+    |newLeaf_child_3                           |   32|   0|   32|          0|
+    |newLeaf_child_3_load_reg_2195             |   32|   0|   32|          0|
+    |newLeaf_child_4                           |   32|   0|   32|          0|
+    |newLeaf_child_4_load_reg_2189             |   32|   0|   32|          0|
+    |newLeaf_child_5                           |   32|   0|   32|          0|
+    |newLeaf_child_5_load_reg_2183             |   32|   0|   32|          0|
+    |newLeaf_child_load_reg_2213               |   32|   0|   32|          0|
+    |newLeaf_hasLeaves                         |    1|   0|    1|          0|
+    |newLeaf_hasLeaves_load_reg_2177           |    1|   0|    1|          0|
+    |newLeaf_index                             |   32|   0|   32|          0|
+    |newLeaf_index_load_reg_2165               |   32|   0|   32|          0|
+    |newLeaf_index_loc_0_reg_603               |   32|   0|   32|          0|
+    |newLeaf_parent                            |   32|   0|   32|          0|
+    |newLeaf_parent_load_reg_2171              |   32|   0|   32|          0|
+    |newLeaf_parent_loc_0_reg_612              |   32|   0|   32|          0|
+    |received                                  |    1|   0|    1|          0|
+    |received_flag_0_reg_459                   |    1|   0|    1|          0|
+    |received_flag_2_reg_709                   |    1|   0|    1|          0|
+    |received_new_2_reg_742                    |    1|   0|    1|          0|
+    |reg_849                                   |   32|   0|   32|          0|
+    |reg_854                                   |   32|   0|   32|          0|
+    |reg_859                                   |   32|   0|   32|          0|
+    |reg_864                                   |   32|   0|   32|          0|
+    |root_child_load_1_reg_2465                |    1|   0|    1|          0|
+    |root_child_load_2_reg_2490                |    1|   0|    1|          0|
+    |root_child_load_3_reg_2495                |    1|   0|    1|          0|
+    |root_child_load_5_reg_2515                |    1|   0|    1|          0|
+    |root_child_load_reg_2460                  |    1|   0|    1|          0|
+    |root_index                                |    1|   0|    1|          0|
+    |root_index_load_reg_2361                  |    1|   0|    1|          0|
+    |select_ln316_1_reg_2485                   |   32|   0|   32|          0|
+    |select_ln316_4_reg_2510                   |   32|   0|   32|          0|
+    |select_ln316_reg_2480                     |   32|   0|   32|          0|
+    |select_ln31_reg_2299                      |   32|   0|   32|          0|
+    |select_ln32_reg_2305                      |   32|   0|   32|          0|
+    |select_ln33_reg_2311                      |   32|   0|   32|          0|
+    |select_ln34_reg_2317                      |   32|   0|   32|          0|
+    |st_maxX_reg_2281                          |   32|   0|   32|          0|
+    |st_maxY_reg_2293                          |   32|   0|   32|          0|
+    |st_minX_reg_2275                          |   32|   0|   32|          0|
+    |st_minY_reg_2287                          |   32|   0|   32|          0|
+    |state                                     |    3|   0|    3|          0|
+    |state_load_reg_2139                       |    3|   0|    3|          0|
+    |tmp_57_reg_2346                           |   32|   0|   32|          0|
+    |tmp_58_reg_2351                           |   32|   0|   32|          0|
+    |tmp_59_reg_2356                           |   32|   0|   32|          0|
+    |tmp_69_reg_2427                           |   32|   0|   32|          0|
+    |tmp_70_reg_2432                           |   32|   0|   32|          0|
+    |tmp_71_reg_2437                           |   32|   0|   32|          0|
+    |tmp_77_reg_2377                           |   32|   0|   32|          0|
+    |tmp_78_reg_2382                           |   32|   0|   32|          0|
+    |tmp_79_reg_2387                           |   32|   0|   32|          0|
+    |tmp_80_reg_2455                           |  128|   0|  128|          0|
+    |trunc_ln304_s_reg_2341                    |   32|   0|   32|          0|
+    |trunc_ln326_1_reg_2422                    |   32|   0|   32|          0|
+    |trunc_ln359_1_reg_2372                    |   32|   0|   32|          0|
+    |wait_flag_0_reg_506                       |    1|   0|    1|          0|
+    |wait_flag_2_reg_776                       |    1|   0|    1|          0|
+    |wait_load_reg_2155                        |    1|   0|    1|          0|
+    |wait_new_2_reg_809                        |    1|   0|    1|          0|
+    |wait_r                                    |    1|   0|    1|          0|
+    +------------------------------------------+-----+----+-----+-----------+
+    |Total                                     | 2824|   0| 2824|          0|
+    +------------------------------------------+-----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++----------------------------+-----+-----+------------+---------------------+--------------+
+|          RTL Ports         | Dir | Bits|  Protocol  |    Source Object    |    C Type    |
++----------------------------+-----+-----+------------+---------------------+--------------+
+|ap_clk                      |   in|    1|  ap_ctrl_hs|               insert|  return value|
+|ap_rst                      |   in|    1|  ap_ctrl_hs|               insert|  return value|
+|ap_start                    |   in|    1|  ap_ctrl_hs|               insert|  return value|
+|ap_done                     |  out|    1|  ap_ctrl_hs|               insert|  return value|
+|ap_idle                     |  out|    1|  ap_ctrl_hs|               insert|  return value|
+|ap_ready                    |  out|    1|  ap_ctrl_hs|               insert|  return value|
+|newLeaf2insert_dout         |   in|  417|     ap_fifo|       newLeaf2insert|       pointer|
+|newLeaf2insert_empty_n      |   in|    1|     ap_fifo|       newLeaf2insert|       pointer|
+|newLeaf2insert_read         |  out|    1|     ap_fifo|       newLeaf2insert|       pointer|
+|insertNode4insert_din       |  out|  417|     ap_fifo|    insertNode4insert|       pointer|
+|insertNode4insert_full_n    |   in|    1|     ap_fifo|    insertNode4insert|       pointer|
+|insertNode4insert_write     |  out|    1|     ap_fifo|    insertNode4insert|       pointer|
+|getNode4insert2_din         |  out|   32|     ap_fifo|      getNode4insert2|       pointer|
+|getNode4insert2_full_n      |   in|    1|     ap_fifo|      getNode4insert2|       pointer|
+|getNode4insert2_write       |  out|    1|     ap_fifo|      getNode4insert2|       pointer|
+|receiveNode4insert_dout     |   in|  417|     ap_fifo|   receiveNode4insert|       pointer|
+|receiveNode4insert_empty_n  |   in|    1|     ap_fifo|   receiveNode4insert|       pointer|
+|receiveNode4insert_read     |  out|    1|     ap_fifo|   receiveNode4insert|       pointer|
+|writeChanges4insert_din     |  out|  417|     ap_fifo|  writeChanges4insert|       pointer|
+|writeChanges4insert_full_n  |   in|    1|     ap_fifo|  writeChanges4insert|       pointer|
+|writeChanges4insert_write   |  out|    1|     ap_fifo|  writeChanges4insert|       pointer|
+|overflow2split_din          |  out|  417|     ap_fifo|       overflow2split|       pointer|
+|overflow2split_full_n       |   in|    1|     ap_fifo|       overflow2split|       pointer|
+|overflow2split_write        |  out|    1|     ap_fifo|       overflow2split|       pointer|
+|cst_req_din                 |  out|  417|     ap_fifo|              cst_req|       pointer|
+|cst_req_full_n              |   in|    1|     ap_fifo|              cst_req|       pointer|
+|cst_req_write               |  out|    1|     ap_fifo|              cst_req|       pointer|
+|split2overflow_dout         |   in|  417|     ap_fifo|       split2overflow|       pointer|
+|split2overflow_empty_n      |   in|    1|     ap_fifo|       split2overflow|       pointer|
+|split2overflow_read         |  out|    1|     ap_fifo|       split2overflow|       pointer|
+|insertFinished3_din         |  out|    1|     ap_fifo|      insertFinished3|       pointer|
+|insertFinished3_full_n      |   in|    1|     ap_fifo|      insertFinished3|       pointer|
+|insertFinished3_write       |  out|    1|     ap_fifo|      insertFinished3|       pointer|
++----------------------------+-----+-----+------------+---------------------+--------------+
+

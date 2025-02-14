@@ -85,8 +85,8 @@ int main()
     krnl(
         TREE, 
         operations,
-        number_of_operations,
         parameters_for_operations,
+        number_of_operations,
         board_num, 
         exe
     );

@@ -1,0 +1,67 @@
+---
+MainSourceFile:  /home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/nodeArray.pp.0.cpp
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_34_1:  '
+    FileOffset:      34
+    FilePath:        /home/pyuva001/R-Tree-Testbed/src/include/node.h
+    Replacements:    
+      - FilePath:        /home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/nodeArray.pp.0.cpp
+        Offset:          973714
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_34_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_75_1:  '
+    FileOffset:      75
+    FilePath:        /home/pyuva001/R-Tree-Testbed/src/hls/nodeArray.cpp
+    Replacements:    
+      - FilePath:        /home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/nodeArray.pp.0.cpp
+        Offset:          976875
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_75_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_94_1:  '
+    FileOffset:      94
+    FilePath:        /home/pyuva001/R-Tree-Testbed/src/hls/nodeArray.cpp
+    Replacements:    
+      - FilePath:        /home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/nodeArray.pp.0.cpp
+        Offset:          977393
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_94_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_107_1:  '
+    FileOffset:      107
+    FilePath:        /home/pyuva001/R-Tree-Testbed/src/hls/nodeArray.cpp
+    Replacements:    
+      - FilePath:        /home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/nodeArray.pp.0.cpp
+        Offset:          977715
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_107_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_111_2:  '
+    FileOffset:      111
+    FilePath:        /home/pyuva001/R-Tree-Testbed/src/hls/nodeArray.cpp
+    Replacements:    
+      - FilePath:        /home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/nodeArray.pp.0.cpp
+        Offset:          977983
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_111_2: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_122_1:  '
+    FileOffset:      122
+    FilePath:        /home/pyuva001/R-Tree-Testbed/src/hls/nodeArray.cpp
+    Replacements:    
+      - FilePath:        /home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/nodeArray.pp.0.cpp
+        Offset:          978138
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_122_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_132_1:  '
+    FileOffset:      132
+    FilePath:        /home/pyuva001/R-Tree-Testbed/src/hls/nodeArray.cpp
+    Replacements:    
+      - FilePath:        /home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/nodeArray.pp.0.cpp
+        Offset:          978271
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_132_1: '
+...

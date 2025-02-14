@@ -18,9 +18,9 @@
 extern "C" void krnl(
     Node *HBM_PTR,
     ap_uint<32> *operations,
-    int number_of_operations,
     ap_uint<64> *parameters_for_operations,
     // RDMA
+    int number_of_operations,
     int board_num,
     int exe);
 

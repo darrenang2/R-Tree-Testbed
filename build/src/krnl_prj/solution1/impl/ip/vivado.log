@@ -1,0 +1,31 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Thu Feb 13 17:42:26 2025
+# Process ID: 28980
+# Current directory: /home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/impl/ip
+# Command line: vivado -notrace -mode batch -source run_ippack.tcl
+# Log file: /home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/impl/ip/vivado.log
+# Journal file: /home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/impl/ip/vivado.jou
+# Running On: wolverine.cs.ucr.edu, OS: Linux, CPU Frequency: 2600.006 MHz, CPU Physical cores: 16, Host memory: 134923 MB
+#-----------------------------------------------------------
+source run_ippack.tcl -notrace
+create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 1843.344 ; gain = 2.020 ; free physical = 36909 ; free virtual = 121035
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2022.2/data/ip'.
+WARNING: [IP_Flow 19-4832] The IP name 'krnl_dadd_64ns_64ns_64_8_full_dsp_1_ip' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'krnl_dadd_64ns_64ns_64_8_full_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'krnl_dadd_64ns_64ns_64_8_full_dsp_1_ip'...
+WARNING: [IP_Flow 19-4832] The IP name 'krnl_dcmp_64ns_64ns_1_2_no_dsp_1_ip' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'krnl_dcmp_64ns_64ns_1_2_no_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'krnl_dcmp_64ns_64ns_1_2_no_dsp_1_ip'...
+WARNING: [IP_Flow 19-4832] The IP name 'krnl_sitodp_32ns_64_5_no_dsp_1_ip' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues.
+INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'krnl_sitodp_32ns_64_5_no_dsp_1_ip'...
+INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'krnl_sitodp_32ns_64_5_no_dsp_1_ip'...
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/tools/Xilinx/Vivado/2022.2/data/ip'.
+Running package_xo -xo_path /home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/impl/export.xo -kernel_name krnl -kernel_xml /home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/impl/ip/../kernel/kernel.xml -kernel_files {/home/pyuva001/R-Tree-Testbed/src/hls/krnlInsert.cpp /home/pyuva001/R-Tree-Testbed/src/hls/areaEnlargementPair.cpp /home/pyuva001/R-Tree-Testbed/src/hls/overlapEnlargementPair.cpp /home/pyuva001/R-Tree-Testbed/src/hls/nodeArray.cpp /home/pyuva001/R-Tree-Testbed/src/hls/node.cpp /home/pyuva001/R-Tree-Testbed/src/hls/mem_mngr.cpp /home/pyuva001/R-Tree-Testbed/src/hls/krnl.cpp} -ip_directory /home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/impl/ip/ip_unzip_dir -design_xml /home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/krnl.design.xml -debug_directory /home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.debug -hls_directory /home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/impl/ip/hls_files
+INFO: [Common 17-206] Exiting Vivado at Thu Feb 13 17:42:46 2025...

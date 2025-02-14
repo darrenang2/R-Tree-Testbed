@@ -1,0 +1,57 @@
+
+****** Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2022.2 (64-bit)
+  **** SW Build 3670227 on Oct 13 2022
+  **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source /tools/Xilinx/Vitis_HLS/2022.2/scripts/vitis_hls/hls.tcl -notrace
+Sourcing Tcl script '/home/pyuva001/.Xilinx/HLS_init.tcl'
+INFO: [HLS 200-10] Running '/tools/Xilinx/Vitis_HLS/2022.2/bin/unwrapped/lnx64.o/vitis_hls'
+INFO: [HLS 200-10] For user 'pyuva001' on host 'wolverine.cs.ucr.edu' (Linux_x86_64 version 3.10.0-1160.119.1.el7.x86_64) on Thu Feb 13 17:42:51 PST 2025
+INFO: [HLS 200-10] On os "CentOS Linux release 7.9.2009 (Core)"
+INFO: [HLS 200-10] In directory '/home/pyuva001/R-Tree-Testbed/build/src'
+WARNING: [HLS 200-40] Environment variable 'C_INCLUDE_PATH' is set to :/usr/local/include:/usr/local/include:/usr/local/include.
+WARNING: [HLS 200-40] Environment variable 'CPLUS_INCLUDE_PATH' is set to :/usr/local/include:/usr/local/include:/usr/local/include.
+Sourcing Tcl script 'make.tcl'
+INFO: [HLS 200-1510] Running: open_project krnl_prj 
+INFO: [HLS 200-10] Opening project '/home/pyuva001/R-Tree-Testbed/build/src/krnl_prj'.
+INFO: [HLS 200-1510] Running: open_solution solution1 
+INFO: [HLS 200-10] Opening solution '/home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 3.333ns.
+INFO: [HLS 200-1611] Setting target device to 'xcu280-fsvh2892-2L-e'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see www.xilinx.com/cgi-bin/docs/rdoc?v=2022.2;t=hls+guidance;d=200-1505.html
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_latency=0
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_alignment_byte_size=1
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_interface -m_axi_max_widen_bitwidth=0
+INFO: [HLS 200-435] Setting 'open_solution -flow_target vivado' configuration: config_rtl -register_reset_num=0
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_alignment_byte_size=64
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_max_widen_bitwidth=512
+INFO: [HLS 200-1464] Running solution command: config_rtl -register_reset_num=3
+INFO: [HLS 200-1464] Running solution command: config_export -format=xo
+INFO: [HLS 200-1510] Running: set_part xcu280-fsvh2892-2L-e 
+INFO: [HLS 200-1510] Running: create_clock -period 300.000000MHz -name default 
+INFO: [HLS 200-1510] Running: set_top krnl 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_latency=64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_alignment_byte_size=64 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_max_widen_bitwidth=512 
+INFO: [HLS 200-1510] Running: config_rtl -register_reset_num=3 
+INFO: [HLS 200-1510] Running: add_files /home/pyuva001/R-Tree-Testbed/src/hls/krnl.cpp -cflags -I/home/pyuva001/R-Tree-Testbed/src/include 
+INFO: [HLS 200-10] Adding design file '/home/pyuva001/R-Tree-Testbed/src/hls/krnl.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files -tb /home/pyuva001/R-Tree-Testbed/src/hls/test_krnl.cpp -cflags -I/home/pyuva001/R-Tree-Testbed/src/include 
+INFO: [HLS 200-10] Adding test bench file '/home/pyuva001/R-Tree-Testbed/src/hls/test_krnl.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files /home/pyuva001/R-Tree-Testbed/src/hls/mem_mngr.cpp -cflags -I/home/pyuva001/R-Tree-Testbed/src/include 
+INFO: [HLS 200-10] Adding design file '/home/pyuva001/R-Tree-Testbed/src/hls/mem_mngr.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files /home/pyuva001/R-Tree-Testbed/src/hls/node.cpp -cflags -I/home/pyuva001/R-Tree-Testbed/src/include 
+INFO: [HLS 200-10] Adding design file '/home/pyuva001/R-Tree-Testbed/src/hls/node.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files /home/pyuva001/R-Tree-Testbed/src/hls/nodeArray.cpp -cflags -I/home/pyuva001/R-Tree-Testbed/src/include 
+INFO: [HLS 200-10] Adding design file '/home/pyuva001/R-Tree-Testbed/src/hls/nodeArray.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files /home/pyuva001/R-Tree-Testbed/src/hls/overlapEnlargementPair.cpp -cflags -I/home/pyuva001/R-Tree-Testbed/src/include 
+INFO: [HLS 200-10] Adding design file '/home/pyuva001/R-Tree-Testbed/src/hls/overlapEnlargementPair.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files /home/pyuva001/R-Tree-Testbed/src/hls/areaEnlargementPair.cpp -cflags -I/home/pyuva001/R-Tree-Testbed/src/include 
+INFO: [HLS 200-10] Adding design file '/home/pyuva001/R-Tree-Testbed/src/hls/areaEnlargementPair.cpp' to the project
+INFO: [HLS 200-1510] Running: add_files /home/pyuva001/R-Tree-Testbed/src/hls/krnlInsert.cpp -cflags -I/home/pyuva001/R-Tree-Testbed/src/include 
+INFO: [HLS 200-10] Adding design file '/home/pyuva001/R-Tree-Testbed/src/hls/krnlInsert.cpp' to the project
+INFO: [HLS 200-112] Total CPU user time: 6.35 seconds. Total CPU system time: 1.16 seconds. Total elapsed time: 7.2 seconds; peak allocated memory: 841.527 MB.
+INFO: [Common 17-206] Exiting vitis_hls at Thu Feb 13 17:42:57 2025...

@@ -1,0 +1,35 @@
+/home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/nodeArray.pp.0.cpp:35372:9: warning: Added loop label VITIS_LOOP_34_1:   [xilinx-label-all-loops]
+        for (int i = 0; i < 6; i++)
+        ^~~
+        VITIS_LOOP_34_1: 
+/home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/nodeArray.pp.0.cpp:35372:9: note: FIX-IT applied suggested code changes
+/home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/nodeArray.pp.0.cpp:35504:5: warning: Added loop label VITIS_LOOP_75_1:   [xilinx-label-all-loops]
+    for (int i = index; i < num_nodes - 1; i++)
+    ^~~
+    VITIS_LOOP_75_1: 
+/home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/nodeArray.pp.0.cpp:35504:5: note: FIX-IT applied suggested code changes
+/home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/nodeArray.pp.0.cpp:35523:5: warning: Added loop label VITIS_LOOP_94_1:   [xilinx-label-all-loops]
+    for (int i = index; i < start_index + num_nodes - 1; i++)
+    ^~~
+    VITIS_LOOP_94_1: 
+/home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/nodeArray.pp.0.cpp:35523:5: note: FIX-IT applied suggested code changes
+/home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/nodeArray.pp.0.cpp:35536:5: warning: Added loop label VITIS_LOOP_107_1:   [xilinx-label-all-loops]
+    for (int i = 0; i < num_nodes; i++)
+    ^~~
+    VITIS_LOOP_107_1: 
+/home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/nodeArray.pp.0.cpp:35536:5: note: FIX-IT applied suggested code changes
+/home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/nodeArray.pp.0.cpp:35540:9: warning: Added loop label VITIS_LOOP_111_2:   [xilinx-label-all-loops]
+        for (int j = 0; j < 6; j++)
+        ^~~
+        VITIS_LOOP_111_2: 
+/home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/nodeArray.pp.0.cpp:35540:9: note: FIX-IT applied suggested code changes
+/home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/nodeArray.pp.0.cpp:35551:5: warning: Added loop label VITIS_LOOP_122_1:   [xilinx-label-all-loops]
+    for (int i = 0; i < 20; i++)
+    ^~~
+    VITIS_LOOP_122_1: 
+/home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/nodeArray.pp.0.cpp:35551:5: note: FIX-IT applied suggested code changes
+/home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/nodeArray.pp.0.cpp:35561:5: warning: Added loop label VITIS_LOOP_132_1:   [xilinx-label-all-loops]
+    for (int i = 0; i < 20; i++)
+    ^~~
+    VITIS_LOOP_132_1: 
+/home/pyuva001/R-Tree-Testbed/build/src/krnl_prj/solution1/.autopilot/db/nodeArray.pp.0.cpp:35561:5: note: FIX-IT applied suggested code changes

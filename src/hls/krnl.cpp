@@ -3,8 +3,8 @@
 extern "C" void krnl(
     Node *HBM_PTR,
     ap_uint<32> *operations,
-    int number_of_operations,
     ap_uint<64> *parameters_for_operations,
+    int number_of_operations,
     int board_num,
     int exe
 ) {
@@ -12,6 +12,9 @@ extern "C" void krnl(
     #pragma HLS INTERFACE m_axi port=HBM_PTR depth=2000
     #pragma HLS INTERFACE m_axi port=operations depth=10
     #pragma HLS INTERFACE m_axi port=parameters_for_operations depth=10
+    #pragma HLS INTERFACE s_axilite port=number_of_operations
+    #pragma HLS INTERFACE s_axilite port=board_num
+    #pragma HLS INTERFACE s_axilite port=exe
 
     int operation = 0;
     int debugCounter = 0;
