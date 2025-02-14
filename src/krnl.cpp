@@ -1,83 +1,148 @@
-#include "constants.h"
-#include "stack.h"
-#include "helper.h"
-#include "node.h"
-#include "overlapEnlargementPair.h"
-#include "areaEnlargementPair.h"
-#include "nodeArray.h"
-#include <float.h>
-#include <iostream>
-#include <algorithm>
+#include "krnl.h"
 
-extern "C" void krnl(data_t *output)
-{
-#pragma HLS INTERFACE mode = m_axi port = output
+extern "C" void krnl(
+    Node *HBM_PTR,
+    ap_uint<32> *operations,
+    int number_of_operations,
+    ap_uint<64> *parameters_for_operations,
+    int board_num,
+    int exe
+) {
 
-    // SetBB: (x1 -> x2) (y1 -> y2)
+    #pragma HLS INTERFACE m_axi port=HBM_PTR depth=2000
+    #pragma HLS INTERFACE m_axi port=operations depth=10
+    #pragma HLS INTERFACE m_axi port=parameters_for_operations depth=10
 
-    add_node(H, createNode(false, setBB(0, 20, 0, 20),
-                           get_level_start_index(H - 1),
-                           get_level_start_index(H - 1) + 1,
-                           get_level_start_index(H - 1) + 2, -1, -1)); // node 0 (root node)
+    int operation = 0;
+    int debugCounter = 0;
+    ap_uint<32> curr;
+    ap_uint<64> param;
+    data_t searchResult;
+    data_t insertResult;
+    static bool startChooseSubtree = true;
 
-    add_node(H - 1, createNode(false, setBB(0, 9, 0, 9),
-                               get_level_start_index(H - 2),
-                               get_level_start_index(H - 2) + 1,
-                               get_level_start_index(H - 2) + 2,
-                               get_level_start_index(H - 2) + 3,
-                               get_level_start_index(H - 2) + 4)); // node 1
+    bool searchFin = true; 
+    bool insertFin = true; 
+    bool removeFin = true; 
 
-    add_node(H - 1, createNode(false, setBB(10, 20, 10, 20),
-                               get_level_start_index(H - 2) + 5,
-                               get_level_start_index(H - 2) + 6, -1, -1, -1)); // node 2
 
-    add_node(H - 1, createNode(false, setBB(0, 16, 0, 16), -1, -1, -1, -1, -1));
+    // INSERT -> MEM MANAGER 
+    hls::stream<Node> newLeaf2insert;
+    hls::stream<Node> insertNode4insert;
+    hls::stream<int> getNode4insert;
+    hls::stream<Node> receiveNode4insert;
+    hls::stream<Node> writeChanges4insert;
+    hls::stream<Node> overflow2split;
+    hls::stream<Node> cst_req;
+    hls::stream<Node> split2overflow;
+    hls::stream<bool> insertFinished;
 
-    add_node(H - 2, createLeaf(true, setBB(0, 4, 0, 4)));     // node 3
-    add_node(H - 2, createLeaf(true, setBB(5, 9, 5, 9)));     // node 4
-    add_node(H - 2, createLeaf(true, setBB(10, 14, 10, 14))); // node 5
-    add_node(H - 2, createLeaf(true, setBB(15, 19, 15, 19))); // node 6
-    add_node(H - 2, createLeaf(true, setBB(0, 7, 0, 7)));     // node 7
-    add_node(H - 2, createLeaf(true, setBB(10, 14, 10, 14))); // node 8
-    add_node(H - 2, createLeaf(true, setBB(17, 19, 17, 19))); // node 9
+    while (operation < number_of_operations && debugCounter < exe) {
+        debugCounter++;
+        curr = operations[operation];
+        param = parameters_for_operations[operation];
 
-    // print_level(0);
-    // print_level(1);
-    // print_level(2);
+        switch (curr)
+        {
+        //SEARCH
+        // case 0:
+        //     if (searchFin) {
+        //         std::cout << "Starting search"<< std::endl;
+        //         searchFin = false; 
+        //         boundingBox searchTerm = setBB(param.range(15, 0), param.range(31, 16), param.range(47, 32), param.range(63, 48));
+        //         searchInput.write(searchTerm);
+        //     }
+        //     break;
 
-    // search(1, 6, 1, 6, output);
+        case 1:
+            if (insertFin) {
+                Node newNode = createNode(true, setBB(param.range(15, 0), param.range(31, 16), param.range(47, 32), param.range(63, 48)), -1, -1, -1, -1, -1);
+                std::cout << "New Node: (" << newNode.box.minX << "," << newNode.box.minY << ")-(" << newNode.box.maxX << "," << newNode.box.maxY << ")" << std::endl; 
+                insertFin = false;
+                newLeaf2insert.write(newNode);
+            }
+            break; 
 
-    // volatile int x = minX;
-    // volatile int y = minY;
-    // volatile int x2 = maxX;
-    // volatile int y2 = maxY;
-    // output[0] = minX + maxX + minY + maxY;
+        // case 2:
+        //     if (removeFin) {
+        //         std::cout << "Starting remove"<< std::endl;
+        //         removeFin = false; 
+        //         removeIndex.write(param.range(63, 0));
+        //     }
+        //     break; 
 
-    // createNode();
+        default:
+            break;
+        }
 
-    // Node node = split(get_node(H, 0));
-    // printNode(&node);
-    // print_all_levels;
-    // print_level(0);
-    // print_level(1);
-    // print_level(2);
-    // print_level(3);
+        // search(
+        //     searchInput,
+        //     searchOutput,
+        //     search2mem,
+        //     mem2search
+        // );
 
-    // if (node.leaf == true) {
-    //     output[0] = 1;
-    // }
+        // chooseSubTree(
+        //     cst2mem,
+        //     mem2cst,
+        //     cstInput,
+        //     cstOutput
+        // );
 
-    // Node node = overflowTreatment(get_node(2, 0), true);
-    // std::cout << "Height of tree: " << H << std::endl;
-    // printNode(&node);
+        insert(
+            newLeaf2insert,
+            insertNode4insert,
+            getNode4insert,
+            receiveNode4insert,
+            writeChanges4insert,
+            overflow2split,
+            cst_req,
+            split2overflow,
+            insertFinished
+        );
 
-    // reinsert(get_node(1, 0));
+        // remove(
+        //     removeIndex,
+        //     removeIndex2mem,
+        //     mem2removeLevel,
+        //     mem2removeIndex,
+        //     mem2removeNode,
+        //     removeOuput
+        // );
 
-    // insert(createNode(true, setBB(0, 30, 0, 30), -1, -1, -1, -1, -1), true);
+        memory_manager(
+            insertNode4insert,
+            getNode4insert,
+            receiveNode4insert,
+            writeChanges4insert,
+            overflow2split,
+            cst_req,
+            split2overflow,
+            HBM_PTR
+        );
+    
+        // while (!searchOutput.empty())
+        // {
+        //     operation++;
+        //     searchFin = true; 
+        //     searchOutput.read(searchResult);
+        //     std::cout << "Found: " << searchResult << std::endl;
+        // }
+    
+        if (!insertFinished.empty())
+        {   
+            std::cout << "Insert finished..." << std::endl; 
 
-    // printNode(get_node(0, 5));
-    // printNode(get_node(0, 6));
-
-    remove(1, 0);
-    print_level(1);
+            operation++;
+            insertFin = insertFinished.read();
+            // 1 = no overflow, 2 = overflow
+        }
+    
+        // if (!removeOuput.empty()) {
+        //     bool rFin; 
+        //     removeOuput.read(rFin);
+        //     operation++; 
+        // }
+    
+    }
 }

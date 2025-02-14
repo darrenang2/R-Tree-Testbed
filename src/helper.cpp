@@ -1,10 +1,10 @@
 #include "helper.h"
-#include "constants.h"
 #include "stack.h"
 #include "node.h"
 #include "overlapEnlargementPair.h"
 #include "areaEnlargementPair.h"
 #include "nodeArray.h"
+#include "climits"
 #include <float.h>
 #include <iostream>
 #include <algorithm>
@@ -21,7 +21,7 @@
  * @param output An array to store the indices of the nodes that overlap with the search range.
  * @return The number of nodes that overlap with the search range.
  */
-data_t *search(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t *output)
+int *search(int minX, int maxX, int minY, int maxY, int *output)
 {
     std::cout << "R-Tree Search: (" << minX << "->" << maxX << ")(" << minY << "->" << maxY << ")" << std::endl;
     // Return counter;
@@ -105,6 +105,10 @@ void sortByAreaEnlargement(Node newNode)
 
         std::cout << "New Node: " << std::endl;
         printNode(&newNode);
+
+        // currentNode is any node in the R-tree
+        // newNode is the node being compared to for chooseSubTree
+        // basically push any node that is bigger than newNode
 
         if (!currentNode->leaf && currentNode->box.maxX >= newNode.box.maxX && currentNode->box.minX <= newNode.box.minX && currentNode->box.maxY >= newNode.box.maxY && currentNode->box.minY <= newNode.box.minY)
         {
@@ -232,9 +236,9 @@ Node split(Node *node)
     boundingBox R2;
 
     int split_axis = 0, split_edge = 0, split_index = 0;
-    int split_margin = std::numeric_limits<int>::max();
-    int dist_overlap = std::numeric_limits<int>::max();
-    int dist_area = std::numeric_limits<int>::max();
+    int split_margin = INT_MAX;
+    int dist_overlap = INT_MAX;
+    int dist_area = INT_MAX;
 
     for (int axis = 0; axis < 2; axis++)
     {
@@ -247,10 +251,8 @@ Node split(Node *node)
 
             for (int k = 0; k < MAX_CHILDREN; k++)
             {
-                boundingBox tempR1 = {std::numeric_limits<int>::max(), std::numeric_limits<int>::min(),
-                                      std::numeric_limits<int>::max(), std::numeric_limits<int>::min()};
-                boundingBox tempR2 = {std::numeric_limits<int>::max(), std::numeric_limits<int>::min(),
-                                      std::numeric_limits<int>::max(), std::numeric_limits<int>::min()};
+                boundingBox tempR1 = setBB(INT_MAX, INT_MIN, INT_MAX, INT_MIN);
+                boundingBox tempR2 = setBB(INT_MAX, INT_MIN, INT_MAX, INT_MIN);
 
                 for (int i = 0; i <= k; i++)
                 {
@@ -375,11 +377,11 @@ void reinsert(Node *node)
     {
         int key = get_child(node, i);
         int j = i - 1;
-        while (j >= 0 && computeDistCenters(getChild(node, j), node) > computeDistCenters(get_node(key), node) && get_child(node, i) != -1)
-        {
-            set_child(node, j + 1, get_child(node, j));
-            j = j - 1;
-        }
+        // while (j >= 0 && computeDistCenters(getChild(node, j), node) > computeDistCenters(get_node(key), node) && get_child(node, i) != -1)
+        // {
+        //     set_child(node, j + 1, get_child(node, j));
+        //     j = j - 1;
+        // }
         set_child(node, j + 1, key);
         for (int i = 0; i < MAX_CHILDREN; i++)
         {

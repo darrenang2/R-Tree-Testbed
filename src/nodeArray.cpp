@@ -7,16 +7,16 @@ int get_level_start_index(int level)
 }
 
 // Function to access a node at a specific level and index within that level
-Node *get_node(int level, int index)
+Node get_node(int level, int index)
 {
     int start_index = get_level_start_index(level);
-    return &hbm_array[start_index + index];
+    return hbm_array[start_index + index];
 }
 
 // Function to access a node at a specific index in the array
-Node *get_node(int index)
+Node get_node(int index)
 {
-    return &hbm_array[index];
+    return hbm_array[index];
 }
 
 void set_node(int index, Node node)
@@ -32,25 +32,20 @@ void set_node(int level, int index, Node node)
 }
 
 // Function to set a child of a node at a specific index
-void set_child(Node *node, int child, int child_index)
+void set_child(Node node, int child, int child_index)
 {
-    node->child[child] = child_index;
+    node.child[child] = child_index;
 }
 
 // Function to get a child of a node at a specific index
-int get_child(Node *node, int child)
+int get_child(Node node, int child)
 {
-    return node->child[child];
+    return node.child[child];
 }
 
-int get_index(Node *node)
+int get_level(int index)
 {
-    return node - hbm_array;
-}
-
-int get_level(Node *node)
-{
-    return (get_index(node) / MAX_NODES_PER_LEVEL);
+    return (index / MAX_NODES_PER_LEVEL);
 }
 
 // Function to add a node to a specific level and append it at the end of the level
@@ -88,7 +83,7 @@ void delete_node(int level, int index)
 // Function to delete a node at a specific index
 void delete_node(int index)
 {
-    int level = get_level(&hbm_array[index]);
+    int level = get_level(index);
     int start_index = get_level_start_index(level);
     int num_nodes = nodes_in_level[level];
     if (index >= start_index + num_nodes)
@@ -112,7 +107,7 @@ void print_level(int level)
     for (int i = 0; i < num_nodes; i++)
     {
         Node *node = &hbm_array[start_index + i];
-        printf("Node %d: leaf=%d, box=(%d, %d, %d, %d), children=[", start_index + i, node->leaf, node->box.minX, node->box.maxX, node->box.minY, node->box.maxY);
+        printf("Node %d: leaf=%d, box=(%d, %d, %d, %d), children=[", start_index + i, node->hasLeaves, node->box.minX, node->box.maxX, node->box.minY, node->box.maxY);
         for (int j = 0; j < MAX_CHILDREN; j++)
         {
             printf("%d, ", node->child[j]);

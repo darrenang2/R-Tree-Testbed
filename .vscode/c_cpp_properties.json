@@ -3,7 +3,8 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "/tools/Xilinx/Vitis_HLS/2022.2/include/"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

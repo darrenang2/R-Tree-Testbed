@@ -2,14 +2,13 @@
 #define HELPER_H
 
 #include <stdio.h>
-#include "constants.h"
 #include "node.h"
 #include <vector>
 #include <cmath>
 #include <cstdlib>
 #include <float.h>
 
-data_t *search(data_t minX, data_t maxX, data_t minY, data_t maxY, data_t *output);
+int *search(int minX, int maxX, int minY, int maxY, int *output);
 void sortByAreaEnlargement(Node newNode);
 void sortByOverlapEnlargement(Node newNode);
 int chooseSubTree(Node node);
