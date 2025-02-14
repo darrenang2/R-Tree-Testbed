@@ -2,8 +2,8 @@
 #define OVERLAPENLARGEMENTPAIR_H
 
 typedef struct {
-    int index;
-    int overlapEnlargement;
+    int index = -1;
+    int overlapEnlargement = -1;
 } overlapEnlargementPair;
 
 bool compare(overlapEnlargementPair a, overlapEnlargementPair b);

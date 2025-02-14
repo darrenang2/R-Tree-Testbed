@@ -3,8 +3,8 @@
 
 typedef struct 
 {
-    int index;
-    int areaEnlargement;
+    int index = -1;
+    int areaEnlargement = -1;
 } areaEnlargementPair;
 
 bool compare(areaEnlargementPair a, areaEnlargementPair b);

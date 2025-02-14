@@ -9,130 +9,112 @@
 #include "areaEnlargementPair.h"
 #include "nodeArray.h"
 #include "climits"
+#include "krnl.h"
+#include <ctime>
 
 int main()
 {
-    static hls::stream<boundingBox> searchInput;
-    static hls::stream<data_t> searchOutput;
-    static hls::stream<int> search2mem;
-    static hls::stream<Node> mem2search;
 
-    static hls::stream<Node> cst2mem;
-    static hls::stream<int> mem2cst;
-    static hls::stream<Node> cstInput;
-    static hls::stream<int> cstOutput;
+    Node TREE[2000];
+    //TREE[0] = createNode(false, setBB(0, 0, 0, 0), -1, -1, -1, -1, -1);
+    // TREE[100] = createNode(false, setBB(0, 9, 0, 9), 0, 1, 2, 3, 4);
+    // TREE[101] = createNode(false, setBB(10, 20, 10, 20), 5, 6, -1, -1, -1);
+    // TREE[102] = createNode(false, setBB(0, 16, 0, 16), -1, -1, -1, -1, -1);
+    // TREE[0] = createLeaf(true, setBB(0, 4, 0, 4));
+    // TREE[1] = createLeaf(true, setBB(5, 9, 5, 9));
+    // TREE[2] = createLeaf(true, setBB(1, 3, 1, 3));
+    // TREE[3] = createLeaf(true, setBB(5, 8, 5, 8));
+    // TREE[4] = createLeaf(true, setBB(0, 7, 0, 7));
+    // TREE[5] = createLeaf(true, setBB(10, 14, 10, 14));
+    // TREE[6] = createLeaf(true, setBB(17, 19, 17, 19));
 
-    static hls::stream<Node> insert2mem;
-    static hls::stream<int> mem2insert;
-    static hls::stream<int> index2mem;
-    static hls::stream<Node> insertInput;
-    static hls::stream<int> insertOutput;
 
-    static hls::stream<Node> overflow2mem;
-    static hls::stream<Node> mem2overflow;
-    static hls::stream<Node> overflowInput;
-    static hls::stream<Node> overflowOutput;
+    int number_of_operations = 12; 
+    ap_uint<64> x;
 
-    static hls::stream<Node> split2mem;
-    static hls::stream<Node> mem2split;
-    static hls::stream<Node> splitInput;
-    static hls::stream<Node> splitOutput;
+    //Insert
+    x.range(15, 0) = 0;
+    x.range(31, 16) = 10;
+    x.range(47, 32) = 0;
+    x.range(63, 48) = 10; 
 
-    static hls::stream<Node> reinsert2mem;
-    static hls::stream<int> mem2reinsert;
-    static hls::stream<Node> reinsertInput;
-    static hls::stream<int> reinsertOutput;
+    ap_uint<64> parameters_for_operations[number_of_operations];
+    ap_uint<32> operations[number_of_operations];
+    std::srand(std::time(0)); 
+    int min = 0, max = 100;
 
-    static hls::stream<Node> overflow2reinsert;
-    static hls::stream<Node> overflow2split;
-    static hls::stream<Node> split2overflow;
+    for (int i = 0; i < number_of_operations; i++) {
 
-    static hls::stream<int> removeInputLevel;
-    static hls::stream<int> removeInputIndex;
-    static hls::stream<int> removeLevel2mem;
-    static hls::stream<int> removeIndex2mem;
-    static hls::stream<int> mem2removeLevel;
-    static hls::stream<int> mem2removeIndex;
-    static hls::stream<Node> mem2node;
+        operations[i] = 1;
 
-    Node HBM_PTR[2000];
 
-    data_t searchResult;
-    static int insertResult;
-    static int cnt = 0;
+        int x1 = min + (std::rand() % (max - min + 1));
+        int x2 = min + (std::rand() % (max - min + 1));
 
-    HBM_PTR[200] = createNode(false, setBB(0, 20, 0, 20), 100, 101, 102, -1, -1);
-    HBM_PTR[100] = createNode(false, setBB(0, 9, 0, 9), 0, 1, 2, 3, 4);
-    HBM_PTR[101] = createNode(false, setBB(10, 20, 10, 20), 5, 6, -1, -1, -1);
-    HBM_PTR[102] = createNode(false, setBB(0, 16, 0, 16), -1, -1, -1, -1, -1);
-    HBM_PTR[0] = createLeaf(true, setBB(0, 4, 0, 4));
-    HBM_PTR[1] = createLeaf(true, setBB(5, 9, 5, 9));
-    HBM_PTR[2] = createLeaf(true, setBB(1, 3, 1, 3));
-    HBM_PTR[3] = createLeaf(true, setBB(5, 8, 5, 8));
-    HBM_PTR[4] = createLeaf(true, setBB(0, 7, 0, 7));
-    HBM_PTR[5] = createLeaf(true, setBB(10, 14, 10, 14));
-    HBM_PTR[6] = createLeaf(true, setBB(17, 19, 17, 19));
+        int y1 = min + (std::rand() % (max - min + 1));
+        int y2 = min + (std::rand() % (max - min + 1));
 
-    searchInput.write(setBB(0, 10, 0, 10));
-    Node newNode = createNode(false, setBB(0, 3, 0, 3), -1, -1, -1, -1, -1);
+        if (x1 > x2) {
+            int temp = x1; 
+            x1 = x2;
+            x2 = temp;
+        } else if (x1 == x2) {
+            x2 += 1; 
+        }
 
-    cstInput.write(newNode);
-    insertInput.write(newNode);
+        if (y1 > y2) {
+            int temp = y1;
+            y1 = y2;
+            y2 = temp;
+        } else if (y1 == y2) {
+            y2+=1; 
+        }
 
-    while (cnt < 20)
-    {
-        cnt++;
+        std::cout << "(" << x1 << "," << y1 << ")(" << x2 << "," << y2 << ")" << std::endl; 
 
-        // chooseSubTree(
-        //     cst2mem,
-        //     mem2cst,
-        //     cstInput,
-        //     cstOutput);
+        parameters_for_operations[i].range(15, 0) = x1;
+        parameters_for_operations[i].range(31, 16) = x2;
+        parameters_for_operations[i].range(47, 32) = y1;
+        parameters_for_operations[i].range(63, 48) = y2;
 
-        // // if (!cstOutput.empty())
-        // insert(
-        //     insert2mem,
-        //     mem2insert,
-        //     index2mem,
-        //     cstOutput,
-        //     insertInput,
-        //     insertOutput);
+    }
+    int board_num = 0; 
+    int exe = 50; 
 
-        // if (!insertOutput.empty())
-        // {
-        //     insertOutput.read(insertResult);
-        //     std::cout << "Insert: " << insertResult << std::endl;
-        //     // 1 = no overflow, 2 = overflow
-        // }
 
-        // if (!overflow2mem.empty())
-        // {
-        //     std::cout << "Overflow" << std::endl;
-        // }
+    krnl(
+        TREE, 
+        operations,
+        number_of_operations,
+        parameters_for_operations,
+        board_num, 
+        exe
+    );
 
-        removeInputLevel.write(1);
-        removeInputIndex.write(0);
 
-        memory_manager(
-            search2mem,
-            mem2search,
-            cst2mem,
-            mem2cst,
-            insert2mem,
-            mem2insert,
-            index2mem,
-            overflow2mem,
-            mem2overflow,
-            overflow2reinsert,
-            overflow2split,
-            split2overflow,
-            removeInputLevel,
-            removeInputIndex,
-            removeLevel2mem,
-            removeIndex2mem,
-            mem2removeLevel,
-            mem2removeIndex,
-            mem2node,
-            HBM_PTR);
+    hls::stream<int> q; 
+    hls::stream<int> level;
+
+    q.write(0);
+    while (!q.empty()) {
+
+        while (!q.empty())
+            level.write(q.read());
+
+        while (!level.empty()) {
+
+            int cur = level.read();
+
+            if (TREE[cur].index != -1) {
+                std::cout << cur << ": ("<<TREE[cur].box.minX<<","<<TREE[cur].box.minY<<")("<<TREE[cur].box.maxX<<","<<TREE[cur].box.maxY<<") ";
+            }
+
+            for (int i = 0; i < MAX_CHILDREN; i++) {
+                if (TREE[cur].child[i] != -1) {
+                    q.write(TREE[cur].child[i]);
+                }
+            }
+        }
+        std::cout << std::endl; 
     }
 }

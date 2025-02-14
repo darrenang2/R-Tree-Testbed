@@ -107,7 +107,7 @@ void print_level(int level)
     for (int i = 0; i < num_nodes; i++)
     {
         Node *node = &hbm_array[start_index + i];
-        printf("Node %d: leaf=%d, box=(%d, %d, %d, %d), children=[", start_index + i, node->leaf, node->box.minX, node->box.maxX, node->box.minY, node->box.maxY);
+        printf("Node %d: leaf=%d, box=(%d, %d, %d, %d), children=[", start_index + i, node->hasLeaves, node->box.minX, node->box.maxX, node->box.minY, node->box.maxY);
         for (int j = 0; j < MAX_CHILDREN; j++)
         {
             printf("%d, ", node->child[j]);

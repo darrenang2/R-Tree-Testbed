@@ -46,7 +46,7 @@ set(EXAMPLE_HLS_DEPENDS
 
 
 #Setup HLS custom targets
-set(HLS_TARGETS synthesis csim ip installip)
+set(HLS_TARGETS synthesis csim cosim ip installip)
 
 foreach (target ${HLS_TARGETS})
    if (NOT TARGET ${target})
@@ -60,5 +60,6 @@ foreach (target ${HLS_TARGETS})
 endforeach()
 
 #target dependencies
+add_dependencies(cosim.${PROJECT_NAME} synthesis.${PROJECT_NAME})
 add_dependencies(ip.${PROJECT_NAME} synthesis.${PROJECT_NAME})
 add_dependencies(installip.${PROJECT_NAME} ip.${PROJECT_NAME})

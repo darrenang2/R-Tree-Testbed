@@ -6,7 +6,8 @@
 #define MAX_NODES_PER_LEVEL 100
 #define MAX_LEVELS 20
 
-volatile static int H = 2; // current height of root node - 1 (leaves are at level 0)
+volatile static int H = 0; // current height of root node - 1 (leaves are at level 0)
+static int root_index = -1; 
 
 static Node hbm_array[MAX_NODES_PER_LEVEL * MAX_LEVELS];
 static int nodes_in_level[MAX_LEVELS] = {0};

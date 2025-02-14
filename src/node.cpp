@@ -12,7 +12,7 @@ boundingBox setBB(int x1, int x2, int y1, int y2)
     return box;
 }
 
-int area(boundingBox box)
+int getArea(boundingBox box)
 {
     return (box.maxX - box.minX) * (box.maxY - box.minY);
 }
@@ -26,6 +26,15 @@ boundingBox intersection(boundingBox box1, boundingBox box2)
     box.maxY = std::min(box1.maxY, box2.maxY);
     return box;
 }
+
+boundingBox strech(boundingBox base, boundingBox st) {
+    base.maxX = (base.maxX < st.maxX) ? st.maxX : base.maxX;
+    base.maxY = (base.maxY < st.maxY) ? st.maxY : base.maxY;
+    base.minX = (base.minX > st.minX) ? st.minX : base.minX;
+    base.minY = (base.minY > st.minY) ? st.minY : base.minY;
+    return base;
+}
+
 
 int edgeDelta(boundingBox box)
 {
@@ -54,10 +63,10 @@ int getmaxY(boundingBox box)
     return box.maxY;
 }
 
-Node createLeaf(bool l, boundingBox box)
+Node createhasLeaves(bool l, boundingBox box)
 {
     Node node;
-    node.leaf = l;
+    node.hasLeaves = l;
     node.box = box;
     for (int i = 0; i < MAX_CHILDREN; i++)
     {
@@ -69,7 +78,7 @@ Node createLeaf(bool l, boundingBox box)
 Node *createNode()
 {
     Node *node;
-    node->leaf = false;
+    node->hasLeaves = false;
     node->box = setBB(0, 0, 0, 0);
     for (int i = 0; i < MAX_CHILDREN; i++)
     {
@@ -81,7 +90,7 @@ Node *createNode()
 Node createNode(bool l, boundingBox box, int child1, int child2, int child3, int child4, int child5)
 {
     Node node;
-    node.leaf = l;
+    node.hasLeaves = l;
     node.box = box;
     node.child[0] = child1;
     node.child[1] = child2;
@@ -95,7 +104,7 @@ Node createNode(bool l, boundingBox box, int child1, int child2, int child3, int
 Node createNodeFromArray(bool l, boundingBox box, int arr[])
 {
     Node node;
-    node.leaf = l;
+    node.hasLeaves = l;
     node.box = box;
     for (int i = 0; i < MAX_CHILDREN; i++)
     {
@@ -258,7 +267,7 @@ void updateBoundingBox(Node node)
 
 bool equals(Node node1, Node node2)
 {
-    if (node1.leaf != node2.leaf)
+    if (node1.hasLeaves != node2.hasLeaves)
     {
         return false;
     }
@@ -290,7 +299,7 @@ bool equals(Node node1, Node node2)
 
 void printNode(Node *node)
 {
-    std::cout << "Node: leaf=" << node->leaf << ", box=(" << node->box.minX << ", " << node->box.maxX << ", " << node->box.minY << ", " << node->box.maxY << "), children=[";
+    std::cout << "Node: hasLeaves=" << node->hasLeaves << ", box=(" << node->box.minX << ", " << node->box.maxX << ", " << node->box.minY << ", " << node->box.maxY << "), children=[";
     for (int i = 0; i < MAX_CHILDREN; i++)
     {
         std::cout << node->child[i] << ", ";

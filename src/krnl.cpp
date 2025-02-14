@@ -1,187 +1,148 @@
-#include "constants.h"
-#include "stack.h"
-#include "node.h"
-#include "overlapEnlargementPair.h"
-#include "areaEnlargementPair.h"
-#include "nodeArray.h"
-#include <float.h>
-#include <iostream>
-#include <algorithm>
-#include "mem_mngr.h"
-#include "krnlSearch.h"
-#include "krnlInsert.h"
+#include "krnl.h"
 
 extern "C" void krnl(
     Node *HBM_PTR,
     ap_uint<32> *operations,
     int number_of_operations,
-    ap_uint<256> *parameters_for_operations,
-    // RDMA
+    ap_uint<64> *parameters_for_operations,
     int board_num,
-    int exe)
-{
-#pragma HLS INTERFACE mode = m_axi port = HBM_PTR
-#pragma HLS INTERFACE mode = m_axi port = operations
-#pragma HLS INTERFACE mode = m_axi port = parameters_for_operations
+    int exe
+) {
+
+    #pragma HLS INTERFACE m_axi port=HBM_PTR depth=2000
+    #pragma HLS INTERFACE m_axi port=operations depth=10
+    #pragma HLS INTERFACE m_axi port=parameters_for_operations depth=10
 
     int operation = 0;
     int debugCounter = 0;
     ap_uint<32> curr;
-    ap_uint<256> param;
+    ap_uint<64> param;
     data_t searchResult;
     data_t insertResult;
     static bool startChooseSubtree = true;
 
-    static hls::stream<boundingBox> searchInput;
-    static hls::stream<data_t> searchOutput;
-    static hls::stream<int> search2mem;
-    static hls::stream<Node> mem2search;
+    bool searchFin = true; 
+    bool insertFin = true; 
+    bool removeFin = true; 
 
-    static hls::stream<Node> cst2mem;
-    static hls::stream<int> mem2cst;
-    static hls::stream<Node> cstInput;
-    static hls::stream<int> cstOutput;
 
-    static hls::stream<Node> insert2mem;
-    static hls::stream<int> mem2insert;
-    static hls::stream<int> index2mem;
-    static hls::stream<Node> insertInput;
-    static hls::stream<int> insertOutput;
+    // INSERT -> MEM MANAGER 
+    hls::stream<Node> newLeaf2insert;
+    hls::stream<Node> insertNode4insert;
+    hls::stream<int> getNode4insert;
+    hls::stream<Node> receiveNode4insert;
+    hls::stream<Node> writeChanges4insert;
+    hls::stream<Node> overflow2split;
+    hls::stream<Node> cst_req;
+    hls::stream<Node> split2overflow;
+    hls::stream<bool> insertFinished;
 
-    static hls::stream<Node> overflow2mem;
-    static hls::stream<Node> mem2overflow;
-    static hls::stream<Node> overflowInput;
-    static hls::stream<Node> overflowOutput;
-
-    static hls::stream<Node> split2mem;
-    static hls::stream<Node> mem2split;
-    static hls::stream<Node> splitInput;
-    static hls::stream<Node> splitOutput;
-
-    static hls::stream<Node> reinsert2mem;
-    static hls::stream<int> mem2reinsert;
-    static hls::stream<Node> reinsertInput;
-    static hls::stream<int> reinsertOutput;
-
-    static hls::stream<Node> overflow2reinsert;
-    static hls::stream<Node> overflow2split;
-    static hls::stream<Node> split2overflow;
-
-    static hls::stream<int> removeInputLevel;
-    static hls::stream<int> removeInputIndex;
-    static hls::stream<int> removeLevel2mem;
-    static hls::stream<int> removeIndex2mem;
-    static hls::stream<int> mem2removeLevel;
-    static hls::stream<int> mem2removeIndex;
-    static hls::stream<Node> mem2node;
-
-#pragma HLS STREAM depth = 8 variable = search2mem
-#pragma HLS STREAM depth = 8 variable = mem2search
-#pragma HLS STREAM depth = 8 variable = cst2mem
-#pragma HLS STREAM depth = 8 variable = mem2cst
-#pragma HLS STREAM depth = 8 variable = insert2mem
-#pragma HLS STREAM depth = 8 variable = mem2insert
-
-#pragma HLS STREAM depth = 8 variable = index2mem
-#pragma HLS STREAM depth = 8 variable = insertInput
-#pragma HLS STREAM depth = 8 variable = insertOutput
-#pragma HLS STREAM depth = 8 variable = cstInput
-#pragma HLS STREAM depth = 8 variable = cstOutput
-
-#pragma HLS STREAM depth = 8 variable = overflow2mem
-#pragma HLS STREAM depth = 8 variable = mem2overflow
-#pragma HLS STREAM depth = 8 variable = overflowInput
-#pragma HLS STREAM depth = 8 variable = overflowOutput
-
-#pragma HLS STREAM depth = 8 variable = split2mem
-#pragma HLS STREAM depth = 8 variable = mem2split
-#pragma HLS STREAM depth = 8 variable = splitInput
-#pragma HLS STREAM depth = 8 variable = splitOutput
-
-#pragma HLS STREAM depth = 8 variable = overflow2reinsert
-#pragma HLS STREAM depth = 8 variable = overflow2split
-#pragma HLS STREAM depth = 8 variable = split2overflow
-
-    while (operation < number_of_operations && debugCounter < 20)
-    // search = 00, insert = 01, delete = 10
-
-    {
+    while (operation < number_of_operations && debugCounter < exe) {
         debugCounter++;
         curr = operations[operation];
         param = parameters_for_operations[operation];
 
-        if (curr.range(1, 0) == 0 && !searchInput.full())
+        switch (curr)
         {
-            boundingBox searchTerm = setBB(param.range(15, 0), param.range(31, 16), param.range(47, 32), param.range(63, 48));
-            searchInput.write(searchTerm);
-            search(
-                searchInput,
-                searchOutput,
-                search2mem,
-                mem2search);
-        }
+        //SEARCH
+        // case 0:
+        //     if (searchFin) {
+        //         std::cout << "Starting search"<< std::endl;
+        //         searchFin = false; 
+        //         boundingBox searchTerm = setBB(param.range(15, 0), param.range(31, 16), param.range(47, 32), param.range(63, 48));
+        //         searchInput.write(searchTerm);
+        //     }
+        //     break;
 
-        while (!searchOutput.empty())
-        {
-            operation++;
-            searchOutput.read(searchResult);
-            std::cout << "Found: " << searchResult << std::endl;
-        }
-
-        if (curr.range(1, 0) == 1)
-        {
-
-            if (startChooseSubtree == true)
-            {
-                Node newNode = createNode(param.range(224, 224), setBB(param.range(15, 0), param.range(31, 16), param.range(47, 32), param.range(63, 48)), param.range(95, 64), param.range(127, 96), param.range(159, 128), param.range(191, 160), param.range(223, 192));
-                startChooseSubtree = false;
-                cstInput.write(newNode);
-                insertInput.write(newNode);
+        case 1:
+            if (insertFin) {
+                Node newNode = createNode(true, setBB(param.range(15, 0), param.range(31, 16), param.range(47, 32), param.range(63, 48)), -1, -1, -1, -1, -1);
+                std::cout << "New Node: (" << newNode.box.minX << "," << newNode.box.minY << ")-(" << newNode.box.maxX << "," << newNode.box.maxY << ")" << std::endl; 
+                insertFin = false;
+                newLeaf2insert.write(newNode);
             }
-            chooseSubTree(
-                cst2mem,
-                mem2cst,
-                cstInput,
-                cstOutput);
+            break; 
 
-            insert(
-                insert2mem,
-                mem2insert,
-                index2mem,
-                cstOutput,
-                insertInput,
-                insertOutput);
+        // case 2:
+        //     if (removeFin) {
+        //         std::cout << "Starting remove"<< std::endl;
+        //         removeFin = false; 
+        //         removeIndex.write(param.range(63, 0));
+        //     }
+        //     break; 
 
-            if (!insertOutput.empty())
-            {
-                startChooseSubtree = true;
-                operation++;
-                insertOutput.read(insertResult);
-                std::cout << "Insert: " << insertResult << std::endl;
-                // 1 = no overflow, 2 = overflow
-            }
+        default:
+            break;
         }
+
+        // search(
+        //     searchInput,
+        //     searchOutput,
+        //     search2mem,
+        //     mem2search
+        // );
+
+        // chooseSubTree(
+        //     cst2mem,
+        //     mem2cst,
+        //     cstInput,
+        //     cstOutput
+        // );
+
+        insert(
+            newLeaf2insert,
+            insertNode4insert,
+            getNode4insert,
+            receiveNode4insert,
+            writeChanges4insert,
+            overflow2split,
+            cst_req,
+            split2overflow,
+            insertFinished
+        );
+
+        // remove(
+        //     removeIndex,
+        //     removeIndex2mem,
+        //     mem2removeLevel,
+        //     mem2removeIndex,
+        //     mem2removeNode,
+        //     removeOuput
+        // );
 
         memory_manager(
-            search2mem,
-            mem2search,
-            cst2mem,
-            mem2cst,
-            insert2mem,
-            mem2insert,
-            index2mem,
-            overflow2mem,
-            mem2overflow,
-            overflow2reinsert,
+            insertNode4insert,
+            getNode4insert,
+            receiveNode4insert,
+            writeChanges4insert,
             overflow2split,
+            cst_req,
             split2overflow,
-            removeInputLevel,
-            removeInputIndex,
-            removeLevel2mem,
-            removeIndex2mem,
-            mem2removeLevel,
-            mem2removeIndex,
-            mem2node,
-            HBM_PTR);
+            HBM_PTR
+        );
+    
+        // while (!searchOutput.empty())
+        // {
+        //     operation++;
+        //     searchFin = true; 
+        //     searchOutput.read(searchResult);
+        //     std::cout << "Found: " << searchResult << std::endl;
+        // }
+    
+        if (!insertFinished.empty())
+        {   
+            std::cout << "Insert finished..." << std::endl; 
+
+            operation++;
+            insertFin = insertFinished.read();
+            // 1 = no overflow, 2 = overflow
+        }
+    
+        // if (!removeOuput.empty()) {
+        //     bool rFin; 
+        //     removeOuput.read(rFin);
+        //     operation++; 
+        // }
+    
     }
 }

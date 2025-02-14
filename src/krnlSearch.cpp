@@ -31,7 +31,7 @@ void search(
     {
     case INIT:
     {
-        std::cout << "STATE: INIT" << std::endl;
+        //std::cout << "STATE: INIT" << std::endl;
         if (!searchInput.empty())
         {
             searchInput.read(find);
@@ -66,7 +66,7 @@ void search(
             state = POP;
             std::cout << "STATE: GET_NODE" << std::endl;
             mem2search.read(currentNode);
-            if (currentNode.leaf)
+            if (currentNode.hasLeaves)
             {
                 std::cout << "Leaf Node: " << nodeIndex << std::endl;
                 if (currentNode.box.minX <= find.maxX && currentNode.box.maxX >= find.minX &&

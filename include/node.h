@@ -2,6 +2,7 @@
 #define NODE_H
 
 #define MAX_CHILDREN 6
+#define MIN_CHILDREN 3
 
 #include <float.h>
 #include <iostream>
@@ -17,13 +18,18 @@ struct boundingBox
 
 struct Node
 {
-    bool leaf;
+    int index; 
+    int parent; 
+    bool hasLeaves;
     boundingBox box;
     int child[MAX_CHILDREN];
+    int amount_of_children = 0;
 
     Node()
     {
-        leaf = false;
+        index = -1;
+        parent = -1; 
+        hasLeaves = false;
         box = boundingBox();
         for (int i = 0; i < MAX_CHILDREN; i++)
         {
@@ -33,7 +39,8 @@ struct Node
 };
 
 boundingBox setBB(int x1, int x2, int y1, int y2);
-int area(boundingBox box);
+boundingBox strech(boundingBox base, boundingBox st);
+int getArea(boundingBox box);
 boundingBox intersection(boundingBox box1, boundingBox box2);
 int edgeDelta(boundingBox box);
 int getminX(boundingBox box);

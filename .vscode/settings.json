@@ -48,6 +48,9 @@
     "typeindex": "cpp",
     "typeinfo": "cpp",
     "algorithm": "cpp",
-    "random": "cpp"
+    "random": "cpp",
+    "atomic": "cpp",
+    "condition_variable": "cpp",
+    "thread": "cpp"
   }
 }

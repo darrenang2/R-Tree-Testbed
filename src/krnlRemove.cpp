@@ -1,16 +1,12 @@
 #include "krnlRemove.h"
 
-void remove(hls::stream<int> &removeInputLevel,
-            hls::stream<int> &removeInputIndex,
-            hls::stream<int> &removeLevel2mem,
+void remove(hls::stream<int> &removeNodeIndex,
             hls::stream<int> &removeIndex2mem,
             hls::stream<int> &mem2removeLevel,
             hls::stream<int> &mem2removeIndex,
             hls::stream<Node> &mem2node,
-            hls::stream<Node> &mem2overflow,
-            hls::stream<Node> &overflow2mem,
-            Node *HBM_PTR)
-{
+            hls::stream<bool> &removeOuput
+) {
     enum RemoveStates
     {
         INIT,
@@ -37,12 +33,11 @@ void remove(hls::stream<int> &removeInputLevel,
     case INIT:
     {
         std::cout << "STATE: INIT" << std::endl;
-        if (!removeInputLevel.empty() && !removeInputIndex.empty())
+        if (!removeNodeIndex.empty())
         {
-            removeInputLevel.read(removeLevel);
-            removeInputIndex.read(removeIndex);
-            stack.push(get_level_start_index(removeLevel));
-            std::cout << "Remove: " << removeLevel << " " << removeIndex << std::endl;
+            removeNodeIndex.read(removeIndex);
+            stack.push(H * MAX_NODES_PER_LEVEL);
+            std::cout << "Remove: " << removeIndex << " " << std::endl;
             state = POP;
         }
         break;
@@ -51,11 +46,11 @@ void remove(hls::stream<int> &removeInputLevel,
     case POP:
     {
         std::cout << "STATE: POP" << std::endl;
-        if (!stack.isEmpty() && !removeLevel2mem.full())
+        if (!stack.isEmpty() && !removeIndex2mem.full())
         {
             nodeIndex = stack.pop();
             std::cout << "node index: " << nodeIndex << std::endl;
-            removeLevel2mem.write(nodeIndex);
+            removeIndex2mem.write(nodeIndex);
             state = GET_NODE;
         }
         else
@@ -71,7 +66,7 @@ void remove(hls::stream<int> &removeInputLevel,
         if (!mem2node.empty())
         {
             mem2node.read(currentNode);
-            if (currentNode.leaf)
+            if (currentNode.hasLeaves)
             {
                 std::cout << "Leaf Node: " << nodeIndex << std::endl;
                 if (currentNode.child[0] == removeIndex)
@@ -83,6 +78,7 @@ void remove(hls::stream<int> &removeInputLevel,
                     }
                     mem2removeLevel.write(removeLevel);
                     mem2removeIndex.write(removeIndex);
+                    state = FOUND; 
                 }
             }
             else
@@ -91,9 +87,10 @@ void remove(hls::stream<int> &removeInputLevel,
                 {
                     if (currentNode.child[i] != -1)
                     {
-                        removeLevel2mem.write(currentNode.child[i]);
-                        child[ch++] = currentNode.child[i];
-                        state = PUSH;
+                        //removeLevel2mem.write(currentNode.child[i]);
+                        //child[ch++] = currentNode.child[i];
+                        stack.push(currentNode.child[i]);
+                        state = POP;
                     }
                 }
             }
@@ -101,17 +98,17 @@ void remove(hls::stream<int> &removeInputLevel,
         break;
     }
 
-    case PUSH:
-    {
-        std::cout << "STATE: PUSH" << std::endl;
-        if (!removeLevel2mem.empty())
-        {
-            removeLevel2mem.read(pushIndex);
-            stack.push(pushIndex);
-            state = POP;
-        }
-        break;
-    }
+    // case PUSH:
+    // {
+    //     std::cout << "STATE: PUSH" << std::endl;
+    //     if (!mem2removeLevel.empty())
+    //     {
+    //         mem2removeLevel.read(pushIndex);
+    //         stack.push(pushIndex);
+    //         state = POP;
+    //     }
+    //     break;
+    // }
 
     case FOUND:
     {

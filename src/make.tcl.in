@@ -20,13 +20,14 @@ config_rtl -register_reset_num=3
 
 add_files ${CMAKE_CURRENT_SOURCE_DIR}/krnl.cpp -cflags "-I${CMAKE_CURRENT_BINARY_DIR}/../../include"
 add_files -tb ${CMAKE_CURRENT_SOURCE_DIR}/test_krnl.cpp -cflags "-I${CMAKE_CURRENT_BINARY_DIR}/../../include"
-add_files ${CMAKE_CURRENT_SOURCE_DIR}/krnlSearch.cpp -cflags "-I${CMAKE_CURRENT_BINARY_DIR}/../../include"
+#add_files ${CMAKE_CURRENT_SOURCE_DIR}/krnlSearch.cpp -cflags "-I${CMAKE_CURRENT_BINARY_DIR}/../../include"
 add_files ${CMAKE_CURRENT_SOURCE_DIR}/mem_mngr.cpp -cflags "-I${CMAKE_CURRENT_BINARY_DIR}/../../include"
-add_file ${CMAKE_CURRENT_SOURCE_DIR}/node.cpp -cflags "-I${CMAKE_CURRENT_BINARY_DIR}/../../include"
-add_file ${CMAKE_CURRENT_SOURCE_DIR}/nodeArray.cpp -cflags "-I${CMAKE_CURRENT_BINARY_DIR}/../../include"
-add_file ${CMAKE_CURRENT_SOURCE_DIR}/overlapEnlargementPair.cpp -cflags "-I${CMAKE_CURRENT_BINARY_DIR}/../../include"
-add_file ${CMAKE_CURRENT_SOURCE_DIR}/areaEnlargementPair.cpp -cflags "-I${CMAKE_CURRENT_BINARY_DIR}/../../include"
+add_files ${CMAKE_CURRENT_SOURCE_DIR}/node.cpp -cflags "-I${CMAKE_CURRENT_BINARY_DIR}/../../include"
+add_files ${CMAKE_CURRENT_SOURCE_DIR}/nodeArray.cpp -cflags "-I${CMAKE_CURRENT_BINARY_DIR}/../../include"
+add_files ${CMAKE_CURRENT_SOURCE_DIR}/overlapEnlargementPair.cpp -cflags "-I${CMAKE_CURRENT_BINARY_DIR}/../../include"
+add_files ${CMAKE_CURRENT_SOURCE_DIR}/areaEnlargementPair.cpp -cflags "-I${CMAKE_CURRENT_BINARY_DIR}/../../include"
 add_files ${CMAKE_CURRENT_SOURCE_DIR}/krnlInsert.cpp -cflags "-I${CMAKE_CURRENT_BINARY_DIR}/../../include"
+#add_files ${CMAKE_CURRENT_SOURCE_DIR}/krnlRemove.cpp -cflags "-I${CMAKE_CURRENT_BINARY_DIR}/../../include"
 
 
 #Check which command
@@ -36,6 +37,8 @@ if {$command == "synthesis"} {
    csynth_design
 } elseif {$command == "csim"} {
    csim_design 
+} elseif {$command == "cosim"} {
+   cosim_design 
 } elseif {$command == "ip"} {
    export_design -format xo
 } elseif {$command == "installip"} {
