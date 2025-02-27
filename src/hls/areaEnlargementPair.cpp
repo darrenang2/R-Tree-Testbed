@@ -12,16 +12,28 @@ void swap(areaEnlargementPair *xp, areaEnlargementPair *yp)
     *yp = temp;
 }
 
-void sort(areaEnlargementPair arr[], int n)
+void sort(areaEnlargementPair *arr, int n)
 {
+    bool swapped = false; 
     for (int j = 0; j < n; j++)
     {
-        for (int i = 1; i < n; i++)
+        swapped = false;
+        for (int i = 0; i < n-1; i++)
         {
-            if (compare(arr[i], arr[i - 1]))
+            std::cout << "A: " << arr[i].areaEnlargement<< " vs B: " << arr[i + 1].areaEnlargement << std::endl;
+            if (arr[i].areaEnlargement > arr[i + 1].areaEnlargement)
             {
-                swap(&arr[i], &arr[i - 1]);
+                areaEnlargementPair temp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = arr[i];
+
             }
+       }
+
+        if (!swapped) {
+            break; 
         }
+
+
     }
 }

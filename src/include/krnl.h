@@ -15,6 +15,11 @@
 #include "krnlInsert.h"
 // #include "krnlRemove.h"
 
+
+#define MAX_TREE_SIZE 5000
+
+
+
 extern "C" void krnl(
     Node *HBM_PTR,
     ap_uint<32> *operations,
@@ -22,6 +27,7 @@ extern "C" void krnl(
     // RDMA
     int number_of_operations,
     int board_num,
-    int exe);
+    int exe,
+    int* root);
 
 #endif

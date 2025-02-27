@@ -1,8 +1,5 @@
 #include "mem_mngr.h"
 
-areaEnlargementPair AreaEnlargementArray[MAX];
-overlapEnlargementPair OverlapEnlargementArray[MAX];
-
 // void memory_manager(
 //     hls::stream<int> &search2mem,
 //     hls::stream<Node> &mem2search,
@@ -439,7 +436,7 @@ void memory_manager(
     if (!getNode4insert.empty() && !receiveNode4insert.full()) {
         get = getNode4insert.read();
         #if MEM_DEBUG
-            std::cout << "Get NODE from Tree at " << get << std::endl;
+            std::cout << "Get NODE " << get << " with "<< HBM_PTR[get].amount_of_children << " children" <<  std::endl;
         #endif
         receiveNode4insert.write(HBM_PTR[get]);
     }
@@ -459,16 +456,13 @@ void memory_manager(
         cst_req.read(curNode);
         cst_req.read(newNode);
 
-        static int array_size = 0;
-        static int area_maxX, area_maxY, area_minX, area_minY;
-        static int maxX, maxY, minX, minY;
-        static int area_enlargement;
-        static int nodeIndex;
-        static Node currentNode;
-        static Node childNode;
-        static Stack stack;
-        stack.push(get_level_start_index(H)); // Start with the root node index
+        int array_size = 0;
+        int maxX, maxY, minX, minY;
+        int area_enlargement;
+        Node childNode;
 
+        areaEnlargementPair AreaEnlargementArray[MAX_CHILDREN];
+        overlapEnlargementPair OverlapEnlargementArray[MAX_CHILDREN];
         
         if (HBM_PTR[curNode.child[0]].hasLeaves) {
         // If the children of the current nodes have leaves
@@ -476,50 +470,46 @@ void memory_manager(
             // Special algorithm case: max_child_items > (RTREE_CHOOSE_SUBTREE_P*2)/3  && node->items.size() > RTREE_CHOOSE_SUBTREE_P
             // Skipping for now
             // sort by overlap enlargement
-            for (int i = 0; i < MAX_CHILDREN; i++) {
-                if (curNode.child[i] != -1) {
-                    maxX = std::min(currentNode.box.maxX, newNode.box.maxX);
-                    maxY = std::min(currentNode.box.maxY, newNode.box.maxY);
-                    minX = std::max(currentNode.box.minX, newNode.box.minX);
-                    minY = std::max(currentNode.box.minY, newNode.box.minY);
+            for (int i = 0; i < curNode.amount_of_children; i++) {
+                childNode = HBM_PTR[curNode.child[i]];
+                // if (curNode.child[i] != -1) {
+                maxX = std::min(childNode.box.maxX, newNode.box.maxX);
+                maxY = std::min(childNode.box.maxY, newNode.box.maxY);
+                minX = std::max(childNode.box.minX, newNode.box.minX);
+                minY = std::max(childNode.box.minY, newNode.box.minY);
 
-                    int overlap = (maxX - minX) * (maxY - minY);
-                    overlapEnlargementPair pair = {curNode.child[i], overlap};
-                    #if MEM_DEBUG
-                        std::cout << "Adding child to OverlapEnlargementArray " << std::endl;
-                    #endif
-                    OverlapEnlargementArray[array_size++] = pair;
-                } else {
-                    break; 
-                }
+                int overlap = (maxX - minX) * (maxY - minY);
+                OverlapEnlargementArray[array_size++] = {childNode.index, overlap};
+                #if MEM_DEBUG
+                    std::cout << "Adding child " << childNode.index << " to with overlap of " << overlap << std::endl;
+                #endif
             }
             sort(OverlapEnlargementArray, array_size);
             #if MEM_DEBUG
-                std::cout << "1: Get NODE from Tree at " << OverlapEnlargementArray[0].index << std::endl;
+                std::cout << "1: Get NODE from Tree at " << OverlapEnlargementArray[0].index << " with "<< HBM_PTR[OverlapEnlargementArray[0].index].amount_of_children << " children" <<  std::endl;
             #endif
             receiveNode4insert.write(HBM_PTR[OverlapEnlargementArray[0].index]);
 
         } else {
             // If the children of the current nodes don't have leaves
             // sort by area enlargment
-            for (int i = 0; i < MAX_CHILDREN; i++) {
-                if (curNode.child[i] != -1) {
+            for (int i = 0; i < curNode.amount_of_children; i++) {
+                // if (curNode.child[i] != -1) {
+                childNode = HBM_PTR[curNode.child[i]];
+                // maxX = std::max(childNode.box.maxX, newNode.box.maxX);
+                // maxY = std::max(childNode.box.maxY, newNode.box.maxY);
+                // minX = std::min(childNode.box.minX, newNode.box.minX);
+                // minY = std::min(childNode.box.minY, newNode.box.minY);
 
-                area_maxX = std::max(currentNode.box.maxX, newNode.box.maxX);
-                area_maxY = std::max(currentNode.box.maxY, newNode.box.maxY);
-                area_minX = std::min(currentNode.box.minX, newNode.box.minX);
-                area_minY = std::min(currentNode.box.minY, newNode.box.minY);
-
-                area_enlargement = (area_maxX - area_minX) * (area_maxY - area_minY) - getArea(currentNode.box);
-                areaEnlargementPair pair = {curNode.child[i], area_enlargement};
-                AreaEnlargementArray[array_size++] = pair;
-                } else {
-                    break; 
-                }
+                area_enlargement = getArea(curNode.box) - (childNode.box.maxX - childNode.box.minX) * (childNode.box.maxY - childNode.box.minY);
+                AreaEnlargementArray[array_size++] = {childNode.index, area_enlargement};
+                #if MEM_DEBUG
+                    std::cout << "Adding child " << childNode.index << " to with area englarment of " << area_enlargement << std::endl;
+                #endif
             }
             sort(AreaEnlargementArray, array_size);
             #if MEM_DEBUG
-                std::cout << "2: Get NODE from Tree at " << AreaEnlargementArray[0].index << std::endl;
+                std::cout << "2: Get NODE from Tree at " << AreaEnlargementArray[0].index << " Amount of children = " << curNode.amount_of_children <<  std::endl;
             #endif
             receiveNode4insert.write(HBM_PTR[AreaEnlargementArray[0].index]);
         }
@@ -537,30 +527,35 @@ void memory_manager(
         overflow2split.read(node);
         Node newNode;
         newNode.hasLeaves = node.hasLeaves;
+        newNode.index = node_numbers;
+        node_numbers++; 
 
         boundingBox R1;
         boundingBox R2;
 
         // if the root node is the one needing spliting
-        if (node.index == 0) {
+        if (node.index == root_index) {
             #if MEM_DEBUG
                 std::cout << "Spliting root " << std::endl;
             #endif
             Node rootNode;
             rootNode.hasLeaves = false;
-            rootNode.index = 0;
-            rootNode.child[0] = 1;
-            rootNode.child[1] = 2;  
+            rootNode.index = node_numbers;
+            rootNode.child[0] = newNode.index;
+            rootNode.child[1] = node.index;  
             rootNode.amount_of_children = 2; 
             rootNode.box = node.box; 
-
-            HBM_PTR[0] = rootNode; 
+            std::cout << "ROOT: " << root_index << std::endl; 
+            root_index = node_numbers;
+            node_numbers++; 
+            std::cout << "ROOT: " << root_index << std::endl;
             parent = rootNode; 
 
-            node.parent = 0;
-            newNode.parent = 0; 
-            newNode.index = 1; 
-            node.index = 2; 
+            node.parent = rootNode.index;
+            newNode.parent = rootNode.index; 
+            
+            // newNode.index = 1; 
+            // node.index = 2; 
         } else {
             //Don't add a new root, but split current and add new node as sibling of same parent. 
             #if MEM_DEBUG
@@ -568,11 +563,16 @@ void memory_manager(
             #endif
             parent = HBM_PTR[node.parent];
             newNode.parent = node.parent;
-            newNode.index = node.parent * MAX_CHILDREN + parent.amount_of_children;
-            parent.child[parent.amount_of_children-1] = node.parent * MAX_CHILDREN + parent.amount_of_children;
+            // newNode.index = node_numbers;
+            parent.child[parent.amount_of_children] = newNode.index;
             parent.amount_of_children++;
-            HBM_PTR[node.parent] = parent; 
+            #if MEM_DEBUG
+                std::cout << "Adding children to: " << newNode.index << std::endl;
+            #endif
+            //HBM_PTR[node.parent] = parent; 
         }
+
+        HBM_PTR[parent.index] = parent; 
 
         int distribution_count = MAX_CHILDREN - 2 * MIN_CHILDREN + 1; 
 
@@ -587,7 +587,6 @@ void memory_manager(
         //Find split index
         for (int axis = 0; axis < 2; axis++)
         {
-
 
             int margin = 0;
             double area = 0, overlap = 0;
@@ -756,7 +755,7 @@ void memory_manager(
                 {
                     for (int i = 1; i < MAX_CHILDREN; i++)
                     {
-                        if (HBM_PTR[node.child[i]].box.minY < HBM_PTR[node.child[i]].box.minY)
+                        if (HBM_PTR[node.child[i]].box.minY < HBM_PTR[node.child[i-1]].box.minY)
                         {
                             int temp = node.child[i];
                             node.child[i] = node.child[i - 1];
@@ -772,7 +771,7 @@ void memory_manager(
                 {
                     for (int i = 1; i < MAX_CHILDREN; i++)
                     {
-                        if (HBM_PTR[node.child[i]].box.minX < HBM_PTR[node.child[i]].box.minX)
+                        if (HBM_PTR[node.child[i]].box.minX < HBM_PTR[node.child[i-1]].box.minX)
                         {
                             int temp = node.child[i];
                             node.child[i] = node.child[i - 1];
@@ -793,27 +792,28 @@ void memory_manager(
         for (int i = 0; i < MAX_CHILDREN - split_index; i++)
         {
             Node child = HBM_PTR[node.child[i + split_index]];
-            HBM_PTR[node.child[i + split_index]] = Node(); 
-            newNode.child[i] = MAX_CHILDREN * newNode.index + i + 1; 
-            child.index = newNode.child[i]; 
+            //HBM_PTR[node.child[i + split_index]] = Node(); 
+            newNode.child[i] = child.index; 
+            newNode.amount_of_children++;
+            //child.index = newNode.child[i]; 
             child.parent = newNode.index; 
             HBM_PTR[newNode.child[i]] = child;
-
             //reset old parents pointer
             node.child[split_index + i] = -1;
-            newNode.amount_of_children++;
+            
         }
 
         //Moving leaves from upper level to lower level
         node.amount_of_children = 0;
         for (int i = 0; i < split_index; i++) {
             Node child = HBM_PTR[node.child[i]];
-            HBM_PTR[node.child[i]] = Node();
-            node.child[i] = MAX_CHILDREN * node.index + i + 1; 
-            child.index = node.child[i]; 
+            // HBM_PTR[node.child[i]] = Node();
+            //node.child[i] = MAX_CHILDREN * node.index + i + 1; 
+            //child.index = node.child[i]; 
+            node.child[i] = child.index; 
             child.parent = node.parent; 
-            HBM_PTR[node.child[i]] = child; 
             node.amount_of_children++;
+            HBM_PTR[node.child[i]] = child; 
         }
 
         int minX = INT_MAX;
@@ -822,7 +822,7 @@ void memory_manager(
         int maxY = INT_MIN;
         bool hasValidChild = false;
 
-        for (int i = 0; i < MAX_CHILDREN; i++)
+        for (int i = 0; i < node.amount_of_children; i++)
         {
             int childIndex = node.child[i];
             if (childIndex != -1)
@@ -850,7 +850,7 @@ void memory_manager(
         maxY = INT_MIN;
         hasValidChild = false;
 
-        for (int i = 0; i < MAX_CHILDREN; i++)
+        for (int i = 0; i < newNode.amount_of_children; i++)
         {
             int childIndex = newNode.child[i];
             if (childIndex != -1)
@@ -886,6 +886,13 @@ void memory_manager(
 
         HBM_PTR[newNode.index] = newNode; 
         HBM_PTR[node.index] = node; 
+
+        #if MEM_DEBUG
+            std::cout << "Node " << node.index << " has " << node.amount_of_children << " children" << std::endl;
+            std::cout << "Node " << newNode.index << " has " << newNode.amount_of_children << " children" << std::endl;
+        #endif
+
+
 
         // return newNode;
         split2overflow.write(HBM_PTR[node.parent]);

@@ -6,15 +6,19 @@ extern "C" void krnl(
     ap_uint<64> *parameters_for_operations,
     int number_of_operations,
     int board_num,
-    int exe
+    int exe,
+    int *root
 ) {
 
-    #pragma HLS INTERFACE m_axi port=HBM_PTR depth=2000
-    #pragma HLS INTERFACE m_axi port=operations depth=10
-    #pragma HLS INTERFACE m_axi port=parameters_for_operations depth=10
+    #pragma HLS INTERFACE m_axi port=HBM_PTR depth=MAX_TREE_SIZE bundle=TREE_BUS
+
+    #pragma HLS INTERFACE m_axi port=operations depth=1000 bundle=OP_BUS
+    #pragma HLS INTERFACE m_axi port=parameters_for_operations depth=1000 bundle=OP_BUS
+
     #pragma HLS INTERFACE s_axilite port=number_of_operations
     #pragma HLS INTERFACE s_axilite port=board_num
     #pragma HLS INTERFACE s_axilite port=exe
+    #pragma HLS INTERFACE s_axilite port=root
 
     int operation = 0;
     int debugCounter = 0;
@@ -146,6 +150,10 @@ extern "C" void krnl(
         //     removeOuput.read(rFin);
         //     operation++; 
         // }
-    
+
+        //std::cout << "Setting output root to " << root_index << std::endl; 
+        *root = root_index; 
+        
     }
+    
 }

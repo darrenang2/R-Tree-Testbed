@@ -7,8 +7,9 @@
 #include <float.h>
 #include <iostream>
 #include <algorithm>
+#include "ap_int.h"
 
-struct boundingBox
+struct __attribute__((packed)) boundingBox
 {
     int minX = 0;
     int maxX = 0;
@@ -16,14 +17,14 @@ struct boundingBox
     int maxY = 0;
 };
 
-struct Node
+struct __attribute__((packed)) Node
 {
     int index; 
     int parent; 
     bool hasLeaves;
     boundingBox box;
     int child[MAX_CHILDREN];
-    int amount_of_children = 0;
+    ap_uint<4> amount_of_children = 0;
 
     Node()
     {

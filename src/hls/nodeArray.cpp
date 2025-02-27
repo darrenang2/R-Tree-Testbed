@@ -1,5 +1,9 @@
 #include "nodeArray.h"
 
+int root_index = -1; 
+int node_numbers = 0; 
+
+
 // Function to get the starting index of a level
 int get_level_start_index(int level)
 {

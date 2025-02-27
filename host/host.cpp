@@ -128,7 +128,7 @@ int main(int argc, char **argv)
     /*DEVICE -> HOST DATA TRANSFER*/
     std::cout << "HOST <- DEVICE" << std::endl;
     dtoh = clock();
-    // OCL_CHECK(err, err = q.enqueueMigrateMemObjects({buffer_output}, CL_MIGRATE_MEM_OBJECT_HOST));
+    OCL_CHECK(err, err = q.enqueueMigrateMemObjects({buffer_output}, CL_MIGRATE_MEM_OBJECT_HOST));
     q.finish();
     dtoh = clock() - dtoh;
 

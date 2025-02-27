@@ -274,11 +274,12 @@ void insert(
         #if INSERT_DEBUG
             std::cout << "STATE = WAIT" << std::endl;
         #endif
-        if (wait) {
+        if (wait && cur.amount_of_children == MAX_CHILDREN) {
+            wait = false; 
+            state = OVF; 
+        } else if (wait) {
             wait = false; 
             state = FIN;
-        } else if (!wait && cur.child[MAX_CHILDREN-1] != -1) {
-            state = OVF; 
         } else {
             state = WAIT; 
         }
@@ -309,12 +310,14 @@ void insert(
                     std::cout << "no leader creating leader!" << std::endl;
                 #endif
                 Node root;
-                root.index = 0; 
-                root_index = 0;
+                root.index = node_numbers;
                 root.box = newLeaf.box;
                 root.hasLeaves = true;
                 insertNode4insert.write(root);
                 cur = root; 
+                root_index = node_numbers;
+                node_numbers++;  
+                std::cout << "ROOT: " << root_index << std::endl; 
             }
             getNode4insert.write(root_index);
 
@@ -324,6 +327,9 @@ void insert(
     case GET_NODE:
         if (!receiveNode4insert.empty()) {
             cur = receiveNode4insert.read();
+            #if INSERT_DEBUG
+                std::cout << "Node " << cur.index << " has " << cur.amount_of_children << " leaves" << std::endl;
+            #endif
             received = true; 
         }
         break; 
@@ -331,15 +337,28 @@ void insert(
     case INSERT_INTERVAL:
         cur.box = strech(cur.box, newLeaf.box);
         if (cur.hasLeaves) {
-            for (int i = 0; i < MAX_CHILDREN; i++) {
-                if (cur.child[i] == -1){
-                    newLeaf.index = MAX_CHILDREN * cur.index + i + 1; 
-                    newLeaf.parent = cur.index; 
-                    cur.child[i] = MAX_CHILDREN * cur.index + i + 1;
-                    cur.amount_of_children++; 
-                    break; 
-                }
-            }
+            // for (int i = 0; i < MAX_CHILDREN; i++) {
+            //     if (cur.child[i] == -1){
+            //         newLeaf.index = node_numbers; 
+            //         newLeaf.parent = cur.index; 
+            //         cur.child[i] = node_numbers;
+            //         node_numbers++; 
+            //         cur.amount_of_children++; 
+            //         break; 
+            //     }
+            // }
+            #if INSERT_DEBUG
+                std::cout << "Adding new node to " << cur.index << " as leaf" << std::endl;
+                std::cout << "Node " << cur.index << " has " << cur.amount_of_children << " leaves" << std::endl;
+            #endif
+            newLeaf.index = node_numbers; 
+            newLeaf.parent = cur.index; 
+            cur.child[cur.amount_of_children] = node_numbers;
+            #if INSERT_DEBUG
+                std::cout << "Node " << cur.index << " has " << cur.amount_of_children << "leaves" << std::endl;
+            #endif
+            node_numbers++; 
+            cur.amount_of_children++; 
             insertNode4insert.write(newLeaf);
         } else {
             //Pass the new leaf and the current node to choose sub tree

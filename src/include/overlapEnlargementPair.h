@@ -1,6 +1,8 @@
 #ifndef OVERLAPENLARGEMENTPAIR_H
 #define OVERLAPENLARGEMENTPAIR_H
 
+#include <iostream>
+
 typedef struct {
     int index = -1;
     int overlapEnlargement = -1;
@@ -8,6 +10,6 @@ typedef struct {
 
 bool compare(overlapEnlargementPair a, overlapEnlargementPair b);
 void swap(overlapEnlargementPair *xp, overlapEnlargementPair *yp);
-void sort(overlapEnlargementPair arr[], int n);
+void sort(overlapEnlargementPair *arr, int n);
 
 #endif // OVERLAPENLARGEMENTPAIR_H

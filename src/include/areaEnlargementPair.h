@@ -1,6 +1,8 @@
 #ifndef AREAENLARGEMENTPAIR_H
 #define AREAENLARGEMENTPAIR_H
 
+#include <iostream>
+
 typedef struct 
 {
     int index = -1;
@@ -9,6 +11,6 @@ typedef struct
 
 bool compare(areaEnlargementPair a, areaEnlargementPair b);
 void swap(areaEnlargementPair *xp, areaEnlargementPair *yp);
-void sort(areaEnlargementPair arr[], int n);
+void sort(areaEnlargementPair *arr, int n);
 
 #endif
