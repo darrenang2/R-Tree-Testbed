@@ -17,7 +17,7 @@ int main()
 
     Node TREE[MAX_TREE_SIZE];
 
-    int number_of_operations = 100; 
+    int number_of_operations = 50; 
     ap_uint<64> x;
 
     //Insert

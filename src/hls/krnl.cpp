@@ -153,7 +153,7 @@ extern "C" void krnl(
 
         //std::cout << "Setting output root to " << root_index << std::endl; 
         *root = root_index; 
-        
+
     }
     
 }

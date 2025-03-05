@@ -40,6 +40,7 @@ if {$command == "synthesis"} {
 } elseif {$command == "cosim"} {
    cosim_design 
 } elseif {$command == "ip"} {
+   csynth_design
    export_design -format xo
 } elseif {$command == "installip"} {
    file mkdir ${IPREPO_DIR}

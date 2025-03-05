@@ -9,7 +9,7 @@
 #include <algorithm>
 #include "ap_int.h"
 
-struct __attribute__((packed)) boundingBox
+struct boundingBox
 {
     int minX = 0;
     int maxX = 0;
@@ -17,7 +17,7 @@ struct __attribute__((packed)) boundingBox
     int maxY = 0;
 };
 
-struct __attribute__((packed)) Node
+struct Node
 {
     int index; 
     int parent; 

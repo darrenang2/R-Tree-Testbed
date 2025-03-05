@@ -310,13 +310,13 @@ void insert(
                     std::cout << "no leader creating leader!" << std::endl;
                 #endif
                 Node root;
-                root.index = node_numbers;
+                //root.index = node_numbers;
                 root.box = newLeaf.box;
                 root.hasLeaves = true;
                 insertNode4insert.write(root);
                 cur = root; 
-                root_index = node_numbers;
-                node_numbers++;  
+                root_index = 0;
+                //node_numbers++;  
                 std::cout << "ROOT: " << root_index << std::endl; 
             }
             getNode4insert.write(root_index);
@@ -351,14 +351,14 @@ void insert(
                 std::cout << "Adding new node to " << cur.index << " as leaf" << std::endl;
                 std::cout << "Node " << cur.index << " has " << cur.amount_of_children << " leaves" << std::endl;
             #endif
-            newLeaf.index = node_numbers; 
+            //newLeaf.index = node_numbers; 
             newLeaf.parent = cur.index; 
-            cur.child[cur.amount_of_children] = node_numbers;
+            //cur.child[cur.amount_of_children] = node_numbers;
             #if INSERT_DEBUG
                 std::cout << "Node " << cur.index << " has " << cur.amount_of_children << "leaves" << std::endl;
             #endif
-            node_numbers++; 
-            cur.amount_of_children++; 
+            //node_numbers++; 
+            //cur.amount_of_children++; 
             insertNode4insert.write(newLeaf);
         } else {
             //Pass the new leaf and the current node to choose sub tree

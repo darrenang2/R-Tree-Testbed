@@ -421,16 +421,23 @@ void memory_manager(
     if (!insertNode4insert.empty()) {
         insert = insertNode4insert.read();
         #if MEM_DEBUG
-            std::cout << "Inserting NODE into Tree at " << insert.index << std::endl;
+            std::cout << "Inserting NODE into Tree at " << node_numbers << std::endl;
         #endif
-        HBM_PTR[insert.index].box = insert.box;
-        HBM_PTR[insert.index].index = insert.index;
-        HBM_PTR[insert.index].hasLeaves = insert.hasLeaves;
+
+        HBM_PTR[node_numbers].parent = insert.parent; 
+        HBM_PTR[node_numbers].box = insert.box;
+        HBM_PTR[node_numbers].index = node_numbers;
+        HBM_PTR[node_numbers].hasLeaves = insert.hasLeaves;
+        if (insert.parent >= 0) {
+            HBM_PTR[insert.parent].child[HBM_PTR[insert.parent].amount_of_children] = node_numbers;
+            HBM_PTR[insert.parent].amount_of_children++;
+        }
         for (int i = 0; i < MAX_CHILDREN; i++)
-            HBM_PTR[insert.index].child[i] = insert.child[i];
+            HBM_PTR[node_numbers].child[i] = insert.child[i];
         #if MEM_DEBUG
             std::cout << "Insert successful! " << std::endl;
         #endif
+        node_numbers++;
     }
 
     if (!getNode4insert.empty() && !receiveNode4insert.full()) {
@@ -443,7 +450,7 @@ void memory_manager(
 
     if (!writeChanges4insert.empty()) {
         write = writeChanges4insert.read();
-        HBM_PTR[write.index] = write; 
+        HBM_PTR[write.index].box = write.box; 
     }
 
     if (!cst_req.empty() && !receiveNode4insert.full()) {
