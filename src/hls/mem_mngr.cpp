@@ -411,6 +411,7 @@ void memory_manager(
     hls::stream<Node> &overflow2split,
     hls::stream<Node> &cst_req,  
     hls::stream<Node> &split2overflow,
+    int* root,
     Node *HBM_PTR
 ) {
 
@@ -532,6 +533,7 @@ void memory_manager(
 
         Node node, parent;
         overflow2split.read(node);
+        node = HBM_PTR[node.index];
         Node newNode;
         newNode.hasLeaves = node.hasLeaves;
         newNode.index = node_numbers;
@@ -554,6 +556,7 @@ void memory_manager(
             rootNode.box = node.box; 
             std::cout << "ROOT: " << root_index << std::endl; 
             root_index = node_numbers;
+            *root = node_numbers;
             node_numbers++; 
             std::cout << "ROOT: " << root_index << std::endl;
             parent = rootNode; 

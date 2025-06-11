@@ -1,0 +1,30 @@
+{
+    "schema_version":
+    {
+        "major": "1",
+        "minor": "3",
+        "patch": "0"
+    },
+    "generation":
+    {
+        "this_file": "\/home\/pyuva001\/R-Tree-Testbed\/xrt.run_summary",
+        "source": "vp",
+        "PID": "27455",
+        "timestamp": "1741926631711",
+        "flags":
+        [
+            ""
+        ]
+    },
+    "files":
+    [
+        {
+            "name": "opencl_trace.csv",
+            "type": "VP_TRACE"
+        },
+        {
+            "name": "summary.csv",
+            "type": "PROFILE_SUMMARY"
+        }
+    ]
+}

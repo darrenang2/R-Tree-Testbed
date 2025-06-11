@@ -256,7 +256,7 @@ void insert(
         #endif
         if (!cur.hasLeaves) {
             state = GET_NODE;
-        } else if (cur.child[MAX_CHILDREN-1] != -1) {
+        } else if (cur.amount_of_children == MAX_CHILDREN) {
             state = OVF; 
         } else  {
             state = FIN; 
@@ -354,11 +354,12 @@ void insert(
             //newLeaf.index = node_numbers; 
             newLeaf.parent = cur.index; 
             //cur.child[cur.amount_of_children] = node_numbers;
+            cur.amount_of_children++; 
             #if INSERT_DEBUG
                 std::cout << "Node " << cur.index << " has " << cur.amount_of_children << "leaves" << std::endl;
             #endif
             //node_numbers++; 
-            //cur.amount_of_children++; 
+            
             insertNode4insert.write(newLeaf);
         } else {
             //Pass the new leaf and the current node to choose sub tree

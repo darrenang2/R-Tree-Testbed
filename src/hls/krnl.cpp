@@ -11,14 +11,13 @@ extern "C" void krnl(
 ) {
 
     #pragma HLS INTERFACE m_axi port=HBM_PTR depth=MAX_TREE_SIZE bundle=TREE_BUS
-
-    #pragma HLS INTERFACE m_axi port=operations depth=1000 bundle=OP_BUS
-    #pragma HLS INTERFACE m_axi port=parameters_for_operations depth=1000 bundle=OP_BUS
-
-    #pragma HLS INTERFACE s_axilite port=number_of_operations
-    #pragma HLS INTERFACE s_axilite port=board_num
-    #pragma HLS INTERFACE s_axilite port=exe
-    #pragma HLS INTERFACE s_axilite port=root
+    #pragma HLS INTERFACE m_axi port=operations depth=MAX_TREE_SIZE bundle=OP_BUS
+    #pragma HLS INTERFACE m_axi port=parameters_for_operations depth=MAX_TREE_SIZE bundle=OP_BUS
+    #pragma HLS INTERFACE s_axilite port=number_of_operations bundle=SCALAR_BUS
+    #pragma HLS INTERFACE s_axilite port=board_num bundle=SCALAR_BUS
+    #pragma HLS INTERFACE s_axilite port=exe bundle=SCALAR_BUS
+    #pragma HLS INTERFACE s_axilite port=root bundle=SCALAR_BUS
+    #pragma HLS INTERFACE s_axilite port=return bundle=CONTROL
 
     int operation = 0;
     int debugCounter = 0;
@@ -61,14 +60,14 @@ extern "C" void krnl(
         //     }
         //     break;
 
-        case 1:
-            if (insertFin) {
-                Node newNode = createNode(true, setBB(param.range(15, 0), param.range(31, 16), param.range(47, 32), param.range(63, 48)), -1, -1, -1, -1, -1);
-                std::cout << "New Node: (" << newNode.box.minX << "," << newNode.box.minY << ")-(" << newNode.box.maxX << "," << newNode.box.maxY << ")" << std::endl; 
-                insertFin = false;
-                newLeaf2insert.write(newNode);
-            }
-            break; 
+            case 1:
+                if (insertFin) {
+                    Node newNode = createNode(true, setBB(param.range(15, 0), param.range(31, 16), param.range(47, 32), param.range(63, 48)), -1, -1, -1, -1, -1);
+                    std::cout << "New Node: (" << newNode.box.minX << "," << newNode.box.minY << ")-(" << newNode.box.maxX << "," << newNode.box.maxY << ")" << std::endl; 
+                    insertFin = false;
+                    newLeaf2insert.write(newNode);
+                }
+                break; 
 
         // case 2:
         //     if (removeFin) {
@@ -125,6 +124,7 @@ extern "C" void krnl(
             overflow2split,
             cst_req,
             split2overflow,
+            root,
             HBM_PTR
         );
     
@@ -152,7 +152,7 @@ extern "C" void krnl(
         // }
 
         //std::cout << "Setting output root to " << root_index << std::endl; 
-        *root = root_index; 
+        // *root = root_index; 
 
     }
     

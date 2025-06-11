@@ -38,6 +38,7 @@ void memory_manager(
     hls::stream<Node> &overflow2split,
     hls::stream<Node> &cst_req,  
     hls::stream<Node> &split2overflow,
+    int *root,
     Node *HBM_PTR
 );
 

@@ -66,6 +66,7 @@ XSA := $(call device2xsa, $(PLATFORM))
 endif
 TEMP_DIR := ./_x.$(TARGET).$(XSA)
 BUILD_DIR := ./build_dir.$(TARGET).$(XSA)
+IPREPO_DIR := ./build/iprepo
 
 # SoC variables
 RUN_APP_SCRIPT = ./run_app.sh
@@ -84,14 +85,14 @@ CXXFLAGS += $(opencl_CXXFLAGS) -Wall -O0 -g -std=c++11
 LDFLAGS += $(opencl_LDFLAGS)
 
 INCLUDES = ./include
-INCLUDES_H = ./include_host
+INCLUDES_H = ./src/host/include/
 INCLUDES_SPIRAL = ./spiral_fft
 ########################## Checking if PLATFORM in whitelist #######################
 PLATFORM_BLOCKLIST += nodma 
 ############################## Setting up Host Variables ##############################
 #Include Required Host Source Files
 # add host2.cpp for two array functions
-HOST_SRCS += ./src/host.cpp ./src/areaEnlargementPair.cpp ./src/node.cpp ./src/overlapEnlargementPair.cpp ./src/nodeArray.cpp
+HOST_SRCS += ./src/host/src/host.cpp
 # Host compiler global settings
 CXXFLAGS += -fmessage-length=0 -I$(INCLUDES_H)
 LDFLAGS += -lrt -lstdc++ 
@@ -115,7 +116,7 @@ EMU_DIR = $(SDCARD)/data/emulation
 
 ############################## Declaring Binary Containers ##############################
 BINARY_CONTAINERS += $(BUILD_DIR)/krnl.xclbin
-#BINARY_CONTAINER_krnl_OBJS += $(TEMP_DIR)/krnl.xo
+BINARY_CONTAINER_krnl_OBJS += $(IPREPO_DIR)/krnl.xo
 
 ############################## Setting Targets ##############################
 CP = cp -rf
@@ -133,10 +134,10 @@ build: check-vitis check-device $(BINARY_CONTAINERS)
 xclbin: build
 
 ############################## Setting Rules for Binary Containers (Building Kernels) ##############################
-$(TEMP_DIR)/krnl.xo: ./src/krnl.cpp ./src/node.cpp ./src/nodeArray.cpp ./src/mem_mngr.cpp ./src/krnlSearch.cpp ./src/krnlInsert.cpp ./src/overlapEnlargementPair.cpp ./src/areaEnlargementPair.cpp ./src/krnlRemove.cpp
-	mkdir -p $(TEMP_DIR)
-	$(VPP) $(VPP_FLAGS) -c -k krnl --temp_dir $(TEMP_DIR)  -I'$(<D)' -o'$@' $^
-BINARY_CONTAINER_krnl_OBJS += $(TEMP_DIR)/krnl.xo
+# $(TEMP_DIR)/krnl.xo: ./src/krnl.cpp ./src/node.cpp ./src/nodeArray.cpp ./src/mem_mngr.cpp ./src/krnlSearch.cpp ./src/krnlInsert.cpp ./src/overlapEnlargementPair.cpp ./src/areaEnlargementPair.cpp ./src/krnlRemove.cpp
+# 	mkdir -p $(TEMP_DIR)
+# 	$(VPP) $(VPP_FLAGS) -c -k krnl --temp_dir $(TEMP_DIR)  -I'$(<D)' -o'$@' $^
+# BINARY_CONTAINER_krnl_OBJS += $(TEMP_DIR)/krnl.xo
 
 
 $(BUILD_DIR)/krnl.xclbin: $(BINARY_CONTAINER_krnl_OBJS)

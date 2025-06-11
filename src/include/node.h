@@ -24,7 +24,7 @@ struct Node
     bool hasLeaves;
     boundingBox box;
     int child[MAX_CHILDREN];
-    ap_uint<4> amount_of_children = 0;
+    ap_uint<8> amount_of_children = 0;
 
     Node()
     {

@@ -28,6 +28,7 @@ extern "C" void krnl(
     int number_of_operations,
     int board_num,
     int exe,
-    int* root);
+    int *root
+);
 
 #endif
